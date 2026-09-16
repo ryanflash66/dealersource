@@ -85,7 +85,7 @@ function evaluate(agent) {
   const work = join(tmpdir(), "dealersource-eval", agent, sha.slice(0, 7));
   rmSync(work, { recursive: true, force: true }); mkdirSync(work, { recursive: true });
   const repo = join(work, "repo");
-  const R = { agent, url, sha, parentSha, fixture: FIXTURE.replace(ROOT, "."), run_date: RUN_DATE, evaluated_at: new Date().toISOString(), conformance: [], quality: [], engineering: {}, notes: [] };
+  const R = { agent, url, sha, parentSha, fixture: FIXTURE.replace(ROOT, ".").split("\\").join("/"), run_date: RUN_DATE, evaluated_at: new Date().toISOString(), conformance: [], quality: [], engineering: {}, notes: [] };
   const check = (list, name, ok, detail = "") => { list.push({ name, ok: !!ok, detail: String(detail).slice(0, 400) }); return ok; };
 
   // 1. fresh clone (prefer local object store so eval works before push; fall back to remote)
