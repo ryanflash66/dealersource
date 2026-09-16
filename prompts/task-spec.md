@@ -20,7 +20,7 @@ shown as viable. No response is not approval.
 
 | Key | Default | Notes |
 |---|---|---|
-| `search.home_base` | *(address, set in config)* | Center of the search area |
+| `search.home_base` | `Greenville, NC 27858` | Center of the search area. Dev placeholder; the real address is set at deploy time only |
 | `search.max_drive_minutes` | 60 | Isochrone from home base, not a radius |
 | `rent.min_monthly` / `rent.max_monthly` | 600 / 1000 | Base rent, USD. Hard gate. Do not exceed. |
 | `site.min_vehicle_display` | 2 | Cars displayable on the lot |
@@ -184,17 +184,41 @@ Supabase directly.
   costing money and where the switch is.
 - Structured logs per run; a `runs` row summarizing counts and errors.
 
+## 10a. Build with zero credentials
+
+The agent must complete this task **without any real credentials, accounts,
+or addresses**. Do not ask the operator for keys, URLs, or configuration
+during the build.
+
+- Every external dependency (Supabase, Gmail, Reddit, Vercel, every map/data
+  provider) is behind an adapter with a **fixture-backed fake** used by
+  default when its environment variable is unset.
+- Ship `.env.example` listing every variable name with a one-line purpose.
+  Real values are supplied once, at deploy time, by whoever deploys the
+  chosen solution. Never per agent, never during development.
+- `pnpm test` and a full `pnpm pipeline --offline` run must pass on a fresh
+  clone with no network and no `.env`.
+- Supabase schema is delivered as migrations plus a local Postgres/PostGIS
+  option (Docker or Supabase CLI) so the database layer is also testable
+  without a hosted project.
+- Dashboard must render from fixture data with no Supabase connection.
+
+Acceptance in section 13 is evaluated in exactly this state: fresh clone,
+no secrets, offline.
+
 ## 11. Deliverables
 
-1. Pipeline CLI with all six stages and provider abstraction.
+1. Pipeline CLI with all six stages and provider abstraction, runnable
+   offline on fixtures.
 2. `providers.yaml`, `sources.yaml`, `business.yaml` with documented keys.
 3. Supabase migrations and RLS policies.
 4. Dashboard deployable to Vercel with one command.
 5. Scheduled-agent definition and setup doc for the Claude Code routine.
 6. Tests: unit (adapters, gates, scoring, dedupe), integration (pipeline on
    fixtures), and a replay test proving a repeated run sends nothing.
-7. `README.md`: setup, secrets, first run, how to flip a provider, how to
-   enable a grey source, how to pause outreach.
+7. `README.md`: offline first run, then a separate **Deploy** section: which
+   variables to set, how to flip a provider, how to enable a grey source,
+   how to pause outreach.
 
 ## 12. Out of scope for v1
 
