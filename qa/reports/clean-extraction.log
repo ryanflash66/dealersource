@@ -1,0 +1,51 @@
+{
+  "package": {
+    "status": "PASS",
+    "scope": "Test-package integrity only, not application behavior",
+    "criteria": 131,
+    "fixtures": 142,
+    "levels": {
+      "contract": 101,
+      "controlled-integration": 19,
+      "manual": 11
+    },
+    "checkedTextFiles": 26,
+    "requirementIds": [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R06",
+      "R07",
+      "R08",
+      "R09",
+      "R10",
+      "R11",
+      "R12",
+      "R13"
+    ],
+    "errors": []
+  },
+  "harness": {
+    "scope": "Harness and fixture-integrity checks only; not DealerSource application tests",
+    "runtime": "v24.14.1",
+    "exitCode": 0,
+    "error": null,
+    "tests": 88,
+    "passed": 88,
+    "failed": 0,
+    "skipped": 0
+  }
+}
+{
+  "counts": {
+    "NOT_IMPLEMENTED": 142
+  },
+  "acceptanceCounts": {
+    "NOT_IMPLEMENTED": 101,
+    "NOT_RUN": 30
+  },
+  "exitCode": 2,
+  "releaseDecision": "BLOCKED"
+}

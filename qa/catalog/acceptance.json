@@ -1,0 +1,4655 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "d88e62e2383141a07351ac69229343d39736d213",
+  "sourceSpecificationRevision": 7,
+  "scope": "Public development ACs; not a locked acceptance set",
+  "criteria": [
+    {
+      "id": "AC-CFG-01",
+      "title": "Unset preferences stay unset",
+      "domain": "Configuration",
+      "requirementIds": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07"
+      ],
+      "specificationSections": [
+        "02",
+        "03"
+      ],
+      "specificationTestGroup": "T01",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "An approved profile has null lot area, bays and capacity",
+      "when": "Validate and screen the profile",
+      "then": "Accept the profile and apply no user filter for those preferences",
+      "steps": [
+        "Arrange: An approved profile has null lot area, bays and capacity",
+        "Act: Validate and screen the profile",
+        "Assert: Accept the profile and apply no user filter for those preferences"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CFG-01-nulls"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CFG-02",
+      "title": "Explicit geography required",
+      "domain": "Configuration",
+      "requirementIds": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07"
+      ],
+      "specificationSections": [
+        "02",
+        "03"
+      ],
+      "specificationTestGroup": "T01",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "The region is only named Eastern NC without a boundary",
+      "when": "Request a live discovery run",
+      "then": "Block live activation with GEOGRAPHY_REQUIRED",
+      "steps": [
+        "Arrange: The region is only named Eastern NC without a boundary",
+        "Act: Request a live discovery run",
+        "Assert: Block live activation with GEOGRAPHY_REQUIRED"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CFG-02-invalid"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CFG-03",
+      "title": "Budget bounds are consistent",
+      "domain": "Configuration",
+      "requirementIds": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07"
+      ],
+      "specificationSections": [
+        "02",
+        "03"
+      ],
+      "specificationTestGroup": "T01",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "The preferred minimum exceeds the maximum",
+      "when": "Validate the profile",
+      "then": "Reject the configuration with INVALID_BUDGET_RANGE",
+      "steps": [
+        "Arrange: The preferred minimum exceeds the maximum",
+        "Act: Validate the profile",
+        "Assert: Reject the configuration with INVALID_BUDGET_RANGE"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CFG-03-invalid"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CFG-04",
+      "title": "Negative prices are invalid",
+      "domain": "Configuration",
+      "requirementIds": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07"
+      ],
+      "specificationSections": [
+        "02",
+        "03"
+      ],
+      "specificationTestGroup": "T01",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "A configured rent limit is negative",
+      "when": "Validate the profile",
+      "then": "Reject the configuration rather than treating it as no limit",
+      "steps": [
+        "Arrange: A configured rent limit is negative",
+        "Act: Validate the profile",
+        "Assert: Reject the configuration rather than treating it as no limit"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CFG-04-invalid"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CFG-05",
+      "title": "Timezone must be valid",
+      "domain": "Configuration",
+      "requirementIds": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07"
+      ],
+      "specificationSections": [
+        "02",
+        "03"
+      ],
+      "specificationTestGroup": "T01",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "The schedule contains an invalid IANA timezone",
+      "when": "Validate the profile",
+      "then": "Reject the schedule with INVALID_TIMEZONE",
+      "steps": [
+        "Arrange: The schedule contains an invalid IANA timezone",
+        "Act: Validate the profile",
+        "Assert: Reject the schedule with INVALID_TIMEZONE"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CFG-05-invalid"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CFG-06",
+      "title": "Rules are snapshotted",
+      "domain": "Configuration",
+      "requirementIds": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07"
+      ],
+      "specificationSections": [
+        "02",
+        "03"
+      ],
+      "specificationTestGroup": "T01",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "Criteria change after a run and before a queued inquiry",
+      "when": "Reassess candidates and attempt dispatch",
+      "then": "Keep the old audit snapshot; apply the new rules and cancel now-ineligible unsent work",
+      "steps": [
+        "Arrange: Criteria change after a run and before a queued inquiry",
+        "Act: Reassess candidates and attempt dispatch",
+        "Assert: Keep the old audit snapshot; apply the new rules and cancel now-ineligible unsent work"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CFG-07",
+      "title": "Lease strategies stay in scope",
+      "domain": "Configuration",
+      "requirementIds": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07"
+      ],
+      "specificationSections": [
+        "02",
+        "03"
+      ],
+      "specificationTestGroup": "T01",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "The profile is for existing direct/shared/subleased sites",
+      "when": "Validate an attempted purchase-only or ground-development profile",
+      "then": "Reject the out-of-scope strategy pending an explicit scope change",
+      "steps": [
+        "Arrange: The profile is for existing direct/shared/subleased sites",
+        "Act: Validate an attempted purchase-only or ground-development profile",
+        "Assert: Reject the out-of-scope strategy pending an explicit scope change"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CFG-07-invalid"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CFG-08",
+      "title": "Legal rules cannot be waived",
+      "domain": "Configuration",
+      "requirementIds": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07"
+      ],
+      "specificationSections": [
+        "02",
+        "03"
+      ],
+      "specificationTestGroup": "T01",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "A user preference is unset but a mandatory legal condition applies",
+      "when": "Assess eligibility",
+      "then": "Preserve the legal gate; an unset preference is not an exemption",
+      "steps": [
+        "Arrange: A user preference is unset but a mandatory legal condition applies",
+        "Act: Assess eligibility",
+        "Assert: Preserve the legal gate; an unset preference is not an exemption"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CFG-08-legal"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-01",
+      "title": "Monthly totals normalize",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "USD monthly base rent is explicitly quoted",
+      "when": "Normalize rent",
+      "then": "Use the exact monthly amount and compare it with the approved cap",
+      "steps": [
+        "Arrange: USD monthly base rent is explicitly quoted",
+        "Act: Normalize rent",
+        "Assert: Use the exact monthly amount and compare it with the approved cap"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-01-800",
+        "TC-RNT-01-cap",
+        "TC-RNT-01-over"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-02",
+      "title": "Annual totals normalize",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "USD annual total base rent is explicitly quoted",
+      "when": "Normalize rent",
+      "then": "Divide the annual total by twelve with decimal-safe calculation",
+      "steps": [
+        "Arrange: USD annual total base rent is explicitly quoted",
+        "Act: Normalize rent",
+        "Assert: Divide the annual total by twelve with decimal-safe calculation"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-02-annual",
+        "TC-RNT-02-annual-cap"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-03",
+      "title": "Annual area rates normalize",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "The annual rate and exact leased square feet are confirmed",
+      "when": "Normalize rent",
+      "then": "Multiply rate by leased area and divide by twelve",
+      "steps": [
+        "Arrange: The annual rate and exact leased square feet are confirmed",
+        "Act: Normalize rent",
+        "Assert: Multiply rate by leased area and divide by twelve"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-03-annual-area"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-04",
+      "title": "Monthly area rates normalize",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "The monthly rate and exact leased square feet are confirmed",
+      "when": "Normalize rent",
+      "then": "Multiply the monthly area rate by leased area",
+      "steps": [
+        "Arrange: The monthly rate and exact leased square feet are confirmed",
+        "Act: Normalize rent",
+        "Assert: Multiply the monthly area rate by leased area"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-04-monthly-area"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-05",
+      "title": "Unknown leased area remains unknown",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "An area rate is given but only whole-building area is known for a sublet",
+      "when": "Normalize rent",
+      "then": "Return UNKNOWN without substituting whole-building area",
+      "steps": [
+        "Arrange: An area rate is given but only whole-building area is known for a sublet",
+        "Act: Normalize rent",
+        "Assert: Return UNKNOWN without substituting whole-building area"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-05-wrong-area",
+        "TC-RNT-05-missing-area"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-06",
+      "title": "Ranges crossing cap need a quote",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "An unselected-space rent range crosses the cap",
+      "when": "Screen the rent",
+      "then": "Return UNKNOWN and request the quote for the exact space",
+      "steps": [
+        "Arrange: An unselected-space rent range crosses the cap",
+        "Act: Screen the rent",
+        "Assert: Return UNKNOWN and request the quote for the exact space"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-06-crossing"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-07",
+      "title": "Negotiable and missing are not zero",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "The rent is negotiable or absent",
+      "when": "Normalize rent",
+      "then": "Return UNKNOWN with no fabricated amount",
+      "steps": [
+        "Arrange: The rent is negotiable or absent",
+        "Act: Normalize rent",
+        "Assert: Return UNKNOWN with no fabricated amount"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-07-missing",
+        "TC-RNT-07-negotiable"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-08",
+      "title": "Fees stay separate from base rent",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "Base rent and known additional monthly charges are supplied",
+      "when": "Screen base rent and calculate known occupancy subtotal",
+      "then": "Evaluate only base rent against the base cap; mark all-in total unknown when cost information is incomplete",
+      "steps": [
+        "Arrange: Base rent and known additional monthly charges are supplied",
+        "Act: Screen base rent and calculate known occupancy subtotal",
+        "Assert: Evaluate only base rent against the base cap; mark all-in total unknown when cost information is incomplete"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-08-fees",
+        "TC-RNT-08-complete-cost"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-09",
+      "title": "Cheaper sites are not rejected by default",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "Rent is below the preferred range and no lower bound is binding",
+      "when": "Screen rent",
+      "then": "Pass the cap check without inventing a minimum-rent rejection",
+      "steps": [
+        "Arrange: Rent is below the preferred range and no lower bound is binding",
+        "Act: Screen rent",
+        "Assert: Pass the cap check without inventing a minimum-rent rejection"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-09-below-preferred"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-10",
+      "title": "Explicit lower bound is honored",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "A test profile explicitly makes the lower bound mandatory",
+      "when": "Screen a quote below that bound",
+      "then": "Fail the rent gate under that profile only",
+      "steps": [
+        "Arrange: A test profile explicitly makes the lower bound mandatory",
+        "Act: Screen a quote below that bound",
+        "Assert: Fail the rent gate under that profile only"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-10-binding-min"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-11",
+      "title": "Currency mismatch is not silently converted",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "The quote currency differs from the configured currency",
+      "when": "Normalize rent without an approved exchange-rate rule",
+      "then": "Reject with UNSUPPORTED_CURRENCY",
+      "steps": [
+        "Arrange: The quote currency differs from the configured currency",
+        "Act: Normalize rent without an approved exchange-rate rule",
+        "Assert: Reject with UNSUPPORTED_CURRENCY"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-11-eur"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-12",
+      "title": "Invalid rates and units are rejected",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "A quote has negative, nonnumeric or unsupported-unit data",
+      "when": "Normalize rent",
+      "then": "Reject malformed values or unsupported bases without coercing them to zero",
+      "steps": [
+        "Arrange: A quote has negative, nonnumeric or unsupported-unit data",
+        "Act: Normalize rent",
+        "Assert: Reject malformed values or unsupported bases without coercing them to zero"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-12-negative",
+        "TC-RNT-12-nonnumeric",
+        "TC-RNT-12-scientific",
+        "TC-RNT-12-unsupported"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-13",
+      "title": "Rounding does not hide a cap breach",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "An exact normalized amount is just above the cap but rounds to the cap for display",
+      "when": "Screen rent",
+      "then": "Fail using the unrounded amount while retaining a cents display value",
+      "steps": [
+        "Arrange: An exact normalized amount is just above the cap but rounds to the cap for display",
+        "Act: Screen rent",
+        "Assert: Fail using the unrounded amount while retaining a cents display value"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-13-rounding"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-RNT-14",
+      "title": "Entire ranges classify honestly",
+      "domain": "Rent and cost normalization",
+      "requirementIds": [
+        "R04"
+      ],
+      "specificationSections": [
+        "03",
+        "06"
+      ],
+      "specificationTestGroup": "T02",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "Every value in a quoted range is on the same side of the cap",
+      "when": "Screen the range",
+      "then": "Pass or fail the advertised-range gate without inventing a selected-space exact price",
+      "steps": [
+        "Arrange: Every value in a quoted range is on the same side of the cap",
+        "Act: Screen the range",
+        "Assert: Pass or fail the advertised-range gate without inventing a selected-space exact price"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-RNT-14-range-under",
+        "TC-RNT-14-range-over"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-ID-01",
+      "title": "Different suites remain distinct",
+      "domain": "Exact-space identity",
+      "requirementIds": [
+        "R03",
+        "R08"
+      ],
+      "specificationSections": [
+        "05",
+        "06",
+        "09"
+      ],
+      "specificationTestGroup": "T03",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "Two offers share an address but identify different suites",
+      "when": "Resolve opportunity identity",
+      "then": "Keep distinct spaces",
+      "steps": [
+        "Arrange: Two offers share an address but identify different suites",
+        "Act: Resolve opportunity identity",
+        "Assert: Keep distinct spaces"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-ID-01-suites"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-ID-02",
+      "title": "Display allocations remain distinct",
+      "domain": "Exact-space identity",
+      "requirementIds": [
+        "R03",
+        "R08"
+      ],
+      "specificationSections": [
+        "05",
+        "06",
+        "09"
+      ],
+      "specificationTestGroup": "T03",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "Two shared-site offers allocate different display areas",
+      "when": "Resolve identity",
+      "then": "Keep distinct spaces even when the office address is the same",
+      "steps": [
+        "Arrange: Two shared-site offers allocate different display areas",
+        "Act: Resolve identity",
+        "Assert: Keep distinct spaces even when the office address is the same"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-ID-02-display"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-ID-03",
+      "title": "Syndication is one offer",
+      "domain": "Exact-space identity",
+      "requirementIds": [
+        "R03",
+        "R08"
+      ],
+      "specificationSections": [
+        "05",
+        "06",
+        "09"
+      ],
+      "specificationTestGroup": "T03",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "Two publishers reproduce the same documented source offer",
+      "when": "Resolve identity",
+      "then": "Link the same opportunity and original-source group",
+      "steps": [
+        "Arrange: Two publishers reproduce the same documented source offer",
+        "Act: Resolve identity",
+        "Assert: Link the same opportunity and original-source group"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-ID-03-syndicated"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-ID-04",
+      "title": "Renaming is not a new space",
+      "domain": "Exact-space identity",
+      "requirementIds": [
+        "R03",
+        "R08"
+      ],
+      "specificationSections": [
+        "05",
+        "06",
+        "09"
+      ],
+      "specificationTestGroup": "T03",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "A business name changes at an unchanged documented leased space",
+      "when": "Resolve identity",
+      "then": "Do not create a new property solely from the name change",
+      "steps": [
+        "Arrange: A business name changes at an unchanged documented leased space",
+        "Act: Resolve identity",
+        "Assert: Do not create a new property solely from the name change"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-ID-04-rename"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-ID-05",
+      "title": "Ambiguous matches are reviewed",
+      "domain": "Exact-space identity",
+      "requirementIds": [
+        "R03",
+        "R08"
+      ],
+      "specificationSections": [
+        "05",
+        "06",
+        "09"
+      ],
+      "specificationTestGroup": "T03",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "Address similarity exists without sufficient exact-space evidence",
+      "when": "Resolve identity",
+      "then": "Return REVIEW instead of automatically merging",
+      "steps": [
+        "Arrange: Address similarity exists without sufficient exact-space evidence",
+        "Act: Resolve identity",
+        "Assert: Return REVIEW instead of automatically merging"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-ID-05-ambiguous"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-ID-06",
+      "title": "Merges are reversible",
+      "domain": "Exact-space identity",
+      "requirementIds": [
+        "R03",
+        "R08"
+      ],
+      "specificationSections": [
+        "05",
+        "06",
+        "09"
+      ],
+      "specificationTestGroup": "T03",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "Two spaces were incorrectly merged and have separate evidence histories",
+      "when": "Reverse the merge",
+      "then": "Restore separate identities and provenance without losing prior observations",
+      "steps": [
+        "Arrange: Two spaces were incorrectly merged and have separate evidence histories",
+        "Act: Reverse the merge",
+        "Assert: Restore separate identities and provenance without losing prior observations"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-GEO-01",
+      "title": "Postal city is not legal jurisdiction",
+      "domain": "Geography and jurisdiction",
+      "requirementIds": [
+        "R02"
+      ],
+      "specificationSections": [
+        "03",
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T04",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "Postal city and competent municipality differ",
+      "when": "Resolve the approval authority",
+      "then": "Use authoritative jurisdiction evidence, not the postal label",
+      "steps": [
+        "Arrange: Postal city and competent municipality differ",
+        "Act: Resolve the approval authority",
+        "Assert: Use authoritative jurisdiction evidence, not the postal label"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-GEO-01-authority"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-GEO-02",
+      "title": "Boundary ambiguity is visible",
+      "domain": "Geography and jurisdiction",
+      "requirementIds": [
+        "R02"
+      ],
+      "specificationSections": [
+        "03",
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T04",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "Location uncertainty overlaps the configured boundary",
+      "when": "Screen geography",
+      "then": "Return UNKNOWN and request location resolution",
+      "steps": [
+        "Arrange: Location uncertainty overlaps the configured boundary",
+        "Act: Screen geography",
+        "Assert: Return UNKNOWN and request location resolution"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-GEO-02-boundary"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-GEO-03",
+      "title": "Distance methods are not interchangeable",
+      "domain": "Geography and jurisdiction",
+      "requirementIds": [
+        "R02"
+      ],
+      "specificationSections": [
+        "03",
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T04",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "The profile requests drive time but only straight-line distance is available",
+      "when": "Screen distance",
+      "then": "Return UNKNOWN rather than substituting straight-line distance",
+      "steps": [
+        "Arrange: The profile requests drive time but only straight-line distance is available",
+        "Act: Screen distance",
+        "Assert: Return UNKNOWN rather than substituting straight-line distance"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-GEO-03-method"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-GEO-04",
+      "title": "Outside sites fail the geographic gate",
+      "domain": "Geography and jurisdiction",
+      "requirementIds": [
+        "R02"
+      ],
+      "specificationSections": [
+        "03",
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T04",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "A verified leased-space location is outside the approved boundary",
+      "when": "Screen geography",
+      "then": "Fail with OUTSIDE_BOUNDARY",
+      "steps": [
+        "Arrange: A verified leased-space location is outside the approved boundary",
+        "Act: Screen geography",
+        "Assert: Fail with OUTSIDE_BOUNDARY"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-GEO-04-outside"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-GEO-05",
+      "title": "Jurisdiction change is versioned",
+      "domain": "Geography and jurisdiction",
+      "requirementIds": [
+        "R02"
+      ],
+      "specificationSections": [
+        "03",
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T04",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "Municipal, county or ETJ authority changes in new records",
+      "when": "Refresh and reassess a candidate",
+      "then": "Preserve prior authority evidence and use the reviewed new version",
+      "steps": [
+        "Arrange: Municipal, county or ETJ authority changes in new records",
+        "Act: Refresh and reassess a candidate",
+        "Assert: Preserve prior authority evidence and use the reviewed new version"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-EVD-01",
+      "title": "Missing mandatory facts block verification",
+      "domain": "Evidence and qualification",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T05",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "A mandatory evidence field is unknown",
+      "when": "Build the verified shortlist",
+      "then": "Exclude the candidate and create or retain a verification case",
+      "steps": [
+        "Arrange: A mandatory evidence field is unknown",
+        "Act: Build the verified shortlist",
+        "Assert: Exclude the candidate and create or retain a verification case"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-EVD-01-unknown"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-EVD-02",
+      "title": "Known failures block verification",
+      "domain": "Evidence and qualification",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T05",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "A mandatory criterion fails",
+      "when": "Build the verified shortlist",
+      "then": "Exclude the candidate without averaging the failure into a score",
+      "steps": [
+        "Arrange: A mandatory criterion fails",
+        "Act: Build the verified shortlist",
+        "Assert: Exclude the candidate without averaging the failure into a score"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-EVD-02-fail"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-EVD-03",
+      "title": "Fresh competent evidence can qualify",
+      "domain": "Evidence and qualification",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T05",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "All applicable mandatory criteria pass with current scoped evidence",
+      "when": "Build the verified shortlist",
+      "then": "Qualify for team review without claiming software-issued legal approval",
+      "steps": [
+        "Arrange: All applicable mandatory criteria pass with current scoped evidence",
+        "Act: Build the verified shortlist",
+        "Assert: Qualify for team review without claiming software-issued legal approval"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-EVD-03-fresh"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-EVD-04",
+      "title": "Stale evidence loses its badge",
+      "domain": "Evidence and qualification",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T05",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "A material confirmation has expired",
+      "when": "Reassess the property",
+      "then": "Return UNKNOWN and remove current verification while preserving history",
+      "steps": [
+        "Arrange: A material confirmation has expired",
+        "Act: Reassess the property",
+        "Assert: Return UNKNOWN and remove current verification while preserving history"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-EVD-04-expired",
+        "TC-EVD-04-expiry-boundary"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-EVD-05",
+      "title": "Fetching is not reconfirming",
+      "domain": "Evidence and qualification",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T05",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "An old quote is retrieved again today",
+      "when": "Evaluate freshness",
+      "then": "Use its original confirmation/effective date, not retrieval time",
+      "steps": [
+        "Arrange: An old quote is retrieved again today",
+        "Act: Evaluate freshness",
+        "Assert: Use its original confirmation/effective date, not retrieval time"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-EVD-05-refetched"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-EVD-06",
+      "title": "Authority is fact-specific",
+      "domain": "Evidence and qualification",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T05",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "A broker states zoning should be fine",
+      "when": "Assess the legal-use claim",
+      "then": "Keep official approval UNKNOWN",
+      "steps": [
+        "Arrange: A broker states zoning should be fine",
+        "Act: Assess the legal-use claim",
+        "Assert: Keep official approval UNKNOWN"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-EVD-06-broker"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-EVD-07",
+      "title": "Permit scope must match",
+      "domain": "Evidence and qualification",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T05",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "An approval concerns another operator, space or layout",
+      "when": "Assess the current proposal",
+      "then": "Keep the approval gate UNKNOWN",
+      "steps": [
+        "Arrange: An approval concerns another operator, space or layout",
+        "Act: Assess the current proposal",
+        "Assert: Keep the approval gate UNKNOWN"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-EVD-07-scope"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-EVD-08",
+      "title": "Conflicts remain unresolved",
+      "domain": "Evidence and qualification",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T05",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "Two current relevant sources contradict on availability or price",
+      "when": "Assess the disputed field",
+      "then": "Return CONFLICT and block verified promotion until resolution",
+      "steps": [
+        "Arrange: Two current relevant sources contradict on availability or price",
+        "Act: Assess the disputed field",
+        "Assert: Return CONFLICT and block verified promotion until resolution"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-EVD-08-conflict"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-EVD-09",
+      "title": "Formal approval remains conditional",
+      "domain": "Evidence and qualification",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T05",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "An authority says an application or inspection is still required",
+      "when": "Assess status",
+      "then": "Use CONDITIONAL_REVIEW, not an approved or verified badge",
+      "steps": [
+        "Arrange: An authority says an application or inspection is still required",
+        "Act: Assess status",
+        "Assert: Use CONDITIONAL_REVIEW, not an approved or verified badge"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-EVD-09-conditional"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-EVD-10",
+      "title": "Retention affects substantiation",
+      "domain": "Evidence and qualification",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "05",
+        "06"
+      ],
+      "specificationTestGroup": "T05",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "Rights require deletion of evidence supporting a current claim",
+      "when": "Apply deletion and reassess",
+      "then": "Remove disallowed content and reassess claims that can no longer be substantiated",
+      "steps": [
+        "Arrange: Rights require deletion of evidence supporting a current claim",
+        "Act: Apply deletion and reassess",
+        "Assert: Remove disallowed content and reassess claims that can no longer be substantiated"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SRC-01",
+      "title": "Rights precede access",
+      "domain": "Source intake and rights",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "04",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T06",
+      "earliestPhase": 2,
+      "priority": "P0",
+      "given": "An adapter has no approved automated-use rights",
+      "when": "Plan ingestion",
+      "then": "Block access; documentation is not a data license",
+      "steps": [
+        "Arrange: An adapter has no approved automated-use rights",
+        "Act: Plan ingestion",
+        "Assert: Block access; documentation is not a data license"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-SRC-01-rights"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SRC-02",
+      "title": "Pages and caps determine completeness",
+      "domain": "Source intake and rights",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "04",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T06",
+      "earliestPhase": 2,
+      "priority": "P1",
+      "given": "A source returns a continuation cursor or a capped result",
+      "when": "Assess the run",
+      "then": "Mark PARTIAL rather than complete coverage",
+      "steps": [
+        "Arrange: A source returns a continuation cursor or a capped result",
+        "Act: Assess the run",
+        "Assert: Mark PARTIAL rather than complete coverage"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-SRC-02-cursor",
+        "TC-SRC-02-cap",
+        "TC-SRC-02-complete"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SRC-03",
+      "title": "Failures are not zero matches",
+      "domain": "Source intake and rights",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "04",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T06",
+      "earliestPhase": 2,
+      "priority": "P1",
+      "given": "A required source fails authentication or service access",
+      "when": "Generate a run summary",
+      "then": "Mark INCOMPLETE and preserve prior evidence rather than report no available properties",
+      "steps": [
+        "Arrange: A required source fails authentication or service access",
+        "Act: Generate a run summary",
+        "Assert: Mark INCOMPLETE and preserve prior evidence rather than report no available properties"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-SRC-03-auth",
+        "TC-SRC-03-server"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SRC-04",
+      "title": "Rate limits are respected",
+      "domain": "Source intake and rights",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "04",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T06",
+      "earliestPhase": 2,
+      "priority": "P1",
+      "given": "A provider responds with a Retry-After instruction",
+      "when": "Schedule a read retry",
+      "then": "Wait at least the provider interval; do not hot-loop",
+      "steps": [
+        "Arrange: A provider responds with a Retry-After instruction",
+        "Act: Schedule a read retry",
+        "Assert: Wait at least the provider interval; do not hot-loop"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-SRC-04-rate"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SRC-05",
+      "title": "Schema changes stop unsafe parsing",
+      "domain": "Source intake and rights",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "04",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T06",
+      "earliestPhase": 2,
+      "priority": "P1",
+      "given": "Required fields or units change unexpectedly",
+      "when": "Process the response",
+      "then": "Quarantine affected records and flag SCHEMA_CHANGED",
+      "steps": [
+        "Arrange: Required fields or units change unexpectedly",
+        "Act: Process the response",
+        "Assert: Quarantine affected records and flag SCHEMA_CHANGED"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-SRC-05-schema"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SRC-06",
+      "title": "Unexpected zero is investigated",
+      "domain": "Source intake and rights",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "04",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T06",
+      "earliestPhase": 2,
+      "priority": "P1",
+      "given": "An established source unexpectedly returns no records",
+      "when": "Reconcile opportunities",
+      "then": "Flag review rather than mass-withdraw every prior listing",
+      "steps": [
+        "Arrange: An established source unexpectedly returns no records",
+        "Act: Reconcile opportunities",
+        "Assert: Flag review rather than mass-withdraw every prior listing"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-SRC-06-zero"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SRC-07",
+      "title": "Explicit withdrawals propagate",
+      "domain": "Source intake and rights",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "04",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T06",
+      "earliestPhase": 2,
+      "priority": "P1",
+      "given": "A source explicitly withdraws a known exact-space offer",
+      "when": "Reassess that opportunity",
+      "then": "Mark WITHDRAWN and cancel dependent unsent inquiries",
+      "steps": [
+        "Arrange: A source explicitly withdraws a known exact-space offer",
+        "Act: Reassess that opportunity",
+        "Assert: Mark WITHDRAWN and cancel dependent unsent inquiries"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-SRC-07-withdrawn"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SRC-08",
+      "title": "Inventory coverage is measured",
+      "domain": "Source intake and rights",
+      "requirementIds": [
+        "R08",
+        "R09"
+      ],
+      "specificationSections": [
+        "04",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T06",
+      "earliestPhase": 2,
+      "priority": "P1",
+      "given": "A permitted pilot feed is available with an independent small/shared-space benchmark",
+      "when": "Run the coverage audit",
+      "then": "Report denominator, exact-space misses and syndication; do not claim whole-market recall",
+      "steps": [
+        "Arrange: A permitted pilot feed is available with an independent small/shared-space benchmark",
+        "Act: Run the coverage audit",
+        "Assert: Report denominator, exact-space misses and syndication; do not claim whole-market recall"
+      ],
+      "level": "manual",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CAS-01",
+      "title": "Unknown rent opens an inquiry",
+      "domain": "Proactive investigation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "11"
+      ],
+      "specificationTestGroup": "T07",
+      "earliestPhase": 3,
+      "priority": "P1",
+      "given": "An otherwise plausible site lacks an exact rent quote",
+      "when": "Plan investigation",
+      "then": "Ask the verified leasing contact about the exact space",
+      "steps": [
+        "Arrange: An otherwise plausible site lacks an exact rent quote",
+        "Act: Plan investigation",
+        "Assert: Ask the verified leasing contact about the exact space"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CAS-01-rent"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CAS-02",
+      "title": "Legal questions go to authorities",
+      "domain": "Proactive investigation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "11"
+      ],
+      "specificationTestGroup": "T07",
+      "earliestPhase": 3,
+      "priority": "P1",
+      "given": "A plausible site has unresolved use approval",
+      "when": "Plan investigation",
+      "then": "Route to the competent official inquiry channel",
+      "steps": [
+        "Arrange: A plausible site has unresolved use approval",
+        "Act: Plan investigation",
+        "Assert: Route to the competent official inquiry channel"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CAS-02-legal"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CAS-03",
+      "title": "Undecided preferences go to the team",
+      "domain": "Proactive investigation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "11"
+      ],
+      "specificationTestGroup": "T07",
+      "earliestPhase": 3,
+      "priority": "P1",
+      "given": "The missing information is the user's own business requirement",
+      "when": "Plan investigation",
+      "then": "Ask the team rather than guessing or contacting a landlord about the preference",
+      "steps": [
+        "Arrange: The missing information is the user's own business requirement",
+        "Act: Plan investigation",
+        "Assert: Ask the team rather than guessing or contacting a landlord about the preference"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CAS-03-preference"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CAS-04",
+      "title": "Fatal failures avoid pointless outreach",
+      "domain": "Proactive investigation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "11"
+      ],
+      "specificationTestGroup": "T07",
+      "earliestPhase": 3,
+      "priority": "P1",
+      "given": "A candidate has a known disqualifying failure",
+      "when": "Plan investigation",
+      "then": "Reject without an automatic inquiry unless an exception is explicitly authorized",
+      "steps": [
+        "Arrange: A candidate has a known disqualifying failure",
+        "Act: Plan investigation",
+        "Assert: Reject without an automatic inquiry unless an exception is explicitly authorized"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CAS-04-failure"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CAS-05",
+      "title": "Open cases suppress duplicate questions",
+      "domain": "Proactive investigation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "11"
+      ],
+      "specificationTestGroup": "T07",
+      "earliestPhase": 3,
+      "priority": "P1",
+      "given": "A matching property/contact/question case is already open",
+      "when": "Run discovery again",
+      "then": "Reuse the case without another initial inquiry",
+      "steps": [
+        "Arrange: A matching property/contact/question case is already open",
+        "Act: Run discovery again",
+        "Assert: Reuse the case without another initial inquiry"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CAS-05-open"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CAS-06",
+      "title": "Partial answers narrow follow-up",
+      "domain": "Proactive investigation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "11"
+      ],
+      "specificationTestGroup": "T07",
+      "earliestPhase": 3,
+      "priority": "P1",
+      "given": "A response answers only some material questions",
+      "when": "Plan the next inquiry",
+      "then": "Ask only the unresolved approved question identifiers",
+      "steps": [
+        "Arrange: A response answers only some material questions",
+        "Act: Plan the next inquiry",
+        "Assert: Ask only the unresolved approved question identifiers"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CAS-06-partial"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CAS-07",
+      "title": "No response escalates",
+      "domain": "Proactive investigation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "11"
+      ],
+      "specificationTestGroup": "T07",
+      "earliestPhase": 3,
+      "priority": "P1",
+      "given": "Approved follow-up and escalation deadlines have elapsed",
+      "when": "Process due work",
+      "then": "Escalate or close without treating silence as consent",
+      "steps": [
+        "Arrange: Approved follow-up and escalation deadlines have elapsed",
+        "Act: Process due work",
+        "Assert: Escalate or close without treating silence as consent"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CAS-07-escalate"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-CAS-08",
+      "title": "Inquiry resolution is not property approval",
+      "domain": "Proactive investigation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "11"
+      ],
+      "specificationTestGroup": "T07",
+      "earliestPhase": 3,
+      "priority": "P1",
+      "given": "One case is answered while another mandatory property gate is unknown",
+      "when": "Reassess the opportunity",
+      "then": "Resolve that case but keep the property outside the verified shortlist",
+      "steps": [
+        "Arrange: One case is answered while another mandatory property gate is unknown",
+        "Act: Reassess the opportunity",
+        "Assert: Resolve that case but keep the property outside the verified shortlist"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-CAS-08-other-gate"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OUT-01",
+      "title": "Approval is required",
+      "domain": "Outbound permissions",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "08",
+        "11",
+        "12"
+      ],
+      "specificationTestGroup": "T08",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "Live dispatch has not been explicitly authorized",
+      "when": "Attempt a send",
+      "then": "Deny with APPROVAL_REQUIRED",
+      "steps": [
+        "Arrange: Live dispatch has not been explicitly authorized",
+        "Act: Attempt a send",
+        "Assert: Deny with APPROVAL_REQUIRED"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OUT-01-approval"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OUT-02",
+      "title": "Sender is exact",
+      "domain": "Outbound permissions",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "08",
+        "11",
+        "12"
+      ],
+      "specificationTestGroup": "T08",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The proposed sender is not the approved existing Gmail identity",
+      "when": "Attempt a send",
+      "then": "Deny with SENDER_NOT_APPROVED",
+      "steps": [
+        "Arrange: The proposed sender is not the approved existing Gmail identity",
+        "Act: Attempt a send",
+        "Assert: Deny with SENDER_NOT_APPROVED"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OUT-02-sender"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OUT-03",
+      "title": "Recipient is verified",
+      "domain": "Outbound permissions",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "08",
+        "11",
+        "12"
+      ],
+      "specificationTestGroup": "T08",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The contact was guessed or lacks a legitimate verified inquiry channel",
+      "when": "Attempt a send",
+      "then": "Deny with RECIPIENT_UNVERIFIED",
+      "steps": [
+        "Arrange: The contact was guessed or lacks a legitimate verified inquiry channel",
+        "Act: Attempt a send",
+        "Assert: Deny with RECIPIENT_UNVERIFIED"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OUT-03-recipient"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OUT-04",
+      "title": "Suppression always wins",
+      "domain": "Outbound permissions",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "08",
+        "11",
+        "12"
+      ],
+      "specificationTestGroup": "T08",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The contact has opted out or declined",
+      "when": "Attempt initial or follow-up dispatch",
+      "then": "Deny and retain suppression",
+      "steps": [
+        "Arrange: The contact has opted out or declined",
+        "Act: Attempt initial or follow-up dispatch",
+        "Assert: Deny and retain suppression"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OUT-04-opt-out"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OUT-05",
+      "title": "Human takeover pauses sending",
+      "domain": "Outbound permissions",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "08",
+        "11",
+        "12"
+      ],
+      "specificationTestGroup": "T08",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The team has taken over or replied",
+      "when": "Attempt automated dispatch",
+      "then": "Deny with HUMAN_TAKEOVER",
+      "steps": [
+        "Arrange: The team has taken over or replied",
+        "Act: Attempt automated dispatch",
+        "Assert: Deny with HUMAN_TAKEOVER"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OUT-05-takeover"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OUT-06",
+      "title": "Kill switch stops unsent jobs",
+      "domain": "Outbound permissions",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "08",
+        "11",
+        "12"
+      ],
+      "specificationTestGroup": "T08",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The global outbound switch is paused",
+      "when": "Attempt a queued send",
+      "then": "Deny even if the job was approved earlier",
+      "steps": [
+        "Arrange: The global outbound switch is paused",
+        "Act: Attempt a queued send",
+        "Assert: Deny even if the job was approved earlier"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OUT-06-kill"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OUT-07",
+      "title": "Caps and business hours apply",
+      "domain": "Outbound permissions",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "08",
+        "11",
+        "12"
+      ],
+      "specificationTestGroup": "T08",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The contact/day cap is reached or the approved window is closed",
+      "when": "Attempt dispatch",
+      "then": "Deny or defer without resetting the cap across channels",
+      "steps": [
+        "Arrange: The contact/day cap is reached or the approved window is closed",
+        "Act: Attempt dispatch",
+        "Assert: Deny or defer without resetting the cap across channels"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OUT-07-cap",
+        "TC-OUT-07-hours"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OUT-08",
+      "title": "Only approved templates auto-send",
+      "domain": "Outbound permissions",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "08",
+        "11",
+        "12"
+      ],
+      "specificationTestGroup": "T08",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The model produces free prose or unapproved question identifiers",
+      "when": "Attempt automatic dispatch",
+      "then": "Deny pending reviewed template approval",
+      "steps": [
+        "Arrange: The model produces free prose or unapproved question identifiers",
+        "Act: Attempt automatic dispatch",
+        "Assert: Deny pending reviewed template approval"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OUT-08-template",
+        "TC-OUT-08-questions"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OUT-09",
+      "title": "Protected actions cannot be disguised",
+      "domain": "Outbound permissions",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "08",
+        "11",
+        "12"
+      ],
+      "specificationTestGroup": "T08",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "An inquiry proposes an offer, negotiation, fee, signature, application or phone call",
+      "when": "Attempt dispatch",
+      "then": "Deny with PROTECTED_ACTION",
+      "steps": [
+        "Arrange: An inquiry proposes an offer, negotiation, fee, signature, application or phone call",
+        "Act: Attempt dispatch",
+        "Assert: Deny with PROTECTED_ACTION"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OUT-09-offer",
+        "TC-OUT-09-negotiate",
+        "TC-OUT-09-pay_fee",
+        "TC-OUT-09-sign",
+        "TC-OUT-09-formal_application",
+        "TC-OUT-09-phone_call"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OUT-10",
+      "title": "Uncertain side effects prevent retries",
+      "domain": "Outbound permissions",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "08",
+        "11",
+        "12"
+      ],
+      "specificationTestGroup": "T08",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The prior send or form outcome is unresolved",
+      "when": "Claim another attempt",
+      "then": "Deny pending reconciliation, not blind resend",
+      "steps": [
+        "Arrange: The prior send or form outcome is unresolved",
+        "Act: Claim another attempt",
+        "Assert: Deny pending reconciliation, not blind resend"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OUT-10-uncertain"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OUT-11",
+      "title": "Eligible factual inquiry can send",
+      "domain": "Outbound permissions",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "08",
+        "11",
+        "12"
+      ],
+      "specificationTestGroup": "T08",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "Current policy, exact sender, verified recipient and approved template all satisfy constraints",
+      "when": "Authorize the approved factual inquiry",
+      "then": "Return ALLOW without changing policy or making commitments",
+      "steps": [
+        "Arrange: Current policy, exact sender, verified recipient and approved template all satisfy constraints",
+        "Act: Authorize the approved factual inquiry",
+        "Assert: Return ALLOW without changing policy or making commitments"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OUT-11-allow"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OUT-12",
+      "title": "Real dispatcher rechecks races",
+      "domain": "Outbound permissions",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "08",
+        "11",
+        "12"
+      ],
+      "specificationTestGroup": "T08",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "Two workers claim a job while a human pauses the case",
+      "when": "Run the controlled dispatcher race",
+      "then": "At most one attempt is claimed and no stale unsent permission survives the pause",
+      "steps": [
+        "Arrange: Two workers claim a job while a human pauses the case",
+        "Act: Run the controlled dispatcher race",
+        "Assert: At most one attempt is claimed and no stale unsent permission survives the pause"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-MAIL-01",
+      "title": "Possible acceptance becomes uncertain",
+      "domain": "Gmail and reconciliation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "12"
+      ],
+      "specificationTestGroup": "T09",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "Gmail may have accepted a send before a timeout",
+      "when": "Handle the send result",
+      "then": "Use SEND_UNCERTAIN and prohibit automatic resend",
+      "steps": [
+        "Arrange: Gmail may have accepted a send before a timeout",
+        "Act: Handle the send result",
+        "Assert: Use SEND_UNCERTAIN and prohibit automatic resend"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-MAIL-01-timeout"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-MAIL-02",
+      "title": "Confirmed acceptance stores identity",
+      "domain": "Gmail and reconciliation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "12"
+      ],
+      "specificationTestGroup": "T09",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "Gmail returns a successful message and thread ID",
+      "when": "Handle success",
+      "then": "Use SENT_CONFIRMED and preserve IDs; do not claim recipient delivery/read",
+      "steps": [
+        "Arrange: Gmail returns a successful message and thread ID",
+        "Act: Handle success",
+        "Assert: Use SENT_CONFIRMED and preserve IDs; do not claim recipient delivery/read"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-MAIL-02-accepted"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-MAIL-03",
+      "title": "Pre-send failure is distinguishable",
+      "domain": "Gmail and reconciliation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "12"
+      ],
+      "specificationTestGroup": "T09",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "An error is confirmed before any outbound request",
+      "when": "Handle failure",
+      "then": "Use FAILED_CONFIRMED with a policy-eligible retry, not a successful send",
+      "steps": [
+        "Arrange: An error is confirmed before any outbound request",
+        "Act: Handle failure",
+        "Assert: Use FAILED_CONFIRMED with a policy-eligible retry, not a successful send"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-MAIL-03-preflight"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-MAIL-04",
+      "title": "Auto-replies do not answer questions",
+      "domain": "Gmail and reconciliation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "12"
+      ],
+      "specificationTestGroup": "T09",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "An acknowledgement or out-of-office response arrives",
+      "when": "Classify the reply",
+      "then": "Keep substantive questions unanswered",
+      "steps": [
+        "Arrange: An acknowledgement or out-of-office response arrives",
+        "Act: Classify the reply",
+        "Assert: Keep substantive questions unanswered"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-MAIL-04-auto"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-MAIL-05",
+      "title": "Wrong-space replies are reviewed",
+      "domain": "Gmail and reconciliation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "12"
+      ],
+      "specificationTestGroup": "T09",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "A reply references a different suite or ambiguous offer",
+      "when": "Correlate evidence",
+      "then": "Route to ANSWER_REVIEW without updating the wrong space",
+      "steps": [
+        "Arrange: A reply references a different suite or ambiguous offer",
+        "Act: Correlate evidence",
+        "Assert: Route to ANSWER_REVIEW without updating the wrong space"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-MAIL-05-wrong-space"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-MAIL-06",
+      "title": "Duplicate events are idempotent",
+      "domain": "Gmail and reconciliation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "12"
+      ],
+      "specificationTestGroup": "T09",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "The same Gmail event/message arrives more than once",
+      "when": "Synchronize the mailbox",
+      "then": "Persist one substantive observation and no duplicate follow-up",
+      "steps": [
+        "Arrange: The same Gmail event/message arrives more than once",
+        "Act: Synchronize the mailbox",
+        "Assert: Persist one substantive observation and no duplicate follow-up"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-MAIL-07",
+      "title": "History gaps recover safely",
+      "domain": "Gmail and reconciliation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "12"
+      ],
+      "specificationTestGroup": "T09",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "The saved Gmail history cursor is unavailable or watch expired",
+      "when": "Reconcile relevant mail",
+      "then": "Recover relevant recent inquiry threads without silently ingesting unrelated mail",
+      "steps": [
+        "Arrange: The saved Gmail history cursor is unavailable or watch expired",
+        "Act: Reconcile relevant mail",
+        "Assert: Recover relevant recent inquiry threads without silently ingesting unrelated mail"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-MAIL-08",
+      "title": "Real OAuth and threading are verified",
+      "domain": "Gmail and reconciliation",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "09",
+        "12"
+      ],
+      "specificationTestGroup": "T09",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "The PM authorizes exact account/scopes and test correspondents",
+      "when": "Run controlled integration tests",
+      "then": "Demonstrate narrow approved access, correct MIME threading, revocation handling and no unrelated mailbox processing",
+      "steps": [
+        "Arrange: The PM authorizes exact account/scopes and test correspondents",
+        "Act: Run controlled integration tests",
+        "Assert: Demonstrate narrow approved access, correct MIME threading, revocation handling and no unrelated mailbox processing"
+      ],
+      "level": "manual",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-FORM-01",
+      "title": "Receipt is not an answer",
+      "domain": "Official inquiry forms",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "11",
+        "13"
+      ],
+      "specificationTestGroup": "T10",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "A form returns a confirmed receipt/reference",
+      "when": "Classify submission",
+      "then": "Use FORM_SUBMITTED_AWAITING_REPLY, not ANSWER_RECEIVED",
+      "steps": [
+        "Arrange: A form returns a confirmed receipt/reference",
+        "Act: Classify submission",
+        "Assert: Use FORM_SUBMITTED_AWAITING_REPLY, not ANSWER_RECEIVED"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-FORM-01-receipt"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-FORM-02",
+      "title": "HTTP 200 is not proof",
+      "domain": "Official inquiry forms",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "11",
+        "13"
+      ],
+      "specificationTestGroup": "T10",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "A form returns HTTP 200 without a verified confirmation",
+      "when": "Classify submission",
+      "then": "Use SUBMISSION_UNCERTAIN",
+      "steps": [
+        "Arrange: A form returns HTTP 200 without a verified confirmation",
+        "Act: Classify submission",
+        "Assert: Use SUBMISSION_UNCERTAIN"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-FORM-02-200"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-FORM-03",
+      "title": "Ambiguous form submission is not retried",
+      "domain": "Official inquiry forms",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "11",
+        "13"
+      ],
+      "specificationTestGroup": "T10",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "The submission may have succeeded before timeout",
+      "when": "Handle failure",
+      "then": "Pause and reconcile rather than resubmit",
+      "steps": [
+        "Arrange: The submission may have succeeded before timeout",
+        "Act: Handle failure",
+        "Assert: Pause and reconcile rather than resubmit"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-FORM-03-timeout"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-FORM-04",
+      "title": "Changed destinations are blocked",
+      "domain": "Official inquiry forms",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "11",
+        "13"
+      ],
+      "specificationTestGroup": "T10",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "The official form action changes to an unapproved destination",
+      "when": "Prepare submission",
+      "then": "Block pending destination review",
+      "steps": [
+        "Arrange: The official form action changes to an unapproved destination",
+        "Act: Prepare submission",
+        "Assert: Block pending destination review"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-FORM-04-domain"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-FORM-05",
+      "title": "Formal actions require escalation",
+      "domain": "Official inquiry forms",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "11",
+        "13"
+      ],
+      "specificationTestGroup": "T10",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "The form demands a fee, signature or legal attestation",
+      "when": "Prepare submission",
+      "then": "Escalate without accepting or submitting",
+      "steps": [
+        "Arrange: The form demands a fee, signature or legal attestation",
+        "Act: Prepare submission",
+        "Assert: Escalate without accepting or submitting"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-FORM-05-fee",
+        "TC-FORM-05-attest"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-FORM-06",
+      "title": "Access restrictions are respected",
+      "domain": "Official inquiry forms",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "11",
+        "13"
+      ],
+      "specificationTestGroup": "T10",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "The form requires CAPTCHA/login or prohibits automation",
+      "when": "Prepare submission",
+      "then": "Escalate without bypass",
+      "steps": [
+        "Arrange: The form requires CAPTCHA/login or prohibits automation",
+        "Act: Prepare submission",
+        "Assert: Escalate without bypass"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-FORM-06-captcha",
+        "TC-FORM-06-login"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-FORM-07",
+      "title": "Email and forms share contact history",
+      "domain": "Official inquiry forms",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "11",
+        "13"
+      ],
+      "specificationTestGroup": "T10",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "A question was already submitted through another channel",
+      "when": "Plan another contact",
+      "then": "Suppress a duplicate property/contact/question inquiry",
+      "steps": [
+        "Arrange: A question was already submitted through another channel",
+        "Act: Plan another contact",
+        "Assert: Suppress a duplicate property/contact/question inquiry"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-FORM-07-duplicate"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-FORM-08",
+      "title": "Live form adapters are individually tested",
+      "domain": "Official inquiry forms",
+      "requirementIds": [
+        "R10",
+        "R11"
+      ],
+      "specificationSections": [
+        "11",
+        "13"
+      ],
+      "specificationTestGroup": "T10",
+      "earliestPhase": 4,
+      "priority": "P0",
+      "given": "The PM authorizes an official form and harmless test scope",
+      "when": "Exercise submission and receipt handling",
+      "then": "Record exact submitted content, official destination and receipt behavior without fabricated success",
+      "steps": [
+        "Arrange: The PM authorizes an official form and harmless test scope",
+        "Act: Exercise submission and receipt handling",
+        "Assert: Record exact submitted content, official destination and receipt behavior without fabricated success"
+      ],
+      "level": "manual",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-AI-01",
+      "title": "Output schema is enforced",
+      "domain": "Claude and model contracts",
+      "requirementIds": [
+        "R09",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "16"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The model returns malformed structured output",
+      "when": "Validate the proposal",
+      "then": "Reject with INVALID_SCHEMA",
+      "steps": [
+        "Arrange: The model returns malformed structured output",
+        "Act: Validate the proposal",
+        "Assert: Reject with INVALID_SCHEMA"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-AI-01-schema",
+        "TC-AI-01-valid"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-AI-02",
+      "title": "Citations must exist",
+      "domain": "Claude and model contracts",
+      "requirementIds": [
+        "R09",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "16"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The model cites unknown evidence IDs",
+      "when": "Validate the proposal",
+      "then": "Reject with UNSUPPORTED_EVIDENCE",
+      "steps": [
+        "Arrange: The model cites unknown evidence IDs",
+        "Act: Validate the proposal",
+        "Assert: Reject with UNSUPPORTED_EVIDENCE"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-AI-02-citation"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-AI-03",
+      "title": "Fields and actions are bounded",
+      "domain": "Claude and model contracts",
+      "requirementIds": [
+        "R09",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "16"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The model requests fields or actions outside its allowed task",
+      "when": "Validate the proposal",
+      "then": "Reject with DISALLOWED_PROPOSAL",
+      "steps": [
+        "Arrange: The model requests fields or actions outside its allowed task",
+        "Act: Validate the proposal",
+        "Assert: Reject with DISALLOWED_PROPOSAL"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-AI-03-field"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-AI-04",
+      "title": "Candidate scope is enforced",
+      "domain": "Claude and model contracts",
+      "requirementIds": [
+        "R09",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "16"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The model output refers to a different candidate or space",
+      "when": "Validate the proposal",
+      "then": "Reject with WRONG_CANDIDATE",
+      "steps": [
+        "Arrange: The model output refers to a different candidate or space",
+        "Act: Validate the proposal",
+        "Assert: Reject with WRONG_CANDIDATE"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-AI-04-candidate"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-AI-05",
+      "title": "Unsupported approval claims fail",
+      "domain": "Claude and model contracts",
+      "requirementIds": [
+        "R09",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "16"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The model states verified approval without supporting competent evidence",
+      "when": "Validate the claim",
+      "then": "Reject the promotion, preserve the bad proposal for susceptibility measurement",
+      "steps": [
+        "Arrange: The model states verified approval without supporting competent evidence",
+        "Act: Validate the claim",
+        "Assert: Reject the promotion, preserve the bad proposal for susceptibility measurement"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-AI-05-approval"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-AI-06",
+      "title": "Model outage is visible",
+      "domain": "Claude and model contracts",
+      "requirementIds": [
+        "R09",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "16"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The approved model path is unavailable or exhausted",
+      "when": "Produce workflow status",
+      "then": "Use ANALYSIS_PENDING; do not invent a Claude analysis or activate paid fallback",
+      "steps": [
+        "Arrange: The approved model path is unavailable or exhausted",
+        "Act: Produce workflow status",
+        "Assert: Use ANALYSIS_PENDING; do not invent a Claude analysis or activate paid fallback"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-AI-06-outage",
+        "TC-AI-06-available"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-AI-07",
+      "title": "Max compatibility is proved",
+      "domain": "Claude and model contracts",
+      "requirementIds": [
+        "R09",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "16"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The selected runtime is the user's Max subscription",
+      "when": "Run an explicitly authorized capability check",
+      "then": "Prove supported state exchange and permissions; no token extraction, bypass or assumed API credit",
+      "steps": [
+        "Arrange: The selected runtime is the user's Max subscription",
+        "Act: Run an explicitly authorized capability check",
+        "Assert: Prove supported state exchange and permissions; no token extraction, bypass or assumed API credit"
+      ],
+      "level": "manual",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-AI-08",
+      "title": "Analyst cannot dispatch directly",
+      "domain": "Claude and model contracts",
+      "requirementIds": [
+        "R09",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "16"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "The live analyst identity is configured",
+      "when": "Probe its approved permissions",
+      "then": "Confirm no mail secrets, arbitrary send endpoint, policy edit or unrestricted database access",
+      "steps": [
+        "Arrange: The live analyst identity is configured",
+        "Act: Probe its approved permissions",
+        "Assert: Confirm no mail secrets, arbitrary send endpoint, policy edit or unrestricted database access"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SEC-01",
+      "title": "Prompt injection is only data",
+      "domain": "Security and privacy",
+      "requirementIds": [
+        "R09",
+        "R11",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "14"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "A listing/reply requests secret disclosure or policy changes",
+      "when": "Process the evidence",
+      "then": "Reject unauthorized actions and retain only relevant evidence",
+      "steps": [
+        "Arrange: A listing/reply requests secret disclosure or policy changes",
+        "Act: Process the evidence",
+        "Assert: Reject unauthorized actions and retain only relevant evidence"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SEC-02",
+      "title": "Attachments are isolated",
+      "domain": "Security and privacy",
+      "requirementIds": [
+        "R09",
+        "R11",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "14"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "A relevant attachment contains active content or exceeds policy limits",
+      "when": "Process document intake",
+      "then": "Quarantine or reject without executing active content",
+      "steps": [
+        "Arrange: A relevant attachment contains active content or exceeds policy limits",
+        "Act: Process document intake",
+        "Assert: Quarantine or reject without executing active content"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SEC-03",
+      "title": "SSRF and redirect checks work",
+      "domain": "Security and privacy",
+      "requirementIds": [
+        "R09",
+        "R11",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "14"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "A proposed URL targets loopback, internal metadata or an unapproved redirect",
+      "when": "Attempt the fetch",
+      "then": "Block the request without forwarding credentials",
+      "steps": [
+        "Arrange: A proposed URL targets loopback, internal metadata or an unapproved redirect",
+        "Act: Attempt the fetch",
+        "Assert: Block the request without forwarding credentials"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SEC-04",
+      "title": "Role restrictions are real",
+      "domain": "Security and privacy",
+      "requirementIds": [
+        "R09",
+        "R11",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "14"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "A reviewer tries to activate live permissions or spending",
+      "when": "Call the protected operation",
+      "then": "Deny unless the authenticated owner approved the change",
+      "steps": [
+        "Arrange: A reviewer tries to activate live permissions or spending",
+        "Act: Call the protected operation",
+        "Assert: Deny unless the authenticated owner approved the change"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SEC-05",
+      "title": "Secrets are not exported",
+      "domain": "Security and privacy",
+      "requirementIds": [
+        "R09",
+        "R11",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "14"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "A controlled test uses recognizable synthetic secrets",
+      "when": "Inspect logs, reports and archives",
+      "then": "Find no unredacted secret outside the intended protected store",
+      "steps": [
+        "Arrange: A controlled test uses recognizable synthetic secrets",
+        "Act: Inspect logs, reports and archives",
+        "Assert: Find no unredacted secret outside the intended protected store"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SEC-06",
+      "title": "Webhook authentication is enforced",
+      "domain": "Security and privacy",
+      "requirementIds": [
+        "R09",
+        "R11",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "14"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "A webhook has a bad signature, issuer or audience",
+      "when": "Deliver the event",
+      "then": "Reject it without state mutation",
+      "steps": [
+        "Arrange: A webhook has a bad signature, issuer or audience",
+        "Act: Deliver the event",
+        "Assert: Reject it without state mutation"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SEC-07",
+      "title": "Processing rights cover model input",
+      "domain": "Security and privacy",
+      "requirementIds": [
+        "R09",
+        "R11",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "14"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "A source or mail item lacks approved model-processing rights",
+      "when": "Prepare analyst input",
+      "then": "Block transfer and request the relevant decision",
+      "steps": [
+        "Arrange: A source or mail item lacks approved model-processing rights",
+        "Act: Prepare analyst input",
+        "Assert: Block transfer and request the relevant decision"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-SEC-07-rights",
+        "TC-SEC-07-approved"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-SEC-08",
+      "title": "Public map endpoints are not assumed unlimited",
+      "domain": "Security and privacy",
+      "requirementIds": [
+        "R09",
+        "R11",
+        "R12"
+      ],
+      "specificationSections": [
+        "08",
+        "14"
+      ],
+      "specificationTestGroup": "T11",
+      "earliestPhase": 3,
+      "priority": "P0",
+      "given": "A proposed source depends on public OSM bulk use or paid Maps without consent",
+      "when": "Review access and cost configuration",
+      "then": "Require a permitted path, attribution/retention review and any necessary spend approval",
+      "steps": [
+        "Arrange: A proposed source depends on public OSM bulk use or paid Maps without consent",
+        "Act: Review access and cost configuration",
+        "Assert: Require a permitted path, attribution/retention review and any necessary spend approval"
+      ],
+      "level": "manual",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OPS-01",
+      "title": "Discovery cadence is configurable",
+      "domain": "Scheduling and recovery",
+      "requirementIds": [
+        "R07",
+        "R09"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T12",
+      "earliestPhase": 4,
+      "priority": "P1",
+      "given": "A valid approved daily schedule exists",
+      "when": "Run the scheduler over timezone/DST boundaries",
+      "then": "Execute the configured cadence without duplicate overlapping runs",
+      "steps": [
+        "Arrange: A valid approved daily schedule exists",
+        "Act: Run the scheduler over timezone/DST boundaries",
+        "Assert: Execute the configured cadence without duplicate overlapping runs"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OPS-02",
+      "title": "Source failure degrades the run",
+      "domain": "Scheduling and recovery",
+      "requirementIds": [
+        "R07",
+        "R09"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T12",
+      "earliestPhase": 4,
+      "priority": "P1",
+      "given": "A required source fails while others succeed",
+      "when": "Plan the report",
+      "then": "Use INCOMPLETE rather than all-clear",
+      "steps": [
+        "Arrange: A required source fails while others succeed",
+        "Act: Plan the report",
+        "Assert: Use INCOMPLETE rather than all-clear"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OPS-02-source"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OPS-03",
+      "title": "Checkpoint recovery preserves work",
+      "domain": "Scheduling and recovery",
+      "requirementIds": [
+        "R07",
+        "R09"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T12",
+      "earliestPhase": 4,
+      "priority": "P1",
+      "given": "A worker crashes after durable ingestion",
+      "when": "Restart it",
+      "then": "Resume without losing or duplicating observations",
+      "steps": [
+        "Arrange: A worker crashes after durable ingestion",
+        "Act: Restart it",
+        "Assert: Resume without losing or duplicating observations"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OPS-04",
+      "title": "Restoration pauses outbound work",
+      "domain": "Scheduling and recovery",
+      "requirementIds": [
+        "R07",
+        "R09"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T12",
+      "earliestPhase": 4,
+      "priority": "P1",
+      "given": "A database is restored across a possible send/opt-out gap",
+      "when": "Plan recovery",
+      "then": "Pause dispatch until the recovery gap and suppression state are reconciled",
+      "steps": [
+        "Arrange: A database is restored across a possible send/opt-out gap",
+        "Act: Plan recovery",
+        "Assert: Pause dispatch until the recovery gap and suppression state are reconciled"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OPS-04-restore",
+        "TC-OPS-04-reconciled"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OPS-05",
+      "title": "Unresolved recovery stays paused",
+      "domain": "Scheduling and recovery",
+      "requirementIds": [
+        "R07",
+        "R09"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T12",
+      "earliestPhase": 4,
+      "priority": "P1",
+      "given": "External-send or suppression history cannot be reconstructed",
+      "when": "Plan recovery",
+      "then": "Keep affected cases paused for operator review",
+      "steps": [
+        "Arrange: External-send or suppression history cannot be reconstructed",
+        "Act: Plan recovery",
+        "Assert: Keep affected cases paused for operator review"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OPS-05-suppression"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OPS-06",
+      "title": "Backups and migrations are tested",
+      "domain": "Scheduling and recovery",
+      "requirementIds": [
+        "R07",
+        "R09"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T12",
+      "earliestPhase": 4,
+      "priority": "P1",
+      "given": "The approved deployment has backup and rollback procedures",
+      "when": "Restore a real test backup and roll back a migration",
+      "then": "Demonstrate the agreed recovery objectives with saved results",
+      "steps": [
+        "Arrange: The approved deployment has backup and rollback procedures",
+        "Act: Restore a real test backup and roll back a migration",
+        "Assert: Demonstrate the agreed recovery objectives with saved results"
+      ],
+      "level": "manual",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OPS-07",
+      "title": "Retry exhaustion is visible",
+      "domain": "Scheduling and recovery",
+      "requirementIds": [
+        "R07",
+        "R09"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T12",
+      "earliestPhase": 4,
+      "priority": "P1",
+      "given": "A job repeatedly fails within bounded retry policy",
+      "when": "Exhaust retries",
+      "then": "Move to a visible dead-letter/escalation state, not an infinite loop",
+      "steps": [
+        "Arrange: A job repeatedly fails within bounded retry policy",
+        "Act: Exhaust retries",
+        "Assert: Move to a visible dead-letter/escalation state, not an infinite loop"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-OPS-08",
+      "title": "Targets are not fabricated",
+      "domain": "Scheduling and recovery",
+      "requirementIds": [
+        "R07",
+        "R09"
+      ],
+      "specificationSections": [
+        "09",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T12",
+      "earliestPhase": 4,
+      "priority": "P1",
+      "given": "Latency or uptime targets have not been measured",
+      "when": "Produce the operations report",
+      "then": "Label them proposed or UNAVAILABLE rather than achieved SLAs",
+      "steps": [
+        "Arrange: Latency or uptime targets have not been measured",
+        "Act: Produce the operations report",
+        "Assert: Label them proposed or UNAVAILABLE rather than achieved SLAs"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-OPS-08-unavailable",
+        "TC-OPS-08-measured"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-REP-01",
+      "title": "Partial scans stay explicit",
+      "domain": "Reporting and end-to-end behavior",
+      "requirementIds": [
+        "R09",
+        "R10"
+      ],
+      "specificationSections": [
+        "06",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 5,
+      "priority": "P1",
+      "given": "One or more sources are incomplete",
+      "when": "Build the daily summary",
+      "then": "Show INCOMPLETE coverage and exclude unsupported all-clear claims",
+      "steps": [
+        "Arrange: One or more sources are incomplete",
+        "Act: Build the daily summary",
+        "Assert: Show INCOMPLETE coverage and exclude unsupported all-clear claims"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-REP-01-partial"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-REP-02",
+      "title": "Conditional cases are separated",
+      "domain": "Reporting and end-to-end behavior",
+      "requirementIds": [
+        "R09",
+        "R10"
+      ],
+      "specificationSections": [
+        "06",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 5,
+      "priority": "P1",
+      "given": "Verified and conditional candidates coexist",
+      "when": "Build the shortlist",
+      "then": "Keep conditional candidates in a separate queue",
+      "steps": [
+        "Arrange: Verified and conditional candidates coexist",
+        "Act: Build the shortlist",
+        "Assert: Keep conditional candidates in a separate queue"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-REP-02-separate"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-REP-03",
+      "title": "Zero verified matches is honest",
+      "domain": "Reporting and end-to-end behavior",
+      "requirementIds": [
+        "R09",
+        "R10"
+      ],
+      "specificationSections": [
+        "06",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 5,
+      "priority": "P1",
+      "given": "All candidates are conditional or fail mandatory gates",
+      "when": "Build the report",
+      "then": "Return no verified matches with reasons; do not invent recommendations",
+      "steps": [
+        "Arrange: All candidates are conditional or fail mandatory gates",
+        "Act: Build the report",
+        "Assert: Return no verified matches with reasons; do not invent recommendations"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-REP-03-zero"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-REP-04",
+      "title": "Pipeline works on real implementation",
+      "domain": "Reporting and end-to-end behavior",
+      "requirementIds": [
+        "R09",
+        "R10"
+      ],
+      "specificationSections": [
+        "06",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 5,
+      "priority": "P1",
+      "given": "An approved test environment has implemented ingestion, cases, mocked transports and reporting",
+      "when": "Execute end-to-end fixtures against actual application modules",
+      "then": "Trace observations through inquiries and replies to reassessment without live contacts",
+      "steps": [
+        "Arrange: An approved test environment has implemented ingestion, cases, mocked transports and reporting",
+        "Act: Execute end-to-end fixtures against actual application modules",
+        "Assert: Trace observations through inquiries and replies to reassessment without live contacts"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-REP-05",
+      "title": "Report claims trace to evidence",
+      "domain": "Reporting and end-to-end behavior",
+      "requirementIds": [
+        "R09",
+        "R10"
+      ],
+      "specificationSections": [
+        "06",
+        "10",
+        "15"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 5,
+      "priority": "P1",
+      "given": "A report contains rent, permission and cost claims",
+      "when": "Audit each claim",
+      "then": "Find matching scoped evidence, dates and status; no unsupported narrative",
+      "steps": [
+        "Arrange: A report contains rent, permission and cost claims",
+        "Act: Audit each claim",
+        "Assert: Find matching scoped evidence, dates and status; no unsupported narrative"
+      ],
+      "level": "manual",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-COST-01",
+      "title": "New paid commitments need approval",
+      "domain": "Free-first cost controls",
+      "requirementIds": [
+        "R12"
+      ],
+      "specificationSections": [
+        "02",
+        "08",
+        "15"
+      ],
+      "specificationTestGroup": "T12",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "A paid API/subscription is proposed without PM approval",
+      "when": "Authorize spend",
+      "then": "Deny with PAID_APPROVAL_REQUIRED",
+      "steps": [
+        "Arrange: A paid API/subscription is proposed without PM approval",
+        "Act: Authorize spend",
+        "Assert: Deny with PAID_APPROVAL_REQUIRED"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-COST-01-approval",
+        "TC-COST-01-approved"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-COST-02",
+      "title": "Spend caps stop work",
+      "domain": "Free-first cost controls",
+      "requirementIds": [
+        "R12"
+      ],
+      "specificationSections": [
+        "02",
+        "08",
+        "15"
+      ],
+      "specificationTestGroup": "T12",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "Projected usage would exceed the approved ceiling",
+      "when": "Authorize another billable operation",
+      "then": "Deny with BUDGET_EXCEEDED",
+      "steps": [
+        "Arrange: Projected usage would exceed the approved ceiling",
+        "Act: Authorize another billable operation",
+        "Assert: Deny with BUDGET_EXCEEDED"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-COST-02-cap"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-COST-03",
+      "title": "Free-first does not invent zero cost",
+      "domain": "Free-first cost controls",
+      "requirementIds": [
+        "R12"
+      ],
+      "specificationSections": [
+        "02",
+        "08",
+        "15"
+      ],
+      "specificationTestGroup": "T12",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "Existing subscriptions, hardware or operations costs are unknown",
+      "when": "Produce the cost report",
+      "then": "Separate existing, incremental, estimated and UNAVAILABLE amounts",
+      "steps": [
+        "Arrange: Existing subscriptions, hardware or operations costs are unknown",
+        "Act: Produce the cost report",
+        "Assert: Separate existing, incremental, estimated and UNAVAILABLE amounts"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-COST-03-report"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-COST-04",
+      "title": "Max is not model API credit",
+      "domain": "Free-first cost controls",
+      "requirementIds": [
+        "R12"
+      ],
+      "specificationSections": [
+        "02",
+        "08",
+        "15"
+      ],
+      "specificationTestGroup": "T12",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "The proposed runtime tries to bill model API usage against Max",
+      "when": "Validate execution mode",
+      "then": "Deny unsupported billing assumptions",
+      "steps": [
+        "Arrange: The proposed runtime tries to bill model API usage against Max",
+        "Act: Validate execution mode",
+        "Assert: Deny unsupported billing assumptions"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-COST-04-max-api",
+        "TC-COST-04-approved-api"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-COST-05",
+      "title": "Permission revocation halts metered work",
+      "domain": "Free-first cost controls",
+      "requirementIds": [
+        "R12"
+      ],
+      "specificationSections": [
+        "02",
+        "08",
+        "15"
+      ],
+      "specificationTestGroup": "T12",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "Previously approved paid access is revoked",
+      "when": "Attempt another metered operation",
+      "then": "Deny even if the job predates revocation",
+      "steps": [
+        "Arrange: Previously approved paid access is revoked",
+        "Act: Attempt another metered operation",
+        "Assert: Deny even if the job predates revocation"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-COST-05-revoked"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-GATE-01",
+      "title": "Offline means no live actions",
+      "domain": "Phase and release permissions",
+      "requirementIds": [
+        "R09",
+        "R13"
+      ],
+      "specificationSections": [
+        "16",
+        "17",
+        "18"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "A Phase 1 job requests email/form/source/private-mail access",
+      "when": "Authorize the operation",
+      "then": "Deny all external actions in the offline phase",
+      "steps": [
+        "Arrange: A Phase 1 job requests email/form/source/private-mail access",
+        "Act: Authorize the operation",
+        "Assert: Deny all external actions in the offline phase"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-GATE-01-email_send",
+        "TC-GATE-01-form_submit",
+        "TC-GATE-01-source_read",
+        "TC-GATE-01-private_mail_read"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-GATE-02",
+      "title": "Read-only and shadow cannot dispatch",
+      "domain": "Phase and release permissions",
+      "requirementIds": [
+        "R09",
+        "R13"
+      ],
+      "specificationSections": [
+        "16",
+        "17",
+        "18"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "A Phase 2 or 3 task requests a Gmail draft/send or live form submission",
+      "when": "Authorize the operation",
+      "then": "Deny the write even if no email would immediately be delivered",
+      "steps": [
+        "Arrange: A Phase 2 or 3 task requests a Gmail draft/send or live form submission",
+        "Act: Authorize the operation",
+        "Assert: Deny the write even if no email would immediately be delivered"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-GATE-02-2-email_send",
+        "TC-GATE-02-2-gmail_draft",
+        "TC-GATE-02-2-form_submit",
+        "TC-GATE-02-3-email_send",
+        "TC-GATE-02-3-gmail_draft",
+        "TC-GATE-02-3-form_submit"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-GATE-03",
+      "title": "Live phase still needs bounds",
+      "domain": "Phase and release permissions",
+      "requirementIds": [
+        "R09",
+        "R13"
+      ],
+      "specificationSections": [
+        "16",
+        "17",
+        "18"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 1,
+      "priority": "P0",
+      "given": "Phase 4 is selected without explicit sender/contact/cost approval",
+      "when": "Authorize dispatch",
+      "then": "Deny; phase naming is not permission",
+      "steps": [
+        "Arrange: Phase 4 is selected without explicit sender/contact/cost approval",
+        "Act: Authorize dispatch",
+        "Assert: Deny; phase naming is not permission"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-GATE-03-approval",
+        "TC-GATE-03-approved"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-GATE-04",
+      "title": "PM owns release",
+      "domain": "Phase and release permissions",
+      "requirementIds": [
+        "R09",
+        "R13"
+      ],
+      "specificationSections": [
+        "16",
+        "17",
+        "18"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 5,
+      "priority": "P0",
+      "given": "The developer recommends advancing a phase",
+      "when": "Review release authorization",
+      "then": "Require a recorded PM decision, never self-approve",
+      "steps": [
+        "Arrange: The developer recommends advancing a phase",
+        "Act: Review release authorization",
+        "Assert: Require a recorded PM decision, never self-approve"
+      ],
+      "level": "manual",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-GATE-05",
+      "title": "Incomplete tests cannot release",
+      "domain": "Phase and release permissions",
+      "requirementIds": [
+        "R09",
+        "R13"
+      ],
+      "specificationSections": [
+        "16",
+        "17",
+        "18"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 5,
+      "priority": "P0",
+      "given": "Mandatory ACs are unimplemented or not exercised",
+      "when": "Compute the release decision",
+      "then": "Return BLOCKED; do not treat skips or fixture checks as application coverage",
+      "steps": [
+        "Arrange: Mandatory ACs are unimplemented or not exercised",
+        "Act: Compute the release decision",
+        "Assert: Return BLOCKED; do not treat skips or fixture checks as application coverage"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-GATE-05-incomplete"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-QUAL-01",
+      "title": "Locked sets are protected",
+      "domain": "Evaluation quality",
+      "requirementIds": [
+        "R09"
+      ],
+      "specificationSections": [
+        "16",
+        "17"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 5,
+      "priority": "P1",
+      "given": "A locked acceptance set has been consumed",
+      "when": "Attempt to use it as a fresh holdout",
+      "then": "Reject the fresh-holdout claim and require a new independent set",
+      "steps": [
+        "Arrange: A locked acceptance set has been consumed",
+        "Act: Attempt to use it as a fresh holdout",
+        "Assert: Reject the fresh-holdout claim and require a new independent set"
+      ],
+      "level": "manual",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-QUAL-02",
+      "title": "Metrics retain provenance",
+      "domain": "Evaluation quality",
+      "requirementIds": [
+        "R09"
+      ],
+      "specificationSections": [
+        "16",
+        "17"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 5,
+      "priority": "P1",
+      "given": "The evaluation mixes synthetic, manual and model-graded outcomes",
+      "when": "Produce metrics",
+      "then": "Separate provenance, denominators, sample sizes and uncertainty",
+      "steps": [
+        "Arrange: The evaluation mixes synthetic, manual and model-graded outcomes",
+        "Act: Produce metrics",
+        "Assert: Separate provenance, denominators, sample sizes and uncertainty"
+      ],
+      "level": "manual",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-QUAL-03",
+      "title": "Containment is not model perfection",
+      "domain": "Evaluation quality",
+      "requirementIds": [
+        "R09"
+      ],
+      "specificationSections": [
+        "16",
+        "17"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 5,
+      "priority": "P1",
+      "given": "The model proposed an unsafe action but code blocked it",
+      "when": "Score the evaluation",
+      "then": "Record both model failure and dispatcher containment",
+      "steps": [
+        "Arrange: The model proposed an unsafe action but code blocked it",
+        "Act: Score the evaluation",
+        "Assert: Record both model failure and dispatcher containment"
+      ],
+      "level": "manual",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-QUAL-04",
+      "title": "No hidden mock implementation",
+      "domain": "Evaluation quality",
+      "requirementIds": [
+        "R09"
+      ],
+      "specificationSections": [
+        "16",
+        "17"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 1,
+      "priority": "P1",
+      "given": "Contract tests use an unimplemented or test-double adapter",
+      "when": "Generate results",
+      "then": "State implementation kind and deny a production-readiness claim",
+      "steps": [
+        "Arrange: Contract tests use an unimplemented or test-double adapter",
+        "Act: Generate results",
+        "Assert: State implementation kind and deny a production-readiness claim"
+      ],
+      "level": "contract",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [
+        "TC-QUAL-04-missing",
+        "TC-QUAL-04-double",
+        "TC-QUAL-04-application"
+      ],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    },
+    {
+      "id": "AC-QUAL-05",
+      "title": "Artifacts rerun cleanly",
+      "domain": "Evaluation quality",
+      "requirementIds": [
+        "R09"
+      ],
+      "specificationSections": [
+        "16",
+        "17"
+      ],
+      "specificationTestGroup": "T13",
+      "earliestPhase": 5,
+      "priority": "P1",
+      "given": "The test-first package is extracted into a fresh location",
+      "when": "Run validation, harness checks and contracts",
+      "then": "Reproduce package checks and explicit missing-implementation results with no network or dependencies",
+      "steps": [
+        "Arrange: The test-first package is extracted into a fresh location",
+        "Act: Run validation, harness checks and contracts",
+        "Assert: Reproduce package checks and explicit missing-implementation results with no network or dependencies"
+      ],
+      "level": "controlled-integration",
+      "evidenceRequired": [
+        "Pinned implementation revision and configuration",
+        "Actual result, expected result, timestamp, and test output",
+        "Side-effect and authorization evidence when applicable"
+      ],
+      "fixtureIds": [],
+      "status": "NOT_RUN",
+      "baselineReason": "Repository snapshot contains no application implementation"
+    }
+  ]
+}

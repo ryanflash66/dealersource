@@ -1,0 +1,217 @@
+"""Create the public development acceptance catalog and synthetic contract fixtures."""
+from pathlib import Path
+import json
+
+ROOT = Path(__file__).resolve().parents[1]
+GROUPS = {
+    'CFG': ('Configuration', ['R01','R02','R03','R04','R05','R06','R07'], ['02','03'], 'T01', 1),
+    'RNT': ('Rent and cost normalization', ['R04'], ['03','06'], 'T02', 1),
+    'ID': ('Exact-space identity', ['R03','R08'], ['05','06','09'], 'T03', 1),
+    'GEO': ('Geography and jurisdiction', ['R02'], ['03','05','06'], 'T04', 1),
+    'EVD': ('Evidence and qualification', ['R08','R09'], ['05','06'], 'T05', 1),
+    'SRC': ('Source intake and rights', ['R08','R09'], ['04','10','15'], 'T06', 2),
+    'CAS': ('Proactive investigation', ['R10','R11'], ['09','10','11'], 'T07', 3),
+    'OUT': ('Outbound permissions', ['R10','R11'], ['08','11','12'], 'T08', 3),
+    'MAIL': ('Gmail and reconciliation', ['R10','R11'], ['09','12'], 'T09', 4),
+    'FORM': ('Official inquiry forms', ['R10','R11'], ['11','13'], 'T10', 4),
+    'AI': ('Claude and model contracts', ['R09','R12'], ['08','16'], 'T11', 3),
+    'SEC': ('Security and privacy', ['R09','R11','R12'], ['08','14'], 'T11', 3),
+    'OPS': ('Scheduling and recovery', ['R07','R09'], ['09','10','15'], 'T12', 4),
+    'REP': ('Reporting and end-to-end behavior', ['R09','R10'], ['06','10','15'], 'T13', 5),
+    'COST': ('Free-first cost controls', ['R12'], ['02','08','15'], 'T12', 0),
+    'GATE': ('Phase and release permissions', ['R09','R13'], ['16','17','18'], 'T13', 5),
+    'QUAL': ('Evaluation quality', ['R09'], ['16','17'], 'T13', 5),
+}
+ACS = []
+
+def add(group, number, title, given, when, then, level='contract', priority=None):
+    domain, reqs, sections, test_group, phase = GROUPS[group]
+    critical = {'RNT','ID','EVD','OUT','MAIL','FORM','AI','SEC','GATE'}
+    priority = priority or ('P0' if group in critical or (group == 'SRC' and number == 1) else 'P1')
+    if group == 'COST' or (group == 'GATE' and number <= 3) or (group == 'QUAL' and number == 4):
+        phase = 1
+    ACS.append(dict(id=f'AC-{group}-{number:02d}', title=title, domain=domain,
+        requirementIds=reqs, specificationSections=sections, specificationTestGroup=test_group,
+        earliestPhase=phase, priority=priority, given=given, when=when, then=then,
+        steps=[f'Arrange: {given}', f'Act: {when}', f'Assert: {then}'],
+        level=level, evidenceRequired=['Pinned implementation revision and configuration',
+        'Actual result, expected result, timestamp, and test output',
+        'Side-effect and authorization evidence when applicable'], fixtureIds=[],
+        status='NOT_RUN', baselineReason='Repository snapshot contains no application implementation'))
+
+rows = {
+'CFG': [
+('Unset preferences stay unset','An approved profile has null lot area, bays and capacity','Validate and screen the profile','Accept the profile and apply no user filter for those preferences'),
+('Explicit geography required','The region is only named Eastern NC without a boundary','Request a live discovery run','Block live activation with GEOGRAPHY_REQUIRED'),
+('Budget bounds are consistent','The preferred minimum exceeds the maximum','Validate the profile','Reject the configuration with INVALID_BUDGET_RANGE'),
+('Negative prices are invalid','A configured rent limit is negative','Validate the profile','Reject the configuration rather than treating it as no limit'),
+('Timezone must be valid','The schedule contains an invalid IANA timezone','Validate the profile','Reject the schedule with INVALID_TIMEZONE'),
+('Rules are snapshotted','Criteria change after a run and before a queued inquiry','Reassess candidates and attempt dispatch','Keep the old audit snapshot; apply the new rules and cancel now-ineligible unsent work','controlled-integration'),
+('Lease strategies stay in scope','The profile is for existing direct/shared/subleased sites','Validate an attempted purchase-only or ground-development profile','Reject the out-of-scope strategy pending an explicit scope change'),
+('Legal rules cannot be waived','A user preference is unset but a mandatory legal condition applies','Assess eligibility','Preserve the legal gate; an unset preference is not an exemption'),
+],
+'RNT': [
+('Monthly totals normalize','USD monthly base rent is explicitly quoted','Normalize rent','Use the exact monthly amount and compare it with the approved cap'),
+('Annual totals normalize','USD annual total base rent is explicitly quoted','Normalize rent','Divide the annual total by twelve with decimal-safe calculation'),
+('Annual area rates normalize','The annual rate and exact leased square feet are confirmed','Normalize rent','Multiply rate by leased area and divide by twelve'),
+('Monthly area rates normalize','The monthly rate and exact leased square feet are confirmed','Normalize rent','Multiply the monthly area rate by leased area'),
+('Unknown leased area remains unknown','An area rate is given but only whole-building area is known for a sublet','Normalize rent','Return UNKNOWN without substituting whole-building area'),
+('Ranges crossing cap need a quote','An unselected-space rent range crosses the cap','Screen the rent','Return UNKNOWN and request the quote for the exact space'),
+('Negotiable and missing are not zero','The rent is negotiable or absent','Normalize rent','Return UNKNOWN with no fabricated amount'),
+('Fees stay separate from base rent','Base rent and known additional monthly charges are supplied','Screen base rent and calculate known occupancy subtotal','Evaluate only base rent against the base cap; mark all-in total unknown when cost information is incomplete'),
+('Cheaper sites are not rejected by default','Rent is below the preferred range and no lower bound is binding','Screen rent','Pass the cap check without inventing a minimum-rent rejection'),
+('Explicit lower bound is honored','A test profile explicitly makes the lower bound mandatory','Screen a quote below that bound','Fail the rent gate under that profile only'),
+('Currency mismatch is not silently converted','The quote currency differs from the configured currency','Normalize rent without an approved exchange-rate rule','Reject with UNSUPPORTED_CURRENCY'),
+('Invalid rates and units are rejected','A quote has negative, nonnumeric or unsupported-unit data','Normalize rent','Reject malformed values or unsupported bases without coercing them to zero'),
+('Rounding does not hide a cap breach','An exact normalized amount is just above the cap but rounds to the cap for display','Screen rent','Fail using the unrounded amount while retaining a cents display value'),
+('Entire ranges classify honestly','Every value in a quoted range is on the same side of the cap','Screen the range','Pass or fail the advertised-range gate without inventing a selected-space exact price'),
+],
+'ID': [
+('Different suites remain distinct','Two offers share an address but identify different suites','Resolve opportunity identity','Keep distinct spaces'),
+('Display allocations remain distinct','Two shared-site offers allocate different display areas','Resolve identity','Keep distinct spaces even when the office address is the same'),
+('Syndication is one offer','Two publishers reproduce the same documented source offer','Resolve identity','Link the same opportunity and original-source group'),
+('Renaming is not a new space','A business name changes at an unchanged documented leased space','Resolve identity','Do not create a new property solely from the name change'),
+('Ambiguous matches are reviewed','Address similarity exists without sufficient exact-space evidence','Resolve identity','Return REVIEW instead of automatically merging'),
+('Merges are reversible','Two spaces were incorrectly merged and have separate evidence histories','Reverse the merge','Restore separate identities and provenance without losing prior observations','controlled-integration'),
+],
+'GEO': [
+('Postal city is not legal jurisdiction','Postal city and competent municipality differ','Resolve the approval authority','Use authoritative jurisdiction evidence, not the postal label'),
+('Boundary ambiguity is visible','Location uncertainty overlaps the configured boundary','Screen geography','Return UNKNOWN and request location resolution'),
+('Distance methods are not interchangeable','The profile requests drive time but only straight-line distance is available','Screen distance','Return UNKNOWN rather than substituting straight-line distance'),
+('Outside sites fail the geographic gate','A verified leased-space location is outside the approved boundary','Screen geography','Fail with OUTSIDE_BOUNDARY'),
+('Jurisdiction change is versioned','Municipal, county or ETJ authority changes in new records','Refresh and reassess a candidate','Preserve prior authority evidence and use the reviewed new version','controlled-integration'),
+],
+'EVD': [
+('Missing mandatory facts block verification','A mandatory evidence field is unknown','Build the verified shortlist','Exclude the candidate and create or retain a verification case'),
+('Known failures block verification','A mandatory criterion fails','Build the verified shortlist','Exclude the candidate without averaging the failure into a score'),
+('Fresh competent evidence can qualify','All applicable mandatory criteria pass with current scoped evidence','Build the verified shortlist','Qualify for team review without claiming software-issued legal approval'),
+('Stale evidence loses its badge','A material confirmation has expired','Reassess the property','Return UNKNOWN and remove current verification while preserving history'),
+('Fetching is not reconfirming','An old quote is retrieved again today','Evaluate freshness','Use its original confirmation/effective date, not retrieval time'),
+('Authority is fact-specific','A broker states zoning should be fine','Assess the legal-use claim','Keep official approval UNKNOWN'),
+('Permit scope must match','An approval concerns another operator, space or layout','Assess the current proposal','Keep the approval gate UNKNOWN'),
+('Conflicts remain unresolved','Two current relevant sources contradict on availability or price','Assess the disputed field','Return CONFLICT and block verified promotion until resolution'),
+('Formal approval remains conditional','An authority says an application or inspection is still required','Assess status','Use CONDITIONAL_REVIEW, not an approved or verified badge'),
+('Retention affects substantiation','Rights require deletion of evidence supporting a current claim','Apply deletion and reassess','Remove disallowed content and reassess claims that can no longer be substantiated','controlled-integration'),
+],
+'SRC': [
+('Rights precede access','An adapter has no approved automated-use rights','Plan ingestion','Block access; documentation is not a data license'),
+('Pages and caps determine completeness','A source returns a continuation cursor or a capped result','Assess the run','Mark PARTIAL rather than complete coverage'),
+('Failures are not zero matches','A required source fails authentication or service access','Generate a run summary','Mark INCOMPLETE and preserve prior evidence rather than report no available properties'),
+('Rate limits are respected','A provider responds with a Retry-After instruction','Schedule a read retry','Wait at least the provider interval; do not hot-loop'),
+('Schema changes stop unsafe parsing','Required fields or units change unexpectedly','Process the response','Quarantine affected records and flag SCHEMA_CHANGED'),
+('Unexpected zero is investigated','An established source unexpectedly returns no records','Reconcile opportunities','Flag review rather than mass-withdraw every prior listing'),
+('Explicit withdrawals propagate','A source explicitly withdraws a known exact-space offer','Reassess that opportunity','Mark WITHDRAWN and cancel dependent unsent inquiries'),
+('Inventory coverage is measured','A permitted pilot feed is available with an independent small/shared-space benchmark','Run the coverage audit','Report denominator, exact-space misses and syndication; do not claim whole-market recall','manual'),
+],
+'CAS': [
+('Unknown rent opens an inquiry','An otherwise plausible site lacks an exact rent quote','Plan investigation','Ask the verified leasing contact about the exact space'),
+('Legal questions go to authorities','A plausible site has unresolved use approval','Plan investigation','Route to the competent official inquiry channel'),
+('Undecided preferences go to the team','The missing information is the user\'s own business requirement','Plan investigation','Ask the team rather than guessing or contacting a landlord about the preference'),
+('Fatal failures avoid pointless outreach','A candidate has a known disqualifying failure','Plan investigation','Reject without an automatic inquiry unless an exception is explicitly authorized'),
+('Open cases suppress duplicate questions','A matching property/contact/question case is already open','Run discovery again','Reuse the case without another initial inquiry'),
+('Partial answers narrow follow-up','A response answers only some material questions','Plan the next inquiry','Ask only the unresolved approved question identifiers'),
+('No response escalates','Approved follow-up and escalation deadlines have elapsed','Process due work','Escalate or close without treating silence as consent'),
+('Inquiry resolution is not property approval','One case is answered while another mandatory property gate is unknown','Reassess the opportunity','Resolve that case but keep the property outside the verified shortlist'),
+],
+'OUT': [
+('Approval is required','Live dispatch has not been explicitly authorized','Attempt a send','Deny with APPROVAL_REQUIRED'),
+('Sender is exact','The proposed sender is not the approved existing Gmail identity','Attempt a send','Deny with SENDER_NOT_APPROVED'),
+('Recipient is verified','The contact was guessed or lacks a legitimate verified inquiry channel','Attempt a send','Deny with RECIPIENT_UNVERIFIED'),
+('Suppression always wins','The contact has opted out or declined','Attempt initial or follow-up dispatch','Deny and retain suppression'),
+('Human takeover pauses sending','The team has taken over or replied','Attempt automated dispatch','Deny with HUMAN_TAKEOVER'),
+('Kill switch stops unsent jobs','The global outbound switch is paused','Attempt a queued send','Deny even if the job was approved earlier'),
+('Caps and business hours apply','The contact/day cap is reached or the approved window is closed','Attempt dispatch','Deny or defer without resetting the cap across channels'),
+('Only approved templates auto-send','The model produces free prose or unapproved question identifiers','Attempt automatic dispatch','Deny pending reviewed template approval'),
+('Protected actions cannot be disguised','An inquiry proposes an offer, negotiation, fee, signature, application or phone call','Attempt dispatch','Deny with PROTECTED_ACTION'),
+('Uncertain side effects prevent retries','The prior send or form outcome is unresolved','Claim another attempt','Deny pending reconciliation, not blind resend'),
+('Eligible factual inquiry can send','Current policy, exact sender, verified recipient and approved template all satisfy constraints','Authorize the approved factual inquiry','Return ALLOW without changing policy or making commitments'),
+('Real dispatcher rechecks races','Two workers claim a job while a human pauses the case','Run the controlled dispatcher race','At most one attempt is claimed and no stale unsent permission survives the pause','controlled-integration'),
+],
+'MAIL': [
+('Possible acceptance becomes uncertain','Gmail may have accepted a send before a timeout','Handle the send result','Use SEND_UNCERTAIN and prohibit automatic resend'),
+('Confirmed acceptance stores identity','Gmail returns a successful message and thread ID','Handle success','Use SENT_CONFIRMED and preserve IDs; do not claim recipient delivery/read'),
+('Pre-send failure is distinguishable','An error is confirmed before any outbound request','Handle failure','Use FAILED_CONFIRMED with a policy-eligible retry, not a successful send'),
+('Auto-replies do not answer questions','An acknowledgement or out-of-office response arrives','Classify the reply','Keep substantive questions unanswered'),
+('Wrong-space replies are reviewed','A reply references a different suite or ambiguous offer','Correlate evidence','Route to ANSWER_REVIEW without updating the wrong space'),
+('Duplicate events are idempotent','The same Gmail event/message arrives more than once','Synchronize the mailbox','Persist one substantive observation and no duplicate follow-up','controlled-integration'),
+('History gaps recover safely','The saved Gmail history cursor is unavailable or watch expired','Reconcile relevant mail','Recover relevant recent inquiry threads without silently ingesting unrelated mail','controlled-integration'),
+('Real OAuth and threading are verified','The PM authorizes exact account/scopes and test correspondents','Run controlled integration tests','Demonstrate narrow approved access, correct MIME threading, revocation handling and no unrelated mailbox processing','manual'),
+],
+'FORM': [
+('Receipt is not an answer','A form returns a confirmed receipt/reference','Classify submission','Use FORM_SUBMITTED_AWAITING_REPLY, not ANSWER_RECEIVED'),
+('HTTP 200 is not proof','A form returns HTTP 200 without a verified confirmation','Classify submission','Use SUBMISSION_UNCERTAIN'),
+('Ambiguous form submission is not retried','The submission may have succeeded before timeout','Handle failure','Pause and reconcile rather than resubmit'),
+('Changed destinations are blocked','The official form action changes to an unapproved destination','Prepare submission','Block pending destination review'),
+('Formal actions require escalation','The form demands a fee, signature or legal attestation','Prepare submission','Escalate without accepting or submitting'),
+('Access restrictions are respected','The form requires CAPTCHA/login or prohibits automation','Prepare submission','Escalate without bypass'),
+('Email and forms share contact history','A question was already submitted through another channel','Plan another contact','Suppress a duplicate property/contact/question inquiry'),
+('Live form adapters are individually tested','The PM authorizes an official form and harmless test scope','Exercise submission and receipt handling','Record exact submitted content, official destination and receipt behavior without fabricated success','manual'),
+],
+'AI': [
+('Output schema is enforced','The model returns malformed structured output','Validate the proposal','Reject with INVALID_SCHEMA'),
+('Citations must exist','The model cites unknown evidence IDs','Validate the proposal','Reject with UNSUPPORTED_EVIDENCE'),
+('Fields and actions are bounded','The model requests fields or actions outside its allowed task','Validate the proposal','Reject with DISALLOWED_PROPOSAL'),
+('Candidate scope is enforced','The model output refers to a different candidate or space','Validate the proposal','Reject with WRONG_CANDIDATE'),
+('Unsupported approval claims fail','The model states verified approval without supporting competent evidence','Validate the claim','Reject the promotion, preserve the bad proposal for susceptibility measurement'),
+('Model outage is visible','The approved model path is unavailable or exhausted','Produce workflow status','Use ANALYSIS_PENDING; do not invent a Claude analysis or activate paid fallback'),
+('Max compatibility is proved','The selected runtime is the user\'s Max subscription','Run an explicitly authorized capability check','Prove supported state exchange and permissions; no token extraction, bypass or assumed API credit','manual'),
+('Analyst cannot dispatch directly','The live analyst identity is configured','Probe its approved permissions','Confirm no mail secrets, arbitrary send endpoint, policy edit or unrestricted database access','controlled-integration'),
+],
+'SEC': [
+('Prompt injection is only data','A listing/reply requests secret disclosure or policy changes','Process the evidence','Reject unauthorized actions and retain only relevant evidence','controlled-integration'),
+('Attachments are isolated','A relevant attachment contains active content or exceeds policy limits','Process document intake','Quarantine or reject without executing active content','controlled-integration'),
+('SSRF and redirect checks work','A proposed URL targets loopback, internal metadata or an unapproved redirect','Attempt the fetch','Block the request without forwarding credentials','controlled-integration'),
+('Role restrictions are real','A reviewer tries to activate live permissions or spending','Call the protected operation','Deny unless the authenticated owner approved the change','controlled-integration'),
+('Secrets are not exported','A controlled test uses recognizable synthetic secrets','Inspect logs, reports and archives','Find no unredacted secret outside the intended protected store','controlled-integration'),
+('Webhook authentication is enforced','A webhook has a bad signature, issuer or audience','Deliver the event','Reject it without state mutation','controlled-integration'),
+('Processing rights cover model input','A source or mail item lacks approved model-processing rights','Prepare analyst input','Block transfer and request the relevant decision'),
+('Public map endpoints are not assumed unlimited','A proposed source depends on public OSM bulk use or paid Maps without consent','Review access and cost configuration','Require a permitted path, attribution/retention review and any necessary spend approval','manual'),
+],
+'OPS': [
+('Discovery cadence is configurable','A valid approved daily schedule exists','Run the scheduler over timezone/DST boundaries','Execute the configured cadence without duplicate overlapping runs','controlled-integration'),
+('Source failure degrades the run','A required source fails while others succeed','Plan the report','Use INCOMPLETE rather than all-clear'),
+('Checkpoint recovery preserves work','A worker crashes after durable ingestion','Restart it','Resume without losing or duplicating observations','controlled-integration'),
+('Restoration pauses outbound work','A database is restored across a possible send/opt-out gap','Plan recovery','Pause dispatch until the recovery gap and suppression state are reconciled'),
+('Unresolved recovery stays paused','External-send or suppression history cannot be reconstructed','Plan recovery','Keep affected cases paused for operator review'),
+('Backups and migrations are tested','The approved deployment has backup and rollback procedures','Restore a real test backup and roll back a migration','Demonstrate the agreed recovery objectives with saved results','manual'),
+('Retry exhaustion is visible','A job repeatedly fails within bounded retry policy','Exhaust retries','Move to a visible dead-letter/escalation state, not an infinite loop','controlled-integration'),
+('Targets are not fabricated','Latency or uptime targets have not been measured','Produce the operations report','Label them proposed or UNAVAILABLE rather than achieved SLAs'),
+],
+'REP': [
+('Partial scans stay explicit','One or more sources are incomplete','Build the daily summary','Show INCOMPLETE coverage and exclude unsupported all-clear claims'),
+('Conditional cases are separated','Verified and conditional candidates coexist','Build the shortlist','Keep conditional candidates in a separate queue'),
+('Zero verified matches is honest','All candidates are conditional or fail mandatory gates','Build the report','Return no verified matches with reasons; do not invent recommendations'),
+('Pipeline works on real implementation','An approved test environment has implemented ingestion, cases, mocked transports and reporting','Execute end-to-end fixtures against actual application modules','Trace observations through inquiries and replies to reassessment without live contacts','controlled-integration'),
+('Report claims trace to evidence','A report contains rent, permission and cost claims','Audit each claim','Find matching scoped evidence, dates and status; no unsupported narrative','manual'),
+],
+'COST': [
+('New paid commitments need approval','A paid API/subscription is proposed without PM approval','Authorize spend','Deny with PAID_APPROVAL_REQUIRED'),
+('Spend caps stop work','Projected usage would exceed the approved ceiling','Authorize another billable operation','Deny with BUDGET_EXCEEDED'),
+('Free-first does not invent zero cost','Existing subscriptions, hardware or operations costs are unknown','Produce the cost report','Separate existing, incremental, estimated and UNAVAILABLE amounts'),
+('Max is not model API credit','The proposed runtime tries to bill model API usage against Max','Validate execution mode','Deny unsupported billing assumptions'),
+('Permission revocation halts metered work','Previously approved paid access is revoked','Attempt another metered operation','Deny even if the job predates revocation'),
+],
+'GATE': [
+('Offline means no live actions','A Phase 1 job requests email/form/source/private-mail access','Authorize the operation','Deny all external actions in the offline phase'),
+('Read-only and shadow cannot dispatch','A Phase 2 or 3 task requests a Gmail draft/send or live form submission','Authorize the operation','Deny the write even if no email would immediately be delivered'),
+('Live phase still needs bounds','Phase 4 is selected without explicit sender/contact/cost approval','Authorize dispatch','Deny; phase naming is not permission'),
+('PM owns release','The developer recommends advancing a phase','Review release authorization','Require a recorded PM decision, never self-approve','manual'),
+('Incomplete tests cannot release','Mandatory ACs are unimplemented or not exercised','Compute the release decision','Return BLOCKED; do not treat skips or fixture checks as application coverage'),
+],
+'QUAL': [
+('Locked sets are protected','A locked acceptance set has been consumed','Attempt to use it as a fresh holdout','Reject the fresh-holdout claim and require a new independent set','manual'),
+('Metrics retain provenance','The evaluation mixes synthetic, manual and model-graded outcomes','Produce metrics','Separate provenance, denominators, sample sizes and uncertainty','manual'),
+('Containment is not model perfection','The model proposed an unsafe action but code blocked it','Score the evaluation','Record both model failure and dispatcher containment','manual'),
+('No hidden mock implementation','Contract tests use an unimplemented or test-double adapter','Generate results','State implementation kind and deny a production-readiness claim'),
+('Artifacts rerun cleanly','The test-first package is extracted into a fresh location','Run validation, harness checks and contracts','Reproduce package checks and explicit missing-implementation results with no network or dependencies','controlled-integration'),
+],
+}
+for group, values in rows.items():
+    for i, value in enumerate(values, 1):
+        add(group, i, *value)
+
+(ROOT/'catalog'/'acceptance.json').write_text(json.dumps({'schemaVersion':1,
+    'baselineCommit':'d88e62e2383141a07351ac69229343d39736d213',
+    'sourceSpecificationRevision':7, 'scope':'Public development ACs; not a locked acceptance set',
+    'criteria':ACS}, indent=2)+'\n')
+print(f'Created {len(ACS)} acceptance criteria across {len(GROUPS)} domains.')

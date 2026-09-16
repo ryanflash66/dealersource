@@ -1,0 +1,538 @@
+TAP version 13
+# Subtest: Fixture arithmetic, not application coverage: TC-RNT-01-800
+ok 1 - Fixture arithmetic, not application coverage: TC-RNT-01-800
+  ---
+  duration_ms: 2.317578
+  type: 'test'
+  ...
+# Subtest: Fixture arithmetic, not application coverage: TC-RNT-01-cap
+ok 2 - Fixture arithmetic, not application coverage: TC-RNT-01-cap
+  ---
+  duration_ms: 0.158989
+  type: 'test'
+  ...
+# Subtest: Fixture arithmetic, not application coverage: TC-RNT-01-over
+ok 3 - Fixture arithmetic, not application coverage: TC-RNT-01-over
+  ---
+  duration_ms: 0.121093
+  type: 'test'
+  ...
+# Subtest: Fixture arithmetic, not application coverage: TC-RNT-02-annual
+ok 4 - Fixture arithmetic, not application coverage: TC-RNT-02-annual
+  ---
+  duration_ms: 0.125773
+  type: 'test'
+  ...
+# Subtest: Fixture arithmetic, not application coverage: TC-RNT-02-annual-cap
+ok 5 - Fixture arithmetic, not application coverage: TC-RNT-02-annual-cap
+  ---
+  duration_ms: 0.134699
+  type: 'test'
+  ...
+# Subtest: Fixture arithmetic, not application coverage: TC-RNT-03-annual-area
+ok 6 - Fixture arithmetic, not application coverage: TC-RNT-03-annual-area
+  ---
+  duration_ms: 0.113978
+  type: 'test'
+  ...
+# Subtest: Fixture arithmetic, not application coverage: TC-RNT-04-monthly-area
+ok 7 - Fixture arithmetic, not application coverage: TC-RNT-04-monthly-area
+  ---
+  duration_ms: 0.116838
+  type: 'test'
+  ...
+# Subtest: Fixture arithmetic, not application coverage: TC-RNT-08-fees
+ok 8 - Fixture arithmetic, not application coverage: TC-RNT-08-fees
+  ---
+  duration_ms: 0.161707
+  type: 'test'
+  ...
+# Subtest: Fixture arithmetic, not application coverage: TC-RNT-08-complete-cost
+ok 9 - Fixture arithmetic, not application coverage: TC-RNT-08-complete-cost
+  ---
+  duration_ms: 0.139274
+  type: 'test'
+  ...
+# Subtest: Fixture arithmetic, not application coverage: TC-RNT-09-below-preferred
+ok 10 - Fixture arithmetic, not application coverage: TC-RNT-09-below-preferred
+  ---
+  duration_ms: 0.217725
+  type: 'test'
+  ...
+# Subtest: Fixture arithmetic, not application coverage: TC-RNT-10-binding-min
+ok 11 - Fixture arithmetic, not application coverage: TC-RNT-10-binding-min
+  ---
+  duration_ms: 3.429853
+  type: 'test'
+  ...
+# Subtest: Fixture arithmetic, not application coverage: TC-RNT-13-rounding
+ok 12 - Fixture arithmetic, not application coverage: TC-RNT-13-rounding
+  ---
+  duration_ms: 0.261984
+  type: 'test'
+  ...
+# Subtest: Package integrity: catalog and fixture schema
+ok 13 - Package integrity: catalog and fixture schema
+  ---
+  duration_ms: 3.575
+  type: 'test'
+  ...
+# Subtest: Package integrity: complete R01-R13 traceability
+ok 14 - Package integrity: complete R01-R13 traceability
+  ---
+  duration_ms: 0.16994
+  type: 'test'
+  ...
+# Subtest: Package integrity: zero dependencies and no long dashes
+ok 15 - Package integrity: zero dependencies and no long dashes
+  ---
+  duration_ms: 36.634267
+  type: 'test'
+  ...
+# Subtest: Baseline: upstream README is byte-identical to the inspected Git blob
+ok 16 - Baseline: upstream README is byte-identical to the inspected Git blob
+  ---
+  duration_ms: 1.438118
+  type: 'test'
+  ...
+# Subtest: Baseline: master export matches its saved SHA-256
+ok 17 - Baseline: master export matches its saved SHA-256
+  ---
+  duration_ms: 2.686883
+  type: 'test'
+  ...
+# Subtest: Validator rejects duplicate AC
+ok 18 - Validator rejects duplicate AC
+  ---
+  duration_ms: 3.191602
+  type: 'test'
+  ...
+# Subtest: Validator rejects duplicate fixture
+ok 19 - Validator rejects duplicate fixture
+  ---
+  duration_ms: 2.62469
+  type: 'test'
+  ...
+# Subtest: Validator rejects missing AC reference
+ok 20 - Validator rejects missing AC reference
+  ---
+  duration_ms: 3.691769
+  type: 'test'
+  ...
+# Subtest: Validator rejects missing reverse trace
+ok 21 - Validator rejects missing reverse trace
+  ---
+  duration_ms: 2.83169
+  type: 'test'
+  ...
+# Subtest: Validator rejects missing title
+ok 22 - Validator rejects missing title
+  ---
+  duration_ms: 2.487452
+  type: 'test'
+  ...
+# Subtest: Validator rejects unknown level
+ok 23 - Validator rejects unknown level
+  ---
+  duration_ms: 2.916144
+  type: 'test'
+  ...
+# Subtest: Validator rejects invalid priority
+ok 24 - Validator rejects invalid priority
+  ---
+  duration_ms: 3.216545
+  type: 'test'
+  ...
+# Subtest: Validator rejects wrong requirement
+ok 25 - Validator rejects wrong requirement
+  ---
+  duration_ms: 3.181401
+  type: 'test'
+  ...
+# Subtest: Validator rejects invalid section
+ok 26 - Validator rejects invalid section
+  ---
+  duration_ms: 3.656144
+  type: 'test'
+  ...
+# Subtest: Validator rejects invalid phase
+ok 27 - Validator rejects invalid phase
+  ---
+  duration_ms: 2.436501
+  type: 'test'
+  ...
+# Subtest: Validator rejects invented pass
+ok 28 - Validator rejects invented pass
+  ---
+  duration_ms: 2.576563
+  type: 'test'
+  ...
+# Subtest: Validator rejects missing procedure
+ok 29 - Validator rejects missing procedure
+  ---
+  duration_ms: 2.831625
+  type: 'test'
+  ...
+# Subtest: Validator rejects bad operation
+ok 30 - Validator rejects bad operation
+  ---
+  duration_ms: 3.251924
+  type: 'test'
+  ...
+# Subtest: Validator rejects no input
+ok 31 - Validator rejects no input
+  ---
+  duration_ms: 3.283282
+  type: 'test'
+  ...
+# Subtest: Validator rejects no expected output
+ok 32 - Validator rejects no expected output
+  ---
+  duration_ms: 3.543144
+  type: 'test'
+  ...
+# Subtest: Validator rejects wrong provenance
+ok 33 - Validator rejects wrong provenance
+  ---
+  duration_ms: 2.515528
+  type: 'test'
+  ...
+# Subtest: Validator rejects zero timeout
+ok 34 - Validator rejects zero timeout
+  ---
+  duration_ms: 2.52397
+  type: 'test'
+  ...
+# Subtest: Validator rejects locked mislabel
+ok 35 - Validator rejects locked mislabel
+  ---
+  duration_ms: 2.649354
+  type: 'test'
+  ...
+# Subtest: Validator rejects unknown fixture reference
+ok 36 - Validator rejects unknown fixture reference
+  ---
+  duration_ms: 2.453686
+  type: 'test'
+  ...
+# Subtest: Validator rejects long dash
+ok 37 - Validator rejects long dash
+  ---
+  duration_ms: 3.204825
+  type: 'test'
+  ...
+# Subtest: Validator rejects empty catalog
+ok 38 - Validator rejects empty catalog
+  ---
+  duration_ms: 1.36663
+  type: 'test'
+  ...
+# Subtest: Validator rejects empty fixtures
+ok 39 - Validator rejects empty fixtures
+  ---
+  duration_ms: 1.926318
+  type: 'test'
+  ...
+# Subtest: Validator rejects wrong schema
+ok 40 - Validator rejects wrong schema
+  ---
+  duration_ms: 2.400286
+  type: 'test'
+  ...
+# Subtest: Comparator accepts an exact value
+ok 41 - Comparator accepts an exact value
+  ---
+  duration_ms: 0.260805
+  type: 'test'
+  ...
+# Subtest: Comparator rejects an incorrect value
+ok 42 - Comparator rejects an incorrect value
+  ---
+  duration_ms: 1.256587
+  type: 'test'
+  ...
+# Subtest: Comparator rejects missing keys
+ok 43 - Comparator rejects missing keys
+  ---
+  duration_ms: 0.32135
+  type: 'test'
+  ...
+# Subtest: Comparator rejects unexpected keys
+ok 44 - Comparator rejects unexpected keys
+  ---
+  duration_ms: 0.305188
+  type: 'test'
+  ...
+# Subtest: Comparator does not coerce numeric strings
+ok 45 - Comparator does not coerce numeric strings
+  ---
+  duration_ms: 0.261926
+  type: 'test'
+  ...
+# Subtest: Comparator retains array order
+ok 46 - Comparator retains array order
+  ---
+  duration_ms: 0.333552
+  type: 'test'
+  ...
+# Subtest: Adapter metadata is mandatory
+ok 47 - Adapter metadata is mandatory
+  ---
+  duration_ms: 0.339466
+  type: 'test'
+  ...
+# Subtest: Application adapter revision is mandatory
+ok 48 - Application adapter revision is mandatory
+  ---
+  duration_ms: 0.129112
+  type: 'test'
+  ...
+# Subtest: Unknown adapter kind fails
+ok 49 - Unknown adapter kind fails
+  ---
+  duration_ms: 0.088514
+  type: 'test'
+  ...
+# Subtest: Operations must be an object
+ok 50 - Operations must be an object
+  ---
+  duration_ms: 0.08245
+  type: 'test'
+  ...
+# Subtest: Missing implementation is not a pass
+ok 51 - Missing implementation is not a pass
+  ---
+  duration_ms: 0.225707
+  type: 'test'
+  ...
+# Subtest: Missing method is not a pass
+ok 52 - Missing method is not a pass
+  ---
+  duration_ms: 0.126212
+  type: 'test'
+  ...
+# Subtest: Declared test double is not credited as application coverage
+ok 53 - Declared test double is not credited as application coverage
+  ---
+  duration_ms: 0.090317
+  type: 'test'
+  ...
+# Subtest: Runner exercises a matching synthetic method
+ok 54 - Runner exercises a matching synthetic method
+  ---
+  duration_ms: 0.293436
+  type: 'test'
+  ...
+# Subtest: Runner detects a deliberately wrong synthetic method
+ok 55 - Runner detects a deliberately wrong synthetic method
+  ---
+  duration_ms: 0.343628
+  type: 'test'
+  ...
+# Subtest: Application does not receive expected answers or AC IDs
+ok 56 - Application does not receive expected answers or AC IDs
+  ---
+  duration_ms: 0.203426
+  type: 'test'
+  ...
+# Subtest: Input mutation cannot poison the fixture
+ok 57 - Input mutation cannot poison the fixture
+  ---
+  duration_ms: 0.177076
+  type: 'test'
+  ...
+# Subtest: Thrown NOT_IMPLEMENTED remains explicit
+ok 58 - Thrown NOT_IMPLEMENTED remains explicit
+  ---
+  duration_ms: 0.238751
+  type: 'test'
+  ...
+# Subtest: Unexpected exception is a failing contract
+ok 59 - Unexpected exception is a failing contract
+  ---
+  duration_ms: 0.227755
+  type: 'test'
+  ...
+# Subtest: Async rejection is a failing contract
+ok 60 - Async rejection is a failing contract
+  ---
+  duration_ms: 0.245914
+  type: 'test'
+  ...
+# Subtest: Async timeout is detected
+ok 61 - Async timeout is detected
+  ---
+  duration_ms: 10.321856
+  type: 'test'
+  ...
+# Subtest: Summary gives PASS exit 0 but never releases production
+ok 62 - Summary gives PASS exit 0 but never releases production
+  ---
+  duration_ms: 0.423858
+  type: 'test'
+  ...
+# Subtest: Summary gives FAIL exit 1 but never releases production
+ok 63 - Summary gives FAIL exit 1 but never releases production
+  ---
+  duration_ms: 0.080422
+  type: 'test'
+  ...
+# Subtest: Summary gives NOT_IMPLEMENTED exit 2 but never releases production
+ok 64 - Summary gives NOT_IMPLEMENTED exit 2 but never releases production
+  ---
+  duration_ms: 0.058932
+  type: 'test'
+  ...
+# Subtest: Summary gives TEST_DOUBLE_ONLY exit 2 but never releases production
+ok 65 - Summary gives TEST_DOUBLE_ONLY exit 2 but never releases production
+  ---
+  duration_ms: 0.054155
+  type: 'test'
+  ...
+# Subtest: Summary gives HARNESS_ERROR exit 3 but never releases production
+ok 66 - Summary gives HARNESS_ERROR exit 3 but never releases production
+  ---
+  duration_ms: 0.048671
+  type: 'test'
+  ...
+# Subtest: Manual criteria remain NOT_RUN after a passing synthetic contract
+ok 67 - Manual criteria remain NOT_RUN after a passing synthetic contract
+  ---
+  duration_ms: 0.15098
+  type: 'test'
+  ...
+# Subtest: Mixed fixture outcomes do not pass an AC
+ok 68 - Mixed fixture outcomes do not pass an AC
+  ---
+  duration_ms: 0.135205
+  type: 'test'
+  ...
+# Subtest: Missing fixture results are not an AC pass
+ok 69 - Missing fixture results are not an AC pass
+  ---
+  duration_ms: 0.100292
+  type: 'test'
+  ...
+# Subtest: CLI defaults stay inside qa
+ok 70 - CLI defaults stay inside qa
+  ---
+  duration_ms: 0.168597
+  type: 'test'
+  ...
+# Subtest: CLI accepts explicit adapter and report directory
+ok 71 - CLI accepts explicit adapter and report directory
+  ---
+  duration_ms: 0.143038
+  type: 'test'
+  ...
+# Subtest: CLI help is supported
+ok 72 - CLI help is supported
+  ---
+  duration_ms: 0.082596
+  type: 'test'
+  ...
+# Subtest: CLI rejects --unknown
+ok 73 - CLI rejects --unknown
+  ---
+  duration_ms: 0.131648
+  type: 'test'
+  ...
+# Subtest: CLI rejects --adapter
+ok 74 - CLI rejects --adapter
+  ---
+  duration_ms: 0.079555
+  type: 'test'
+  ...
+# Subtest: CLI rejects --adapter --out
+ok 75 - CLI rejects --adapter --out
+  ---
+  duration_ms: 0.060343
+  type: 'test'
+  ...
+# Subtest: CLI rejects --out x --out y
+ok 76 - CLI rejects --out x --out y
+  ---
+  duration_ms: 0.071669
+  type: 'test'
+  ...
+# Subtest: CLI rejects --help x
+ok 77 - CLI rejects --help x
+  ---
+  duration_ms: 0.084662
+  type: 'test'
+  ...
+# Subtest: Process isolation runs only the supplied input against a synthetic adapter
+ok 78 - Process isolation runs only the supplied input against a synthetic adapter
+  ---
+  duration_ms: 94.976216
+  type: 'test'
+  ...
+# Subtest: Process isolation bounds a synchronous infinite loop
+ok 79 - Process isolation bounds a synchronous infinite loop
+  ---
+  duration_ms: 156.066456
+  type: 'test'
+  ...
+# Subtest: Missing adapter file produces HARNESS_ERROR
+ok 80 - Missing adapter file produces HARNESS_ERROR
+  ---
+  duration_ms: 74.499399
+  type: 'test'
+  ...
+# Subtest: Bad adapter metadata produces HARNESS_ERROR
+ok 81 - Bad adapter metadata produces HARNESS_ERROR
+  ---
+  duration_ms: 74.995896
+  type: 'test'
+  ...
+# Subtest: Protocol pollution is not a passing contract
+ok 82 - Protocol pollution is not a passing contract
+  ---
+  duration_ms: 79.904445
+  type: 'test'
+  ...
+# Subtest: Excessive worker output is bounded
+ok 83 - Excessive worker output is bounded
+  ---
+  duration_ms: 89.800013
+  type: 'test'
+  ...
+# Subtest: Common fetch side-effect path is blocked before execution
+ok 84 - Common fetch side-effect path is blocked before execution
+  ---
+  duration_ms: 76.664401
+  type: 'test'
+  ...
+# Subtest: Common http side-effect path is blocked before execution
+ok 85 - Common http side-effect path is blocked before execution
+  ---
+  duration_ms: 73.446496
+  type: 'test'
+  ...
+# Subtest: Common spawn side-effect path is blocked before execution
+ok 86 - Common spawn side-effect path is blocked before execution
+  ---
+  duration_ms: 86.577445
+  type: 'test'
+  ...
+# Subtest: Common socket side-effect path is blocked before execution
+ok 87 - Common socket side-effect path is blocked before execution
+  ---
+  duration_ms: 79.285277
+  type: 'test'
+  ...
+# Subtest: Credential-like environment value is not inherited by worker
+ok 88 - Credential-like environment value is not inherited by worker
+  ---
+  duration_ms: 74.486394
+  type: 'test'
+  ...
+1..88
+# tests 88
+# suites 0
+# pass 88
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1185.331519

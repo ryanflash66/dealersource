@@ -1,0 +1,42 @@
+[
+  {
+    "file": "adapters/application.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tests/harness.test.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tools/offline-guard.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tools/process-runner.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tools/render-docs.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tools/run-all.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tools/run-contracts.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tools/runner-core.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tools/validate.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tools/worker.mjs",
+    "exitCode": 0
+  }
+]
