@@ -237,3 +237,128 @@ no secrets, offline.
 - Switching geocoder from `census` to `nominatim` in config changes behavior
   with no code edits.
 - Default config makes no call to any paid endpoint (verified by test).
+- The solution honors the **offline contract** in section 14 exactly. An
+  external evaluator runs it against a golden fixture set it has never seen;
+  results are compared across solutions automatically.
+
+## 14. Offline contract (binding)
+
+This section exists so that independent solutions can be evaluated by the
+same script. Deviate from nothing here. JSON Schemas for every file named
+below live in the parent repo at
+`https://github.com/ryanflash66/dealersource/tree/main/evals/contract` and a
+sample fixture set with expected results at `evals/fixtures/golden-v1/`.
+Use the sample to test; the evaluator uses a different set with the same shape.
+
+### 14.1 Repository layout and scripts
+
+- `package.json` at the repo root with these scripts, all working offline:
+  - `test` — full test suite, exit 0 on success
+  - `pipeline` — the CLI below
+  - `dashboard:build` — builds the dashboard from fixture data, exit 0
+  - `dashboard:dev` — local dashboard
+- `providers.yaml` at the repo root. Required keys and default values:
+
+```yaml
+paid_enabled: false
+geocoder: census        # census | nominatim | google
+parcels: nc_onemap      # nc_onemap | county | regrid
+drivetime: ors          # ors | valhalla | google
+imagery: mapillary      # mapillary | streetview
+poi: overpass           # overpass | places
+crawler: anycrawl       # anycrawl | anycrawl_cloud
+tiles: protomaps        # protomaps | mapbox
+```
+
+- `business.yaml` at the repo root holding every key from section 2 plus
+  `score.weights` with keys `traffic`, `visibility`, `distance`, `rent`,
+  `competitors`.
+- `.env.example` at the repo root.
+
+### 14.2 CLI
+
+```
+npm run pipeline -- --offline --fixtures <dir> --out <dir> --run-date YYYY-MM-DD [--config <providers.yaml>]
+```
+
+- `--offline` disables every network call. Adapters read the fixture files in
+  `--fixtures`. Any attempted network access is a hard error (exit non-zero).
+- `--out` receives `report.json`, `messages.json`, `run.json`. Persistent
+  state for the offline run lives under `<out>/state/`. Running the exact
+  same command a second time must produce `messages.json` equal to `[]`.
+- `--run-date` is the logical "today": used for idempotency keys, evidence
+  expiry, and which inbound replies are visible.
+- `--config` overrides the path to `providers.yaml`; default is the repo root
+  file. `report.json.providers` must reflect the selected providers even
+  offline.
+
+### 14.3 Fixture input files (all in `--fixtures`)
+
+| File | Shape | Keyed by |
+|---|---|---|
+| `listings.json` | array of listings: `listing_id, source_id, url, fetched_at, title, address, rent_monthly` (number or null), `description, contact_email` (or null), `shared_lot` (bool or null), `has_office` (bool or null), `vehicle_capacity` (int or null) | |
+| `geocode.json` | `{ lat, lon, formatted_address, parcel_id }` | exact `address` string from listings |
+| `parcels.json` | `{ parcel_id, owner, acres, centroid: {lat, lon}, geometry` (GeoJSON Polygon), `frontage_ft, corner_lot, fronting_road }` | `parcel_id` |
+| `zoning.json` | `{ district, jurisdiction, planning_email, use_table_url, dealer_use` (`permitted`/`conditional`/`prohibited`/`unknown`), `citation` (string or null) `}` | `parcel_id` |
+| `flood.json` | `{ zone, pct_area_high_risk, source_url }` | `parcel_id` |
+| `traffic.json` | `{ aadt, road, year, source_url }` | `parcel_id` |
+| `drivetime.json` | `{ minutes }` from `search.home_base` | `parcel_id` |
+| `competitors.json` | `{ count_within_radius, radius_m }` | `parcel_id` |
+| `replies.json` | array of inbound emails: `listing_id, case_type` (`rent`/`zoning`/`space`), `from, received_at, subject, body` | |
+
+Semantics the pipeline must apply:
+
+- Listings that geocode to the same `parcel_id` are one **site**.
+- A listing with `rent_monthly` present is written rent evidence (source =
+  listing URL). Missing rent opens a `rent` case to `contact_email`.
+- `dealer_use: permitted` with a non-null `citation` passes the zoning gate
+  from the official layer. `unknown` or `conditional` opens a `zoning` case to
+  `planning_email`. `prohibited` fails the gate; no outreach.
+- Flood gate uses `zone` against `flood.high_risk_zones`.
+- Sites with `drivetime.minutes > search.max_drive_minutes` are
+  `in_search_area: false`, not scored, no outreach.
+- Replies with `received_at <= run-date` are ingested during the `verify`
+  stage of that run, after that run's outbound messages are queued, and
+  matched to open cases by `listing_id` + `case_type`. A reply that states a
+  rent figure is rent evidence; a planning reply that confirms permitted use
+  is zoning evidence.
+
+### 14.4 Output files (written to `--out`)
+
+`report.json`:
+
+```json
+{
+  "schema_version": "1",
+  "run_id": "string", "run_date": "YYYY-MM-DD", "offline": true,
+  "providers": { "paid_enabled": false, "geocoder": "census", "...": "..." },
+  "sites": [{
+    "site_id": "string", "parcel_id": "string", "listing_ids": ["..."],
+    "address": "string", "in_search_area": true, "drive_minutes": 0,
+    "shared_lot": false,
+    "gates": {
+      "zoning": { "status": "pass|fail|pending", "evidence_ids": ["..."] },
+      "rent":   { "status": "pass|fail|pending", "evidence_ids": ["..."] },
+      "flood":  { "status": "pass|fail|pending", "evidence_ids": ["..."] }
+    },
+    "viable": false, "score": 0.0, "rank": null,
+    "metrics": { "aadt": 0, "visibility": 0.0, "drive_minutes": 0, "rent_monthly": 0, "competitors": 0 },
+    "open_cases": [{ "case_type": "rent|zoning|space", "status": "string", "recipient": "string" }]
+  }],
+  "evidence": [{
+    "evidence_id": "string", "site_id": "string", "fact": "string", "value": "any",
+    "source_url": "string", "fetched_at": "ISO", "expires_at": "ISO", "method": "string"
+  }],
+  "external_calls": []
+}
+```
+
+`rank` is 1-based over viable sites only, null otherwise. Shared-lot sites
+rank after all standalone viable sites. `external_calls` lists hosts
+contacted this run and must be empty when `--offline`.
+
+`messages.json`: array of messages **sent in this run only**:
+`message_id, site_id, listing_id, case_type, to, subject, body, sent_at, template_id`.
+
+`run.json`: `run_id, run_date, started_at, finished_at, counts` (object of
+integers), `errors` (array of strings).
