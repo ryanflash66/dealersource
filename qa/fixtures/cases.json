@@ -1,0 +1,3206 @@
+{
+  "schemaVersion": 1,
+  "visibility": "public-development-not-locked",
+  "cases": [
+    {
+      "id": "TC-CFG-01-nulls",
+      "acId": "AC-CFG-01",
+      "operation": "validateProfile",
+      "input": {
+        "boundary": {
+          "type": "approved-test-polygon",
+          "id": "fixture-only"
+        },
+        "preferredMinCents": 60000,
+        "maxCents": 100000,
+        "minimumIsBinding": false,
+        "currency": "USD",
+        "timezone": "America/New_York",
+        "strategies": [
+          "direct_lease",
+          "shared",
+          "sublease"
+        ],
+        "minimumLotSqFt": null,
+        "minimumBays": null,
+        "minimumCapacity": null
+      },
+      "expected": {
+        "valid": true,
+        "errors": []
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CFG-02-invalid",
+      "acId": "AC-CFG-02",
+      "operation": "validateProfile",
+      "input": {
+        "boundary": null,
+        "preferredMinCents": 60000,
+        "maxCents": 100000,
+        "minimumIsBinding": false,
+        "currency": "USD",
+        "timezone": "America/New_York",
+        "strategies": [
+          "direct_lease",
+          "shared",
+          "sublease"
+        ],
+        "minimumLotSqFt": null,
+        "minimumBays": null,
+        "minimumCapacity": null
+      },
+      "expected": {
+        "valid": false,
+        "errors": [
+          "GEOGRAPHY_REQUIRED"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CFG-03-invalid",
+      "acId": "AC-CFG-03",
+      "operation": "validateProfile",
+      "input": {
+        "boundary": {
+          "type": "approved-test-polygon",
+          "id": "fixture-only"
+        },
+        "preferredMinCents": 110000,
+        "maxCents": 100000,
+        "minimumIsBinding": false,
+        "currency": "USD",
+        "timezone": "America/New_York",
+        "strategies": [
+          "direct_lease",
+          "shared",
+          "sublease"
+        ],
+        "minimumLotSqFt": null,
+        "minimumBays": null,
+        "minimumCapacity": null
+      },
+      "expected": {
+        "valid": false,
+        "errors": [
+          "INVALID_BUDGET_RANGE"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CFG-04-invalid",
+      "acId": "AC-CFG-04",
+      "operation": "validateProfile",
+      "input": {
+        "boundary": {
+          "type": "approved-test-polygon",
+          "id": "fixture-only"
+        },
+        "preferredMinCents": 60000,
+        "maxCents": -1,
+        "minimumIsBinding": false,
+        "currency": "USD",
+        "timezone": "America/New_York",
+        "strategies": [
+          "direct_lease",
+          "shared",
+          "sublease"
+        ],
+        "minimumLotSqFt": null,
+        "minimumBays": null,
+        "minimumCapacity": null
+      },
+      "expected": {
+        "valid": false,
+        "errors": [
+          "INVALID_BUDGET_RANGE"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CFG-05-invalid",
+      "acId": "AC-CFG-05",
+      "operation": "validateProfile",
+      "input": {
+        "boundary": {
+          "type": "approved-test-polygon",
+          "id": "fixture-only"
+        },
+        "preferredMinCents": 60000,
+        "maxCents": 100000,
+        "minimumIsBinding": false,
+        "currency": "USD",
+        "timezone": "Mars/Olympus",
+        "strategies": [
+          "direct_lease",
+          "shared",
+          "sublease"
+        ],
+        "minimumLotSqFt": null,
+        "minimumBays": null,
+        "minimumCapacity": null
+      },
+      "expected": {
+        "valid": false,
+        "errors": [
+          "INVALID_TIMEZONE"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CFG-07-invalid",
+      "acId": "AC-CFG-07",
+      "operation": "validateProfile",
+      "input": {
+        "boundary": {
+          "type": "approved-test-polygon",
+          "id": "fixture-only"
+        },
+        "preferredMinCents": 60000,
+        "maxCents": 100000,
+        "minimumIsBinding": false,
+        "currency": "USD",
+        "timezone": "America/New_York",
+        "strategies": [
+          "purchase"
+        ],
+        "minimumLotSqFt": null,
+        "minimumBays": null,
+        "minimumCapacity": null
+      },
+      "expected": {
+        "valid": false,
+        "errors": [
+          "OUT_OF_SCOPE_STRATEGY"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CFG-08-legal",
+      "acId": "AC-CFG-08",
+      "operation": "assessEvidence",
+      "input": {
+        "required": [
+          "legalUse"
+        ],
+        "fields": {
+          "legalUse": {
+            "status": "UNKNOWN"
+          }
+        },
+        "preferences": {
+          "minimumLotSqFt": null
+        }
+      },
+      "expected": {
+        "qualified": false,
+        "status": "VERIFICATION_ACTIVE",
+        "unresolved": [
+          "legalUse"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-01-800",
+      "acId": "AC-RNT-01",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "MONTH_TOTAL",
+        "amount": "800.00"
+      },
+      "expected": {
+        "status": "PASS",
+        "monthlyBaseCents": 80000,
+        "knownOccupancySubtotalCents": 80000,
+        "allInCents": null,
+        "reason": null
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-01-cap",
+      "acId": "AC-RNT-01",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "MONTH_TOTAL",
+        "amount": "1000.00"
+      },
+      "expected": {
+        "status": "PASS",
+        "monthlyBaseCents": 100000,
+        "knownOccupancySubtotalCents": 100000,
+        "allInCents": null,
+        "reason": null
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-01-over",
+      "acId": "AC-RNT-01",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "MONTH_TOTAL",
+        "amount": "1000.01"
+      },
+      "expected": {
+        "status": "FAIL",
+        "monthlyBaseCents": 100001,
+        "knownOccupancySubtotalCents": 100001,
+        "allInCents": null,
+        "reason": "ABOVE_CAP"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-02-annual",
+      "acId": "AC-RNT-02",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "YEAR_TOTAL",
+        "amount": "9600.00"
+      },
+      "expected": {
+        "status": "PASS",
+        "monthlyBaseCents": 80000,
+        "knownOccupancySubtotalCents": 80000,
+        "allInCents": null,
+        "reason": null
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-02-annual-cap",
+      "acId": "AC-RNT-02",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "YEAR_TOTAL",
+        "amount": "12000.00"
+      },
+      "expected": {
+        "status": "PASS",
+        "monthlyBaseCents": 100000,
+        "knownOccupancySubtotalCents": 100000,
+        "allInCents": null,
+        "reason": null
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-03-annual-area",
+      "acId": "AC-RNT-03",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "SQFT_YEAR",
+        "amount": "12.00",
+        "leasedSqFt": "800",
+        "areaScope": "EXACT_SPACE"
+      },
+      "expected": {
+        "status": "PASS",
+        "monthlyBaseCents": 80000,
+        "knownOccupancySubtotalCents": 80000,
+        "allInCents": null,
+        "reason": null
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-04-monthly-area",
+      "acId": "AC-RNT-04",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "SQFT_MONTH",
+        "amount": "1.25",
+        "leasedSqFt": "640",
+        "areaScope": "EXACT_SPACE"
+      },
+      "expected": {
+        "status": "PASS",
+        "monthlyBaseCents": 80000,
+        "knownOccupancySubtotalCents": 80000,
+        "allInCents": null,
+        "reason": null
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-05-wrong-area",
+      "acId": "AC-RNT-05",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "SQFT_YEAR",
+        "amount": "12.00",
+        "leasedSqFt": "8000",
+        "areaScope": "WHOLE_BUILDING"
+      },
+      "expected": {
+        "status": "UNKNOWN",
+        "monthlyBaseCents": null,
+        "knownOccupancySubtotalCents": null,
+        "allInCents": null,
+        "reason": "LEASED_AREA_REQUIRED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-05-missing-area",
+      "acId": "AC-RNT-05",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "SQFT_YEAR",
+        "amount": "12.00",
+        "leasedSqFt": null,
+        "areaScope": "EXACT_SPACE"
+      },
+      "expected": {
+        "status": "UNKNOWN",
+        "monthlyBaseCents": null,
+        "knownOccupancySubtotalCents": null,
+        "allInCents": null,
+        "reason": "LEASED_AREA_REQUIRED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-06-crossing",
+      "acId": "AC-RNT-06",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "MONTH_RANGE",
+        "amount": null,
+        "rangeMin": "900",
+        "rangeMax": "1100"
+      },
+      "expected": {
+        "status": "UNKNOWN",
+        "monthlyBaseCents": null,
+        "knownOccupancySubtotalCents": null,
+        "allInCents": null,
+        "reason": "SPACE_QUOTE_REQUIRED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-07-missing",
+      "acId": "AC-RNT-07",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "MONTH_TOTAL",
+        "amount": null
+      },
+      "expected": {
+        "status": "UNKNOWN",
+        "monthlyBaseCents": null,
+        "knownOccupancySubtotalCents": null,
+        "allInCents": null,
+        "reason": "QUOTE_REQUIRED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-07-negotiable",
+      "acId": "AC-RNT-07",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "NEGOTIABLE",
+        "amount": null
+      },
+      "expected": {
+        "status": "UNKNOWN",
+        "monthlyBaseCents": null,
+        "knownOccupancySubtotalCents": null,
+        "allInCents": null,
+        "reason": "QUOTE_REQUIRED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-08-fees",
+      "acId": "AC-RNT-08",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 17500,
+        "allCostsKnown": false,
+        "basis": "MONTH_TOTAL",
+        "amount": "900"
+      },
+      "expected": {
+        "status": "PASS",
+        "monthlyBaseCents": 90000,
+        "knownOccupancySubtotalCents": 107500,
+        "allInCents": null,
+        "reason": null
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-08-complete-cost",
+      "acId": "AC-RNT-08",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 17500,
+        "allCostsKnown": true,
+        "basis": "MONTH_TOTAL",
+        "amount": "900"
+      },
+      "expected": {
+        "status": "PASS",
+        "monthlyBaseCents": 90000,
+        "knownOccupancySubtotalCents": 107500,
+        "allInCents": 107500,
+        "reason": null
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-09-below-preferred",
+      "acId": "AC-RNT-09",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "MONTH_TOTAL",
+        "amount": "500"
+      },
+      "expected": {
+        "status": "PASS",
+        "monthlyBaseCents": 50000,
+        "knownOccupancySubtotalCents": 50000,
+        "allInCents": null,
+        "reason": null
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-10-binding-min",
+      "acId": "AC-RNT-10",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": true,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "MONTH_TOTAL",
+        "amount": "500"
+      },
+      "expected": {
+        "status": "FAIL",
+        "monthlyBaseCents": 50000,
+        "knownOccupancySubtotalCents": 50000,
+        "allInCents": null,
+        "reason": "BELOW_BINDING_MIN"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-11-eur",
+      "acId": "AC-RNT-11",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "EUR",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "MONTH_TOTAL",
+        "amount": "800"
+      },
+      "expected": {
+        "status": "INVALID",
+        "monthlyBaseCents": null,
+        "knownOccupancySubtotalCents": null,
+        "allInCents": null,
+        "reason": "UNSUPPORTED_CURRENCY"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-12-negative",
+      "acId": "AC-RNT-12",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "MONTH_TOTAL",
+        "amount": "-1"
+      },
+      "expected": {
+        "status": "INVALID",
+        "monthlyBaseCents": null,
+        "knownOccupancySubtotalCents": null,
+        "allInCents": null,
+        "reason": "INVALID_AMOUNT"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-12-nonnumeric",
+      "acId": "AC-RNT-12",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "MONTH_TOTAL",
+        "amount": "hello"
+      },
+      "expected": {
+        "status": "INVALID",
+        "monthlyBaseCents": null,
+        "knownOccupancySubtotalCents": null,
+        "allInCents": null,
+        "reason": "INVALID_AMOUNT"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-12-scientific",
+      "acId": "AC-RNT-12",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "MONTH_TOTAL",
+        "amount": "8e2"
+      },
+      "expected": {
+        "status": "INVALID",
+        "monthlyBaseCents": null,
+        "knownOccupancySubtotalCents": null,
+        "allInCents": null,
+        "reason": "INVALID_AMOUNT"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-12-unsupported",
+      "acId": "AC-RNT-12",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "PER_PARKING_SPACE",
+        "amount": "800"
+      },
+      "expected": {
+        "status": "INVALID",
+        "monthlyBaseCents": null,
+        "knownOccupancySubtotalCents": null,
+        "allInCents": null,
+        "reason": "UNSUPPORTED_BASIS"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-13-rounding",
+      "acId": "AC-RNT-13",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "YEAR_TOTAL",
+        "amount": "12000.01"
+      },
+      "expected": {
+        "status": "FAIL",
+        "monthlyBaseCents": 100000,
+        "knownOccupancySubtotalCents": 100000,
+        "allInCents": null,
+        "reason": "ABOVE_CAP"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-14-range-under",
+      "acId": "AC-RNT-14",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "MONTH_RANGE",
+        "amount": null,
+        "rangeMin": "800",
+        "rangeMax": "1000"
+      },
+      "expected": {
+        "status": "PASS",
+        "monthlyBaseCents": null,
+        "knownOccupancySubtotalCents": null,
+        "allInCents": null,
+        "reason": "ADVERTISED_RANGE_ONLY"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-RNT-14-range-over",
+      "acId": "AC-RNT-14",
+      "operation": "normalizeRent",
+      "input": {
+        "currency": "USD",
+        "allowedCurrency": "USD",
+        "maxCents": 100000,
+        "preferredMinCents": 60000,
+        "minimumIsBinding": false,
+        "additionalMonthlyCents": 0,
+        "allCostsKnown": false,
+        "basis": "MONTH_RANGE",
+        "amount": null,
+        "rangeMin": "1100",
+        "rangeMax": "1300"
+      },
+      "expected": {
+        "status": "FAIL",
+        "monthlyBaseCents": null,
+        "knownOccupancySubtotalCents": null,
+        "allInCents": null,
+        "reason": "ABOVE_CAP"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-ID-01-suites",
+      "acId": "AC-ID-01",
+      "operation": "resolveIdentity",
+      "input": {
+        "a": {
+          "address": "10 Test Rd",
+          "suite": "A",
+          "display": "north"
+        },
+        "b": {
+          "address": "10 Test Rd",
+          "suite": "B",
+          "display": "north"
+        }
+      },
+      "expected": {
+        "decision": "DISTINCT"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-ID-02-display",
+      "acId": "AC-ID-02",
+      "operation": "resolveIdentity",
+      "input": {
+        "a": {
+          "address": "10 Test Rd",
+          "suite": "A",
+          "display": "north"
+        },
+        "b": {
+          "address": "10 Test Rd",
+          "suite": "A",
+          "display": "south"
+        }
+      },
+      "expected": {
+        "decision": "DISTINCT"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-ID-03-syndicated",
+      "acId": "AC-ID-03",
+      "operation": "resolveIdentity",
+      "input": {
+        "a": {
+          "sourceOfferId": "origin-1",
+          "publisher": "feed-a"
+        },
+        "b": {
+          "sourceOfferId": "origin-1",
+          "publisher": "feed-b"
+        }
+      },
+      "expected": {
+        "decision": "SAME"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-ID-04-rename",
+      "acId": "AC-ID-04",
+      "operation": "resolveIdentity",
+      "input": {
+        "a": {
+          "spaceId": "space-1",
+          "businessName": "Old Name"
+        },
+        "b": {
+          "spaceId": "space-1",
+          "businessName": "New Name"
+        }
+      },
+      "expected": {
+        "decision": "SAME"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-ID-05-ambiguous",
+      "acId": "AC-ID-05",
+      "operation": "resolveIdentity",
+      "input": {
+        "a": {
+          "address": "10 Test Road"
+        },
+        "b": {
+          "address": "10 Test Rd"
+        }
+      },
+      "expected": {
+        "decision": "REVIEW"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GEO-01-authority",
+      "acId": "AC-GEO-01",
+      "operation": "screenGeography",
+      "input": {
+        "inside": true,
+        "postalCity": "Postal City",
+        "authoritativeJurisdiction": "Governing Town",
+        "locationCertain": true,
+        "requestedMethod": "polygon",
+        "availableMethod": "polygon"
+      },
+      "expected": {
+        "status": "PASS",
+        "jurisdiction": "Governing Town",
+        "reason": null
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GEO-02-boundary",
+      "acId": "AC-GEO-02",
+      "operation": "screenGeography",
+      "input": {
+        "inside": null,
+        "locationCertain": false
+      },
+      "expected": {
+        "status": "UNKNOWN",
+        "jurisdiction": null,
+        "reason": "LOCATION_UNCERTAIN"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GEO-03-method",
+      "acId": "AC-GEO-03",
+      "operation": "screenGeography",
+      "input": {
+        "inside": true,
+        "locationCertain": true,
+        "requestedMethod": "drive_time",
+        "availableMethod": "straight_line"
+      },
+      "expected": {
+        "status": "UNKNOWN",
+        "jurisdiction": null,
+        "reason": "DISTANCE_METHOD_MISMATCH"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GEO-04-outside",
+      "acId": "AC-GEO-04",
+      "operation": "screenGeography",
+      "input": {
+        "inside": false,
+        "locationCertain": true
+      },
+      "expected": {
+        "status": "FAIL",
+        "jurisdiction": null,
+        "reason": "OUTSIDE_BOUNDARY"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-EVD-01-unknown",
+      "acId": "AC-EVD-01",
+      "operation": "assessEvidence",
+      "input": {
+        "now": "2026-09-14T15:00:00Z",
+        "required": [
+          "availability"
+        ],
+        "fields": {
+          "availability": {
+            "status": "UNKNOWN"
+          }
+        }
+      },
+      "expected": {
+        "qualified": false,
+        "status": "VERIFICATION_ACTIVE",
+        "unresolved": [
+          "availability"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-EVD-02-fail",
+      "acId": "AC-EVD-02",
+      "operation": "assessEvidence",
+      "input": {
+        "now": "2026-09-14T15:00:00Z",
+        "required": [
+          "baseRent"
+        ],
+        "fields": {
+          "baseRent": {
+            "status": "FAIL"
+          }
+        }
+      },
+      "expected": {
+        "qualified": false,
+        "status": "REJECTED",
+        "unresolved": []
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-EVD-03-fresh",
+      "acId": "AC-EVD-03",
+      "operation": "assessEvidence",
+      "input": {
+        "now": "2026-09-14T15:00:00Z",
+        "required": [
+          "availability",
+          "baseRent",
+          "legalUse"
+        ],
+        "fields": {
+          "availability": {
+            "status": "PASS",
+            "authority": "competent",
+            "scopeMatches": true,
+            "confirmedAt": "2026-09-14T12:00:00Z",
+            "validUntil": "2026-09-15T12:00:00Z",
+            "retentionAllowed": true
+          },
+          "baseRent": {
+            "status": "PASS",
+            "authority": "competent",
+            "scopeMatches": true,
+            "confirmedAt": "2026-09-14T12:00:00Z",
+            "validUntil": "2026-09-15T12:00:00Z",
+            "retentionAllowed": true
+          },
+          "legalUse": {
+            "status": "PASS",
+            "authority": "competent",
+            "scopeMatches": true,
+            "confirmedAt": "2026-09-14T12:00:00Z",
+            "validUntil": "2026-09-15T12:00:00Z",
+            "retentionAllowed": true
+          }
+        }
+      },
+      "expected": {
+        "qualified": true,
+        "status": "QUALIFIED_FOR_TEAM_REVIEW",
+        "unresolved": []
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-EVD-04-expired",
+      "acId": "AC-EVD-04",
+      "operation": "assessEvidence",
+      "input": {
+        "now": "2026-09-14T15:00:00Z",
+        "required": [
+          "availability"
+        ],
+        "fields": {
+          "availability": {
+            "status": "PASS",
+            "authority": "competent",
+            "scopeMatches": true,
+            "confirmedAt": "2026-09-14T12:00:00Z",
+            "validUntil": "2026-09-14T14:59:59Z",
+            "retentionAllowed": true
+          }
+        }
+      },
+      "expected": {
+        "qualified": false,
+        "status": "VERIFICATION_ACTIVE",
+        "unresolved": [
+          "availability"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-EVD-04-expiry-boundary",
+      "acId": "AC-EVD-04",
+      "operation": "assessEvidence",
+      "input": {
+        "now": "2026-09-14T15:00:00Z",
+        "required": [
+          "availability"
+        ],
+        "fields": {
+          "availability": {
+            "status": "PASS",
+            "authority": "competent",
+            "scopeMatches": true,
+            "confirmedAt": "2026-09-14T12:00:00Z",
+            "validUntil": "2026-09-14T15:00:00Z",
+            "retentionAllowed": true
+          }
+        }
+      },
+      "expected": {
+        "qualified": false,
+        "status": "VERIFICATION_ACTIVE",
+        "unresolved": [
+          "availability"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-EVD-05-refetched",
+      "acId": "AC-EVD-05",
+      "operation": "assessEvidence",
+      "input": {
+        "now": "2026-09-14T15:00:00Z",
+        "required": [
+          "baseRent"
+        ],
+        "fields": {
+          "baseRent": {
+            "status": "PASS",
+            "authority": "competent",
+            "scopeMatches": true,
+            "confirmedAt": "2026-08-01T00:00:00Z",
+            "validUntil": "2026-08-08T00:00:00Z",
+            "retentionAllowed": true,
+            "retrievedAt": "2026-09-14T15:00:00Z"
+          }
+        }
+      },
+      "expected": {
+        "qualified": false,
+        "status": "VERIFICATION_ACTIVE",
+        "unresolved": [
+          "baseRent"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-EVD-06-broker",
+      "acId": "AC-EVD-06",
+      "operation": "assessEvidence",
+      "input": {
+        "now": "2026-09-14T15:00:00Z",
+        "required": [
+          "legalUse"
+        ],
+        "fields": {
+          "legalUse": {
+            "status": "PASS",
+            "authority": "broker-opinion",
+            "scopeMatches": true,
+            "confirmedAt": "2026-09-14T12:00:00Z",
+            "validUntil": "2026-09-15T12:00:00Z",
+            "retentionAllowed": true
+          }
+        }
+      },
+      "expected": {
+        "qualified": false,
+        "status": "VERIFICATION_ACTIVE",
+        "unresolved": [
+          "legalUse"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-EVD-07-scope",
+      "acId": "AC-EVD-07",
+      "operation": "assessEvidence",
+      "input": {
+        "now": "2026-09-14T15:00:00Z",
+        "required": [
+          "legalUse"
+        ],
+        "fields": {
+          "legalUse": {
+            "status": "PASS",
+            "authority": "competent",
+            "scopeMatches": false,
+            "confirmedAt": "2026-09-14T12:00:00Z",
+            "validUntil": "2026-09-15T12:00:00Z",
+            "retentionAllowed": true
+          }
+        }
+      },
+      "expected": {
+        "qualified": false,
+        "status": "VERIFICATION_ACTIVE",
+        "unresolved": [
+          "legalUse"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-EVD-08-conflict",
+      "acId": "AC-EVD-08",
+      "operation": "assessEvidence",
+      "input": {
+        "now": "2026-09-14T15:00:00Z",
+        "required": [
+          "availability"
+        ],
+        "fields": {
+          "availability": {
+            "status": "CONFLICT",
+            "authority": "competent",
+            "scopeMatches": true,
+            "confirmedAt": "2026-09-14T12:00:00Z",
+            "validUntil": "2026-09-15T12:00:00Z",
+            "retentionAllowed": true
+          }
+        }
+      },
+      "expected": {
+        "qualified": false,
+        "status": "VERIFICATION_ACTIVE",
+        "unresolved": [
+          "availability"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-EVD-09-conditional",
+      "acId": "AC-EVD-09",
+      "operation": "assessEvidence",
+      "input": {
+        "now": "2026-09-14T15:00:00Z",
+        "required": [
+          "legalUse"
+        ],
+        "fields": {
+          "legalUse": {
+            "status": "CONDITIONAL",
+            "authority": "competent",
+            "scopeMatches": true,
+            "confirmedAt": "2026-09-14T12:00:00Z",
+            "validUntil": "2026-09-15T12:00:00Z",
+            "retentionAllowed": true
+          }
+        }
+      },
+      "expected": {
+        "qualified": false,
+        "status": "CONDITIONAL_REVIEW",
+        "unresolved": [
+          "legalUse"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-SRC-01-rights",
+      "acId": "AC-SRC-01",
+      "operation": "assessSourceRun",
+      "input": {
+        "accessApproved": false
+      },
+      "expected": {
+        "status": "BLOCKED",
+        "reason": "RIGHTS_REQUIRED",
+        "withdrawPrior": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-SRC-02-cursor",
+      "acId": "AC-SRC-02",
+      "operation": "assessSourceRun",
+      "input": {
+        "accessApproved": true,
+        "nextCursor": "page2"
+      },
+      "expected": {
+        "status": "PARTIAL",
+        "reason": "PAGINATION_PENDING",
+        "withdrawPrior": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-SRC-02-cap",
+      "acId": "AC-SRC-02",
+      "operation": "assessSourceRun",
+      "input": {
+        "accessApproved": true,
+        "capped": true
+      },
+      "expected": {
+        "status": "PARTIAL",
+        "reason": "RESULT_CAP",
+        "withdrawPrior": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-SRC-03-auth",
+      "acId": "AC-SRC-03",
+      "operation": "assessSourceRun",
+      "input": {
+        "accessApproved": true,
+        "httpStatus": 401
+      },
+      "expected": {
+        "status": "INCOMPLETE",
+        "reason": "SOURCE_FAILED",
+        "withdrawPrior": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-SRC-03-server",
+      "acId": "AC-SRC-03",
+      "operation": "assessSourceRun",
+      "input": {
+        "accessApproved": true,
+        "httpStatus": 503
+      },
+      "expected": {
+        "status": "INCOMPLETE",
+        "reason": "SOURCE_FAILED",
+        "withdrawPrior": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-SRC-04-rate",
+      "acId": "AC-SRC-04",
+      "operation": "assessSourceRun",
+      "input": {
+        "accessApproved": true,
+        "httpStatus": 429,
+        "retryAfterSeconds": 60
+      },
+      "expected": {
+        "status": "RETRY",
+        "reason": "RATE_LIMIT",
+        "retryAfterSeconds": 60,
+        "withdrawPrior": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-SRC-05-schema",
+      "acId": "AC-SRC-05",
+      "operation": "assessSourceRun",
+      "input": {
+        "accessApproved": true,
+        "schemaValid": false
+      },
+      "expected": {
+        "status": "QUARANTINED",
+        "reason": "SCHEMA_CHANGED",
+        "withdrawPrior": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-SRC-06-zero",
+      "acId": "AC-SRC-06",
+      "operation": "assessSourceRun",
+      "input": {
+        "accessApproved": true,
+        "recordCount": 0,
+        "priorCount": 50,
+        "complete": true
+      },
+      "expected": {
+        "status": "REVIEW",
+        "reason": "UNEXPECTED_ZERO",
+        "withdrawPrior": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-SRC-07-withdrawn",
+      "acId": "AC-SRC-07",
+      "operation": "assessSourceRun",
+      "input": {
+        "accessApproved": true,
+        "explicitWithdrawal": true,
+        "opportunityId": "offer-1"
+      },
+      "expected": {
+        "status": "WITHDRAWN",
+        "reason": "EXPLICIT_WITHDRAWAL",
+        "withdrawPrior": true
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CAS-01-rent",
+      "acId": "AC-CAS-01",
+      "operation": "planCase",
+      "input": {
+        "plausible": true,
+        "missing": [
+          "rent"
+        ],
+        "openQuestions": []
+      },
+      "expected": {
+        "action": "INQUIRE",
+        "target": "leasing_contact",
+        "questions": [
+          "rent"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CAS-02-legal",
+      "acId": "AC-CAS-02",
+      "operation": "planCase",
+      "input": {
+        "plausible": true,
+        "missing": [
+          "legalUse"
+        ],
+        "openQuestions": []
+      },
+      "expected": {
+        "action": "INQUIRE",
+        "target": "competent_authority",
+        "questions": [
+          "legalUse"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CAS-03-preference",
+      "acId": "AC-CAS-03",
+      "operation": "planCase",
+      "input": {
+        "plausible": true,
+        "missing": [
+          "userPreference"
+        ],
+        "openQuestions": []
+      },
+      "expected": {
+        "action": "ASK_TEAM",
+        "target": "team",
+        "questions": [
+          "userPreference"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CAS-04-failure",
+      "acId": "AC-CAS-04",
+      "operation": "planCase",
+      "input": {
+        "plausible": false,
+        "missing": [
+          "rent"
+        ],
+        "openQuestions": []
+      },
+      "expected": {
+        "action": "REJECT",
+        "target": null,
+        "questions": []
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CAS-05-open",
+      "acId": "AC-CAS-05",
+      "operation": "planCase",
+      "input": {
+        "plausible": true,
+        "missing": [
+          "rent"
+        ],
+        "openQuestions": [
+          "rent"
+        ]
+      },
+      "expected": {
+        "action": "REUSE_CASE",
+        "target": null,
+        "questions": []
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CAS-06-partial",
+      "acId": "AC-CAS-06",
+      "operation": "planCase",
+      "input": {
+        "plausible": true,
+        "missing": [
+          "rent",
+          "availability"
+        ],
+        "answered": [
+          "availability"
+        ],
+        "openQuestions": []
+      },
+      "expected": {
+        "action": "INQUIRE",
+        "target": "leasing_contact",
+        "questions": [
+          "rent"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CAS-07-escalate",
+      "acId": "AC-CAS-07",
+      "operation": "planCase",
+      "input": {
+        "plausible": true,
+        "missing": [
+          "rent"
+        ],
+        "followupExhausted": true,
+        "escalationDue": true
+      },
+      "expected": {
+        "action": "ESCALATE",
+        "target": "team",
+        "questions": [
+          "rent"
+        ]
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-CAS-08-other-gate",
+      "acId": "AC-CAS-08",
+      "operation": "planCase",
+      "input": {
+        "caseResolved": true,
+        "otherMandatoryUnknown": true
+      },
+      "expected": {
+        "action": "KEEP_UNVERIFIED",
+        "target": null,
+        "questions": []
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-11-allow",
+      "acId": "AC-OUT-11",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "factual_inquiry",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": true,
+        "reason": "ALLOW"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-01-approval",
+      "acId": "AC-OUT-01",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": false,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "factual_inquiry",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "APPROVAL_REQUIRED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-02-sender",
+      "acId": "AC-OUT-02",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": false,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "factual_inquiry",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "SENDER_NOT_APPROVED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-03-recipient",
+      "acId": "AC-OUT-03",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": false,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "factual_inquiry",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "RECIPIENT_UNVERIFIED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-04-opt-out",
+      "acId": "AC-OUT-04",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": true,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "factual_inquiry",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "SUPPRESSED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-05-takeover",
+      "acId": "AC-OUT-05",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": true,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "factual_inquiry",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "HUMAN_TAKEOVER"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-06-kill",
+      "acId": "AC-OUT-06",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": true,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "factual_inquiry",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "KILL_SWITCH"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-07-cap",
+      "acId": "AC-OUT-07",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 5,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "factual_inquiry",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "DAILY_CAP"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-07-hours",
+      "acId": "AC-OUT-07",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": false,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "factual_inquiry",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "OUTSIDE_BUSINESS_HOURS"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-08-template",
+      "acId": "AC-OUT-08",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": false,
+        "questionsAllowed": true,
+        "action": "factual_inquiry",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "TEMPLATE_NOT_APPROVED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-08-questions",
+      "acId": "AC-OUT-08",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": false,
+        "action": "factual_inquiry",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "QUESTIONS_NOT_ALLOWED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-10-uncertain",
+      "acId": "AC-OUT-10",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "factual_inquiry",
+        "priorUncertain": true
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "PRIOR_SEND_UNCERTAIN"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-09-offer",
+      "acId": "AC-OUT-09",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "offer",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "PROTECTED_ACTION"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-09-negotiate",
+      "acId": "AC-OUT-09",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "negotiate",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "PROTECTED_ACTION"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-09-pay_fee",
+      "acId": "AC-OUT-09",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "pay_fee",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "PROTECTED_ACTION"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-09-sign",
+      "acId": "AC-OUT-09",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "sign",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "PROTECTED_ACTION"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-09-formal_application",
+      "acId": "AC-OUT-09",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "formal_application",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "PROTECTED_ACTION"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OUT-09-phone_call",
+      "acId": "AC-OUT-09",
+      "operation": "authorizeInquiry",
+      "input": {
+        "approved": true,
+        "senderApproved": true,
+        "recipientVerified": true,
+        "optOut": false,
+        "humanTakeover": false,
+        "killSwitch": false,
+        "withinBusinessHours": true,
+        "usedToday": 0,
+        "dailyCap": 5,
+        "templateApproved": true,
+        "questionsAllowed": true,
+        "action": "phone_call",
+        "priorUncertain": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "PROTECTED_ACTION"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-MAIL-01-timeout",
+      "acId": "AC-MAIL-01",
+      "operation": "handleSendOutcome",
+      "input": {
+        "outcome": "timeout",
+        "mayHaveReachedProvider": true
+      },
+      "expected": {
+        "state": "SEND_UNCERTAIN",
+        "retryAllowed": false,
+        "deliveryConfirmed": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-MAIL-02-accepted",
+      "acId": "AC-MAIL-02",
+      "operation": "handleSendOutcome",
+      "input": {
+        "outcome": "accepted",
+        "messageId": "msg-1",
+        "threadId": "thread-1"
+      },
+      "expected": {
+        "state": "SENT_CONFIRMED",
+        "retryAllowed": false,
+        "deliveryConfirmed": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-MAIL-03-preflight",
+      "acId": "AC-MAIL-03",
+      "operation": "handleSendOutcome",
+      "input": {
+        "outcome": "failed_before_request",
+        "mayHaveReachedProvider": false
+      },
+      "expected": {
+        "state": "FAILED_CONFIRMED",
+        "retryAllowed": true,
+        "deliveryConfirmed": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-MAIL-04-auto",
+      "acId": "AC-MAIL-04",
+      "operation": "classifyReply",
+      "input": {
+        "autoReply": true,
+        "spaceMatches": true
+      },
+      "expected": {
+        "state": "AWAITING_REPLY",
+        "substantive": false,
+        "updateSpace": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-MAIL-05-wrong-space",
+      "acId": "AC-MAIL-05",
+      "operation": "classifyReply",
+      "input": {
+        "autoReply": false,
+        "spaceMatches": false
+      },
+      "expected": {
+        "state": "ANSWER_REVIEW",
+        "substantive": false,
+        "updateSpace": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-FORM-01-receipt",
+      "acId": "AC-FORM-01",
+      "operation": "classifyForm",
+      "input": {
+        "receiptVerified": true,
+        "reference": "form-1"
+      },
+      "expected": {
+        "state": "FORM_SUBMITTED_AWAITING_REPLY",
+        "answered": false,
+        "retryAllowed": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-FORM-02-200",
+      "acId": "AC-FORM-02",
+      "operation": "classifyForm",
+      "input": {
+        "httpStatus": 200,
+        "receiptVerified": false
+      },
+      "expected": {
+        "state": "SUBMISSION_UNCERTAIN",
+        "answered": false,
+        "retryAllowed": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-FORM-03-timeout",
+      "acId": "AC-FORM-03",
+      "operation": "classifyForm",
+      "input": {
+        "timeout": true,
+        "mayHaveSubmitted": true
+      },
+      "expected": {
+        "state": "SUBMISSION_UNCERTAIN",
+        "answered": false,
+        "retryAllowed": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-FORM-04-domain",
+      "acId": "AC-FORM-04",
+      "operation": "classifyForm",
+      "input": {
+        "destinationApproved": false
+      },
+      "expected": {
+        "state": "BLOCKED",
+        "answered": false,
+        "retryAllowed": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-FORM-05-fee",
+      "acId": "AC-FORM-05",
+      "operation": "classifyForm",
+      "input": {
+        "requiresFee": true
+      },
+      "expected": {
+        "state": "ESCALATED",
+        "answered": false,
+        "retryAllowed": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-FORM-05-attest",
+      "acId": "AC-FORM-05",
+      "operation": "classifyForm",
+      "input": {
+        "requiresAttestation": true
+      },
+      "expected": {
+        "state": "ESCALATED",
+        "answered": false,
+        "retryAllowed": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-FORM-06-captcha",
+      "acId": "AC-FORM-06",
+      "operation": "classifyForm",
+      "input": {
+        "requiresCaptcha": true
+      },
+      "expected": {
+        "state": "ESCALATED",
+        "answered": false,
+        "retryAllowed": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-FORM-06-login",
+      "acId": "AC-FORM-06",
+      "operation": "classifyForm",
+      "input": {
+        "requiresLogin": true
+      },
+      "expected": {
+        "state": "ESCALATED",
+        "answered": false,
+        "retryAllowed": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-FORM-07-duplicate",
+      "acId": "AC-FORM-07",
+      "operation": "classifyForm",
+      "input": {
+        "duplicateAcrossChannels": true
+      },
+      "expected": {
+        "state": "SUPPRESSED",
+        "answered": false,
+        "retryAllowed": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-AI-01-schema",
+      "acId": "AC-AI-01",
+      "operation": "validateModelOutput",
+      "input": {
+        "rawOutput": "{not valid JSON",
+        "allowedEvidenceIds": [
+          "ev-1"
+        ],
+        "allowedFields": [
+          "rent"
+        ],
+        "expectedCandidateId": "candidate-1",
+        "approvalEvidence": false
+      },
+      "expected": {
+        "accepted": false,
+        "reason": "INVALID_SCHEMA"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-AI-01-valid",
+      "acId": "AC-AI-01",
+      "operation": "validateModelOutput",
+      "input": {
+        "rawOutput": "{\"evidenceIds\": [\"ev-1\"], \"fields\": [\"rent\"], \"candidateId\": \"candidate-1\", \"verifiedClaim\": false}",
+        "allowedEvidenceIds": [
+          "ev-1"
+        ],
+        "allowedFields": [
+          "rent"
+        ],
+        "expectedCandidateId": "candidate-1",
+        "approvalEvidence": false
+      },
+      "expected": {
+        "accepted": true,
+        "reason": "ACCEPTED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-AI-02-citation",
+      "acId": "AC-AI-02",
+      "operation": "validateModelOutput",
+      "input": {
+        "rawOutput": "{\"evidenceIds\": [\"made-up\"], \"fields\": [\"rent\"], \"candidateId\": \"candidate-1\", \"verifiedClaim\": false}",
+        "allowedEvidenceIds": [
+          "ev-1"
+        ],
+        "allowedFields": [
+          "rent"
+        ],
+        "expectedCandidateId": "candidate-1",
+        "approvalEvidence": false
+      },
+      "expected": {
+        "accepted": false,
+        "reason": "UNSUPPORTED_EVIDENCE"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-AI-03-field",
+      "acId": "AC-AI-03",
+      "operation": "validateModelOutput",
+      "input": {
+        "rawOutput": "{\"evidenceIds\": [\"ev-1\"], \"fields\": [\"send_secret\"], \"candidateId\": \"candidate-1\", \"verifiedClaim\": false}",
+        "allowedEvidenceIds": [
+          "ev-1"
+        ],
+        "allowedFields": [
+          "rent"
+        ],
+        "expectedCandidateId": "candidate-1",
+        "approvalEvidence": false
+      },
+      "expected": {
+        "accepted": false,
+        "reason": "DISALLOWED_PROPOSAL"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-AI-04-candidate",
+      "acId": "AC-AI-04",
+      "operation": "validateModelOutput",
+      "input": {
+        "rawOutput": "{\"evidenceIds\": [\"ev-1\"], \"fields\": [\"rent\"], \"candidateId\": \"candidate-2\", \"verifiedClaim\": false}",
+        "allowedEvidenceIds": [
+          "ev-1"
+        ],
+        "allowedFields": [
+          "rent"
+        ],
+        "expectedCandidateId": "candidate-1",
+        "approvalEvidence": false
+      },
+      "expected": {
+        "accepted": false,
+        "reason": "WRONG_CANDIDATE"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-AI-05-approval",
+      "acId": "AC-AI-05",
+      "operation": "validateModelOutput",
+      "input": {
+        "rawOutput": "{\"evidenceIds\": [\"ev-1\"], \"fields\": [\"rent\"], \"candidateId\": \"candidate-1\", \"verifiedClaim\": true}",
+        "allowedEvidenceIds": [
+          "ev-1"
+        ],
+        "allowedFields": [
+          "rent"
+        ],
+        "expectedCandidateId": "candidate-1",
+        "approvalEvidence": false
+      },
+      "expected": {
+        "accepted": false,
+        "reason": "UNSUPPORTED_VERIFIED_CLAIM"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-AI-06-outage",
+      "acId": "AC-AI-06",
+      "operation": "assessModelAvailability",
+      "input": {
+        "available": false,
+        "paidFallbackApproved": false
+      },
+      "expected": {
+        "status": "ANALYSIS_PENDING",
+        "activatePaidFallback": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-SEC-07-rights",
+      "acId": "AC-SEC-07",
+      "operation": "authorizeProcessing",
+      "input": {
+        "modelUseApproved": false,
+        "content": "Synthetic test record"
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "MODEL_PROCESSING_RIGHTS_REQUIRED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OPS-02-source",
+      "acId": "AC-OPS-02",
+      "operation": "summarizeRun",
+      "input": {
+        "sourceComplete": false,
+        "verifiedIds": [],
+        "conditionalIds": [
+          "c1"
+        ]
+      },
+      "expected": {
+        "status": "INCOMPLETE",
+        "verifiedIds": [],
+        "conditionalIds": [
+          "c1"
+        ],
+        "allClear": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OPS-04-restore",
+      "acId": "AC-OPS-04",
+      "operation": "assessRecovery",
+      "input": {
+        "restored": true,
+        "historyReconciled": false,
+        "suppressionsReconciled": false
+      },
+      "expected": {
+        "outboundPaused": true,
+        "reason": "RECOVERY_RECONCILIATION_REQUIRED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OPS-05-suppression",
+      "acId": "AC-OPS-05",
+      "operation": "assessRecovery",
+      "input": {
+        "restored": true,
+        "historyReconciled": true,
+        "suppressionsReconciled": false
+      },
+      "expected": {
+        "outboundPaused": true,
+        "reason": "RECOVERY_RECONCILIATION_REQUIRED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OPS-08-unavailable",
+      "acId": "AC-OPS-08",
+      "operation": "assessOperationsMetrics",
+      "input": {
+        "latencyMeasured": false,
+        "uptimeMeasured": false
+      },
+      "expected": {
+        "latencyStatus": "UNAVAILABLE",
+        "uptimeStatus": "UNAVAILABLE"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-REP-01-partial",
+      "acId": "AC-REP-01",
+      "operation": "summarizeRun",
+      "input": {
+        "sourceComplete": false,
+        "verifiedIds": [],
+        "conditionalIds": []
+      },
+      "expected": {
+        "status": "INCOMPLETE",
+        "verifiedIds": [],
+        "conditionalIds": [],
+        "allClear": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-REP-02-separate",
+      "acId": "AC-REP-02",
+      "operation": "summarizeRun",
+      "input": {
+        "sourceComplete": true,
+        "verifiedIds": [
+          "v1"
+        ],
+        "conditionalIds": [
+          "c1"
+        ]
+      },
+      "expected": {
+        "status": "COMPLETE",
+        "verifiedIds": [
+          "v1"
+        ],
+        "conditionalIds": [
+          "c1"
+        ],
+        "allClear": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-REP-03-zero",
+      "acId": "AC-REP-03",
+      "operation": "summarizeRun",
+      "input": {
+        "sourceComplete": true,
+        "verifiedIds": [],
+        "conditionalIds": [
+          "c1"
+        ]
+      },
+      "expected": {
+        "status": "COMPLETE",
+        "verifiedIds": [],
+        "conditionalIds": [
+          "c1"
+        ],
+        "allClear": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-COST-01-approval",
+      "acId": "AC-COST-01",
+      "operation": "authorizeSpend",
+      "input": {
+        "paid": true,
+        "approved": false,
+        "revoked": false,
+        "usedCents": 0,
+        "nextCostCents": 1,
+        "capCents": 100
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "PAID_APPROVAL_REQUIRED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-COST-02-cap",
+      "acId": "AC-COST-02",
+      "operation": "authorizeSpend",
+      "input": {
+        "paid": true,
+        "approved": true,
+        "revoked": false,
+        "usedCents": 100,
+        "nextCostCents": 1,
+        "capCents": 100
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "BUDGET_EXCEEDED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-COST-03-report",
+      "acId": "AC-COST-03",
+      "operation": "classifyCosts",
+      "input": {
+        "maxPlanCents": 10000,
+        "workspaceCents": null,
+        "hostingCents": null,
+        "incrementalCents": 0
+      },
+      "expected": {
+        "existingMaxCents": 10000,
+        "workspaceStatus": "UNAVAILABLE",
+        "hostingStatus": "UNAVAILABLE",
+        "zeroTotalCostClaim": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-COST-04-max-api",
+      "acId": "AC-COST-04",
+      "operation": "validateRuntime",
+      "input": {
+        "mode": "model_api",
+        "funding": "max_subscription"
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "MAX_IS_NOT_API_CREDIT"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-COST-05-revoked",
+      "acId": "AC-COST-05",
+      "operation": "authorizeSpend",
+      "input": {
+        "paid": true,
+        "approved": true,
+        "revoked": true,
+        "usedCents": 0,
+        "nextCostCents": 1,
+        "capCents": 100
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "APPROVAL_REVOKED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GATE-01-email_send",
+      "acId": "AC-GATE-01",
+      "operation": "authorizeOperation",
+      "input": {
+        "phase": 1,
+        "action": "email_send",
+        "explicitApproval": true
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "OFFLINE_PHASE"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GATE-01-form_submit",
+      "acId": "AC-GATE-01",
+      "operation": "authorizeOperation",
+      "input": {
+        "phase": 1,
+        "action": "form_submit",
+        "explicitApproval": true
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "OFFLINE_PHASE"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GATE-01-source_read",
+      "acId": "AC-GATE-01",
+      "operation": "authorizeOperation",
+      "input": {
+        "phase": 1,
+        "action": "source_read",
+        "explicitApproval": true
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "OFFLINE_PHASE"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GATE-01-private_mail_read",
+      "acId": "AC-GATE-01",
+      "operation": "authorizeOperation",
+      "input": {
+        "phase": 1,
+        "action": "private_mail_read",
+        "explicitApproval": true
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "OFFLINE_PHASE"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GATE-02-2-email_send",
+      "acId": "AC-GATE-02",
+      "operation": "authorizeOperation",
+      "input": {
+        "phase": 2,
+        "action": "email_send",
+        "explicitApproval": true
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "NO_OUTBOUND_IN_PHASE"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GATE-02-2-gmail_draft",
+      "acId": "AC-GATE-02",
+      "operation": "authorizeOperation",
+      "input": {
+        "phase": 2,
+        "action": "gmail_draft",
+        "explicitApproval": true
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "NO_OUTBOUND_IN_PHASE"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GATE-02-2-form_submit",
+      "acId": "AC-GATE-02",
+      "operation": "authorizeOperation",
+      "input": {
+        "phase": 2,
+        "action": "form_submit",
+        "explicitApproval": true
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "NO_OUTBOUND_IN_PHASE"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GATE-02-3-email_send",
+      "acId": "AC-GATE-02",
+      "operation": "authorizeOperation",
+      "input": {
+        "phase": 3,
+        "action": "email_send",
+        "explicitApproval": true
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "NO_OUTBOUND_IN_PHASE"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GATE-02-3-gmail_draft",
+      "acId": "AC-GATE-02",
+      "operation": "authorizeOperation",
+      "input": {
+        "phase": 3,
+        "action": "gmail_draft",
+        "explicitApproval": true
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "NO_OUTBOUND_IN_PHASE"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GATE-02-3-form_submit",
+      "acId": "AC-GATE-02",
+      "operation": "authorizeOperation",
+      "input": {
+        "phase": 3,
+        "action": "form_submit",
+        "explicitApproval": true
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "NO_OUTBOUND_IN_PHASE"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GATE-03-approval",
+      "acId": "AC-GATE-03",
+      "operation": "authorizeOperation",
+      "input": {
+        "phase": 4,
+        "action": "email_send",
+        "explicitApproval": false
+      },
+      "expected": {
+        "allowed": false,
+        "reason": "APPROVAL_REQUIRED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GATE-05-incomplete",
+      "acId": "AC-GATE-05",
+      "operation": "computeRelease",
+      "input": {
+        "mandatoryFailed": 0,
+        "mandatoryNotImplemented": 1,
+        "mandatoryNotRun": 0,
+        "pmApproved": false
+      },
+      "expected": {
+        "status": "BLOCKED",
+        "releaseAllowed": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-QUAL-04-missing",
+      "acId": "AC-QUAL-04",
+      "operation": "classifyTestEvidence",
+      "input": {
+        "implementationKind": "missing",
+        "fixtureChecksPassed": true
+      },
+      "expected": {
+        "applicationCoverage": "NOT_IMPLEMENTED",
+        "productionReady": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-QUAL-04-double",
+      "acId": "AC-QUAL-04",
+      "operation": "classifyTestEvidence",
+      "input": {
+        "implementationKind": "test-double",
+        "fixtureChecksPassed": true
+      },
+      "expected": {
+        "applicationCoverage": "TEST_DOUBLE_ONLY",
+        "productionReady": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-SRC-02-complete",
+      "acId": "AC-SRC-02",
+      "operation": "assessSourceRun",
+      "input": {
+        "accessApproved": true,
+        "complete": true,
+        "recordCount": 1
+      },
+      "expected": {
+        "status": "COMPLETE",
+        "reason": null,
+        "withdrawPrior": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-AI-06-available",
+      "acId": "AC-AI-06",
+      "operation": "assessModelAvailability",
+      "input": {
+        "available": true,
+        "paidFallbackApproved": false
+      },
+      "expected": {
+        "status": "AVAILABLE",
+        "activatePaidFallback": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-SEC-07-approved",
+      "acId": "AC-SEC-07",
+      "operation": "authorizeProcessing",
+      "input": {
+        "modelUseApproved": true,
+        "content": "Synthetic test record"
+      },
+      "expected": {
+        "allowed": true,
+        "reason": "ALLOW"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OPS-04-reconciled",
+      "acId": "AC-OPS-04",
+      "operation": "assessRecovery",
+      "input": {
+        "restored": true,
+        "historyReconciled": true,
+        "suppressionsReconciled": true
+      },
+      "expected": {
+        "outboundPaused": false,
+        "reason": "RECONCILED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-OPS-08-measured",
+      "acId": "AC-OPS-08",
+      "operation": "assessOperationsMetrics",
+      "input": {
+        "latencyMeasured": true,
+        "uptimeMeasured": true
+      },
+      "expected": {
+        "latencyStatus": "MEASURED",
+        "uptimeStatus": "MEASURED"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-COST-01-approved",
+      "acId": "AC-COST-01",
+      "operation": "authorizeSpend",
+      "input": {
+        "paid": true,
+        "approved": true,
+        "revoked": false,
+        "usedCents": 0,
+        "nextCostCents": 1,
+        "capCents": 100
+      },
+      "expected": {
+        "allowed": true,
+        "reason": "ALLOW"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-COST-04-approved-api",
+      "acId": "AC-COST-04",
+      "operation": "validateRuntime",
+      "input": {
+        "mode": "model_api",
+        "funding": "separately_approved_api"
+      },
+      "expected": {
+        "allowed": true,
+        "reason": "ALLOW"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-GATE-03-approved",
+      "acId": "AC-GATE-03",
+      "operation": "authorizeOperation",
+      "input": {
+        "phase": 4,
+        "action": "email_send",
+        "explicitApproval": true
+      },
+      "expected": {
+        "allowed": true,
+        "reason": "ALLOW"
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    },
+    {
+      "id": "TC-QUAL-04-application",
+      "acId": "AC-QUAL-04",
+      "operation": "classifyTestEvidence",
+      "input": {
+        "implementationKind": "application",
+        "fixtureChecksPassed": true
+      },
+      "expected": {
+        "applicationCoverage": "CONTRACT_ONLY",
+        "productionReady": false
+      },
+      "provenance": "synthetic-development",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "timeoutMs": 1500
+    }
+  ]
+}

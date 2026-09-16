@@ -1,0 +1,2220 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-16T19:27:52.705Z",
+  "finishedAt": "2026-09-16T19:28:03.898Z",
+  "runtime": "v24.14.1",
+  "baselineCommit": "d88e62e2383141a07351ac69229343d39736d213",
+  "adapter": "adapters/application.mjs",
+  "dataset": "public-development-not-locked",
+  "scope": "Synthetic contract checks against declared adapter bindings; not live integration or acceptance evidence",
+  "counts": {
+    "NOT_IMPLEMENTED": 142
+  },
+  "acceptanceCounts": {
+    "NOT_IMPLEMENTED": 101,
+    "NOT_RUN": 30
+  },
+  "acceptance": [
+    {
+      "id": "AC-CFG-01",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-CFG-02",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-CFG-03",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-CFG-04",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-CFG-05",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-CFG-06",
+      "level": "controlled-integration",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-CFG-07",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-CFG-08",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-RNT-01",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 3
+    },
+    {
+      "id": "AC-RNT-02",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-RNT-03",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-RNT-04",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-RNT-05",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-RNT-06",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-RNT-07",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-RNT-08",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-RNT-09",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-RNT-10",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-RNT-11",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-RNT-12",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 4
+    },
+    {
+      "id": "AC-RNT-13",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-RNT-14",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-ID-01",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-ID-02",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-ID-03",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-ID-04",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-ID-05",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-ID-06",
+      "level": "controlled-integration",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-GEO-01",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-GEO-02",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-GEO-03",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-GEO-04",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-GEO-05",
+      "level": "controlled-integration",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-EVD-01",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-EVD-02",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-EVD-03",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-EVD-04",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-EVD-05",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-EVD-06",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-EVD-07",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-EVD-08",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-EVD-09",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-EVD-10",
+      "level": "controlled-integration",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-SRC-01",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-SRC-02",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 3
+    },
+    {
+      "id": "AC-SRC-03",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-SRC-04",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-SRC-05",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-SRC-06",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-SRC-07",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-SRC-08",
+      "level": "manual",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-CAS-01",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-CAS-02",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-CAS-03",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-CAS-04",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-CAS-05",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-CAS-06",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-CAS-07",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-CAS-08",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-OUT-01",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-OUT-02",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-OUT-03",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-OUT-04",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-OUT-05",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-OUT-06",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-OUT-07",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-OUT-08",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-OUT-09",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 6
+    },
+    {
+      "id": "AC-OUT-10",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-OUT-11",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-OUT-12",
+      "level": "controlled-integration",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-MAIL-01",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-MAIL-02",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-MAIL-03",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-MAIL-04",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-MAIL-05",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-MAIL-06",
+      "level": "controlled-integration",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-MAIL-07",
+      "level": "controlled-integration",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-MAIL-08",
+      "level": "manual",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-FORM-01",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-FORM-02",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-FORM-03",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-FORM-04",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-FORM-05",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-FORM-06",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-FORM-07",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-FORM-08",
+      "level": "manual",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-AI-01",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-AI-02",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-AI-03",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-AI-04",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-AI-05",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-AI-06",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-AI-07",
+      "level": "manual",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-AI-08",
+      "level": "controlled-integration",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-SEC-01",
+      "level": "controlled-integration",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-SEC-02",
+      "level": "controlled-integration",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-SEC-03",
+      "level": "controlled-integration",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-SEC-04",
+      "level": "controlled-integration",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-SEC-05",
+      "level": "controlled-integration",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-SEC-06",
+      "level": "controlled-integration",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-SEC-07",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-SEC-08",
+      "level": "manual",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-OPS-01",
+      "level": "controlled-integration",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-OPS-02",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-OPS-03",
+      "level": "controlled-integration",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-OPS-04",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-OPS-05",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-OPS-06",
+      "level": "manual",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-OPS-07",
+      "level": "controlled-integration",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-OPS-08",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-REP-01",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-REP-02",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-REP-03",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-REP-04",
+      "level": "controlled-integration",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-REP-05",
+      "level": "manual",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-COST-01",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-COST-02",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-COST-03",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-COST-04",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-COST-05",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-GATE-01",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 4
+    },
+    {
+      "id": "AC-GATE-02",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 6
+    },
+    {
+      "id": "AC-GATE-03",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 2
+    },
+    {
+      "id": "AC-GATE-04",
+      "level": "manual",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-GATE-05",
+      "level": "contract",
+      "priority": "P0",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 1
+    },
+    {
+      "id": "AC-QUAL-01",
+      "level": "manual",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-QUAL-02",
+      "level": "manual",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-QUAL-03",
+      "level": "manual",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    },
+    {
+      "id": "AC-QUAL-04",
+      "level": "contract",
+      "priority": "P1",
+      "status": "NOT_IMPLEMENTED",
+      "fixtureCount": 3
+    },
+    {
+      "id": "AC-QUAL-05",
+      "level": "controlled-integration",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "fixtureCount": 0
+    }
+  ],
+  "exitCode": 2,
+  "contractChecksComplete": false,
+  "releaseDecision": "BLOCKED",
+  "releaseReason": "Public development contracts are not live/manual evidence, a locked acceptance run, or PM release approval.",
+  "results": [
+    {
+      "id": "TC-CFG-01-nulls",
+      "acId": "AC-CFG-01",
+      "operation": "validateProfile",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CFG-02-invalid",
+      "acId": "AC-CFG-02",
+      "operation": "validateProfile",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CFG-03-invalid",
+      "acId": "AC-CFG-03",
+      "operation": "validateProfile",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CFG-04-invalid",
+      "acId": "AC-CFG-04",
+      "operation": "validateProfile",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CFG-05-invalid",
+      "acId": "AC-CFG-05",
+      "operation": "validateProfile",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CFG-07-invalid",
+      "acId": "AC-CFG-07",
+      "operation": "validateProfile",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CFG-08-legal",
+      "acId": "AC-CFG-08",
+      "operation": "assessEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-01-800",
+      "acId": "AC-RNT-01",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-01-cap",
+      "acId": "AC-RNT-01",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-01-over",
+      "acId": "AC-RNT-01",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-02-annual",
+      "acId": "AC-RNT-02",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-02-annual-cap",
+      "acId": "AC-RNT-02",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-03-annual-area",
+      "acId": "AC-RNT-03",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-04-monthly-area",
+      "acId": "AC-RNT-04",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-05-wrong-area",
+      "acId": "AC-RNT-05",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-05-missing-area",
+      "acId": "AC-RNT-05",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-06-crossing",
+      "acId": "AC-RNT-06",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-07-missing",
+      "acId": "AC-RNT-07",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-07-negotiable",
+      "acId": "AC-RNT-07",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-08-fees",
+      "acId": "AC-RNT-08",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-08-complete-cost",
+      "acId": "AC-RNT-08",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-09-below-preferred",
+      "acId": "AC-RNT-09",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-10-binding-min",
+      "acId": "AC-RNT-10",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-11-eur",
+      "acId": "AC-RNT-11",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-12-negative",
+      "acId": "AC-RNT-12",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-12-nonnumeric",
+      "acId": "AC-RNT-12",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-12-scientific",
+      "acId": "AC-RNT-12",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-12-unsupported",
+      "acId": "AC-RNT-12",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-13-rounding",
+      "acId": "AC-RNT-13",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-14-range-under",
+      "acId": "AC-RNT-14",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-RNT-14-range-over",
+      "acId": "AC-RNT-14",
+      "operation": "normalizeRent",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-ID-01-suites",
+      "acId": "AC-ID-01",
+      "operation": "resolveIdentity",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-ID-02-display",
+      "acId": "AC-ID-02",
+      "operation": "resolveIdentity",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-ID-03-syndicated",
+      "acId": "AC-ID-03",
+      "operation": "resolveIdentity",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-ID-04-rename",
+      "acId": "AC-ID-04",
+      "operation": "resolveIdentity",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-ID-05-ambiguous",
+      "acId": "AC-ID-05",
+      "operation": "resolveIdentity",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GEO-01-authority",
+      "acId": "AC-GEO-01",
+      "operation": "screenGeography",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GEO-02-boundary",
+      "acId": "AC-GEO-02",
+      "operation": "screenGeography",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GEO-03-method",
+      "acId": "AC-GEO-03",
+      "operation": "screenGeography",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GEO-04-outside",
+      "acId": "AC-GEO-04",
+      "operation": "screenGeography",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-EVD-01-unknown",
+      "acId": "AC-EVD-01",
+      "operation": "assessEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-EVD-02-fail",
+      "acId": "AC-EVD-02",
+      "operation": "assessEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-EVD-03-fresh",
+      "acId": "AC-EVD-03",
+      "operation": "assessEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-EVD-04-expired",
+      "acId": "AC-EVD-04",
+      "operation": "assessEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-EVD-04-expiry-boundary",
+      "acId": "AC-EVD-04",
+      "operation": "assessEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-EVD-05-refetched",
+      "acId": "AC-EVD-05",
+      "operation": "assessEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-EVD-06-broker",
+      "acId": "AC-EVD-06",
+      "operation": "assessEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-EVD-07-scope",
+      "acId": "AC-EVD-07",
+      "operation": "assessEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-EVD-08-conflict",
+      "acId": "AC-EVD-08",
+      "operation": "assessEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-EVD-09-conditional",
+      "acId": "AC-EVD-09",
+      "operation": "assessEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-SRC-01-rights",
+      "acId": "AC-SRC-01",
+      "operation": "assessSourceRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-SRC-02-cursor",
+      "acId": "AC-SRC-02",
+      "operation": "assessSourceRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-SRC-02-cap",
+      "acId": "AC-SRC-02",
+      "operation": "assessSourceRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-SRC-03-auth",
+      "acId": "AC-SRC-03",
+      "operation": "assessSourceRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-SRC-03-server",
+      "acId": "AC-SRC-03",
+      "operation": "assessSourceRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-SRC-04-rate",
+      "acId": "AC-SRC-04",
+      "operation": "assessSourceRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-SRC-05-schema",
+      "acId": "AC-SRC-05",
+      "operation": "assessSourceRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-SRC-06-zero",
+      "acId": "AC-SRC-06",
+      "operation": "assessSourceRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-SRC-07-withdrawn",
+      "acId": "AC-SRC-07",
+      "operation": "assessSourceRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CAS-01-rent",
+      "acId": "AC-CAS-01",
+      "operation": "planCase",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CAS-02-legal",
+      "acId": "AC-CAS-02",
+      "operation": "planCase",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CAS-03-preference",
+      "acId": "AC-CAS-03",
+      "operation": "planCase",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CAS-04-failure",
+      "acId": "AC-CAS-04",
+      "operation": "planCase",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CAS-05-open",
+      "acId": "AC-CAS-05",
+      "operation": "planCase",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CAS-06-partial",
+      "acId": "AC-CAS-06",
+      "operation": "planCase",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CAS-07-escalate",
+      "acId": "AC-CAS-07",
+      "operation": "planCase",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-CAS-08-other-gate",
+      "acId": "AC-CAS-08",
+      "operation": "planCase",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-11-allow",
+      "acId": "AC-OUT-11",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-01-approval",
+      "acId": "AC-OUT-01",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-02-sender",
+      "acId": "AC-OUT-02",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-03-recipient",
+      "acId": "AC-OUT-03",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-04-opt-out",
+      "acId": "AC-OUT-04",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-05-takeover",
+      "acId": "AC-OUT-05",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-06-kill",
+      "acId": "AC-OUT-06",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-07-cap",
+      "acId": "AC-OUT-07",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-07-hours",
+      "acId": "AC-OUT-07",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-08-template",
+      "acId": "AC-OUT-08",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-08-questions",
+      "acId": "AC-OUT-08",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-10-uncertain",
+      "acId": "AC-OUT-10",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-09-offer",
+      "acId": "AC-OUT-09",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-09-negotiate",
+      "acId": "AC-OUT-09",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-09-pay_fee",
+      "acId": "AC-OUT-09",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-09-sign",
+      "acId": "AC-OUT-09",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-09-formal_application",
+      "acId": "AC-OUT-09",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OUT-09-phone_call",
+      "acId": "AC-OUT-09",
+      "operation": "authorizeInquiry",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-MAIL-01-timeout",
+      "acId": "AC-MAIL-01",
+      "operation": "handleSendOutcome",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-MAIL-02-accepted",
+      "acId": "AC-MAIL-02",
+      "operation": "handleSendOutcome",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-MAIL-03-preflight",
+      "acId": "AC-MAIL-03",
+      "operation": "handleSendOutcome",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-MAIL-04-auto",
+      "acId": "AC-MAIL-04",
+      "operation": "classifyReply",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-MAIL-05-wrong-space",
+      "acId": "AC-MAIL-05",
+      "operation": "classifyReply",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-FORM-01-receipt",
+      "acId": "AC-FORM-01",
+      "operation": "classifyForm",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-FORM-02-200",
+      "acId": "AC-FORM-02",
+      "operation": "classifyForm",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-FORM-03-timeout",
+      "acId": "AC-FORM-03",
+      "operation": "classifyForm",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-FORM-04-domain",
+      "acId": "AC-FORM-04",
+      "operation": "classifyForm",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-FORM-05-fee",
+      "acId": "AC-FORM-05",
+      "operation": "classifyForm",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-FORM-05-attest",
+      "acId": "AC-FORM-05",
+      "operation": "classifyForm",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-FORM-06-captcha",
+      "acId": "AC-FORM-06",
+      "operation": "classifyForm",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-FORM-06-login",
+      "acId": "AC-FORM-06",
+      "operation": "classifyForm",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-FORM-07-duplicate",
+      "acId": "AC-FORM-07",
+      "operation": "classifyForm",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-AI-01-schema",
+      "acId": "AC-AI-01",
+      "operation": "validateModelOutput",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-AI-01-valid",
+      "acId": "AC-AI-01",
+      "operation": "validateModelOutput",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-AI-02-citation",
+      "acId": "AC-AI-02",
+      "operation": "validateModelOutput",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-AI-03-field",
+      "acId": "AC-AI-03",
+      "operation": "validateModelOutput",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-AI-04-candidate",
+      "acId": "AC-AI-04",
+      "operation": "validateModelOutput",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-AI-05-approval",
+      "acId": "AC-AI-05",
+      "operation": "validateModelOutput",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-AI-06-outage",
+      "acId": "AC-AI-06",
+      "operation": "assessModelAvailability",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-SEC-07-rights",
+      "acId": "AC-SEC-07",
+      "operation": "authorizeProcessing",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OPS-02-source",
+      "acId": "AC-OPS-02",
+      "operation": "summarizeRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OPS-04-restore",
+      "acId": "AC-OPS-04",
+      "operation": "assessRecovery",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OPS-05-suppression",
+      "acId": "AC-OPS-05",
+      "operation": "assessRecovery",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OPS-08-unavailable",
+      "acId": "AC-OPS-08",
+      "operation": "assessOperationsMetrics",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-REP-01-partial",
+      "acId": "AC-REP-01",
+      "operation": "summarizeRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-REP-02-separate",
+      "acId": "AC-REP-02",
+      "operation": "summarizeRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-REP-03-zero",
+      "acId": "AC-REP-03",
+      "operation": "summarizeRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-COST-01-approval",
+      "acId": "AC-COST-01",
+      "operation": "authorizeSpend",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-COST-02-cap",
+      "acId": "AC-COST-02",
+      "operation": "authorizeSpend",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-COST-03-report",
+      "acId": "AC-COST-03",
+      "operation": "classifyCosts",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-COST-04-max-api",
+      "acId": "AC-COST-04",
+      "operation": "validateRuntime",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-COST-05-revoked",
+      "acId": "AC-COST-05",
+      "operation": "authorizeSpend",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GATE-01-email_send",
+      "acId": "AC-GATE-01",
+      "operation": "authorizeOperation",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GATE-01-form_submit",
+      "acId": "AC-GATE-01",
+      "operation": "authorizeOperation",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GATE-01-source_read",
+      "acId": "AC-GATE-01",
+      "operation": "authorizeOperation",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GATE-01-private_mail_read",
+      "acId": "AC-GATE-01",
+      "operation": "authorizeOperation",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GATE-02-2-email_send",
+      "acId": "AC-GATE-02",
+      "operation": "authorizeOperation",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GATE-02-2-gmail_draft",
+      "acId": "AC-GATE-02",
+      "operation": "authorizeOperation",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GATE-02-2-form_submit",
+      "acId": "AC-GATE-02",
+      "operation": "authorizeOperation",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GATE-02-3-email_send",
+      "acId": "AC-GATE-02",
+      "operation": "authorizeOperation",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GATE-02-3-gmail_draft",
+      "acId": "AC-GATE-02",
+      "operation": "authorizeOperation",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GATE-02-3-form_submit",
+      "acId": "AC-GATE-02",
+      "operation": "authorizeOperation",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GATE-03-approval",
+      "acId": "AC-GATE-03",
+      "operation": "authorizeOperation",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GATE-05-incomplete",
+      "acId": "AC-GATE-05",
+      "operation": "computeRelease",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-QUAL-04-missing",
+      "acId": "AC-QUAL-04",
+      "operation": "classifyTestEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-QUAL-04-double",
+      "acId": "AC-QUAL-04",
+      "operation": "classifyTestEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-SRC-02-complete",
+      "acId": "AC-SRC-02",
+      "operation": "assessSourceRun",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-AI-06-available",
+      "acId": "AC-AI-06",
+      "operation": "assessModelAvailability",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-SEC-07-approved",
+      "acId": "AC-SEC-07",
+      "operation": "authorizeProcessing",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OPS-04-reconciled",
+      "acId": "AC-OPS-04",
+      "operation": "assessRecovery",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-OPS-08-measured",
+      "acId": "AC-OPS-08",
+      "operation": "assessOperationsMetrics",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-COST-01-approved",
+      "acId": "AC-COST-01",
+      "operation": "authorizeSpend",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-COST-04-approved-api",
+      "acId": "AC-COST-04",
+      "operation": "validateRuntime",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-GATE-03-approved",
+      "acId": "AC-GATE-03",
+      "operation": "authorizeOperation",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    },
+    {
+      "id": "TC-QUAL-04-application",
+      "acId": "AC-QUAL-04",
+      "operation": "classifyTestEvidence",
+      "provenance": "synthetic-development-contract",
+      "implementationKind": "missing",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "No application binding for this operation."
+    }
+  ]
+}

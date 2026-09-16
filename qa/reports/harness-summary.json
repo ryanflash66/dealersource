@@ -1,0 +1,10 @@
+{
+  "scope": "Harness and fixture-integrity checks only; not DealerSource application tests",
+  "runtime": "v24.14.1",
+  "exitCode": 0,
+  "error": null,
+  "tests": 88,
+  "passed": 88,
+  "failed": 0,
+  "skipped": 0
+}

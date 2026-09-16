@@ -1,0 +1,27 @@
+{
+  "verifiedOn": "2026-09-16",
+  "baseCommit": "d88e62e2383141a07351ac69229343d39736d213",
+  "sourceArchiveSha256": "01a63fc822888a1a20fcdbec13b56aad39020a3161f00db5830e56cf22941819",
+  "scope": "QA package machinery and fixture integrity; no application implementation or live integration tested",
+  "runtime": "v24.14.1",
+  "harnessChecks": {
+    "scope": "Harness and fixture-integrity checks only; not DealerSource application tests",
+    "runtime": "v24.14.1",
+    "exitCode": 0,
+    "error": null,
+    "tests": 88,
+    "passed": 88,
+    "failed": 0,
+    "skipped": 0
+  },
+  "applicationContractCases": {
+    "NOT_IMPLEMENTED": 142
+  },
+  "acceptanceStatus": {
+    "NOT_IMPLEMENTED": 101,
+    "NOT_RUN": 30
+  },
+  "exitCode": 2,
+  "releaseDecision": "BLOCKED",
+  "launcherNote": "An initial restricted-PATH invocation could not locate node and did not start tests. Retried using the resolved runtime; no test or application changes were needed."
+}

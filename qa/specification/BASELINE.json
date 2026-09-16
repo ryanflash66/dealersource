@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/ryanflash66/dealersource",
+  "commit": "d88e62e2383141a07351ac69229343d39736d213",
+  "inspected_tree": [
+    "README.md"
+  ],
+  "application_present": false,
+  "master_document": "cmu1kpybo01ni07adx62vzpeq",
+  "master_revision": 7,
+  "master_export_sha256": "52979186b9290de8ba9ec5a1af5483f4c18e9e29280464d6571ff2c528e4ac83",
+  "runtime_observed": "Node.js v24.14.1",
+  "permissions": "Read-only GitHub inspection; no repository writes or live integrations"
+}

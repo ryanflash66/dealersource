@@ -1,0 +1,18 @@
+{
+  "scope": "Clean-extraction verification of the test package, not application acceptance",
+  "status": "PASS",
+  "archive_bytes_verified": true,
+  "baseline_exit_code": 2,
+  "harness_tests": 88,
+  "harness_passed": 88,
+  "harness_failed": 0,
+  "contract_cases": {
+    "NOT_IMPLEMENTED": 142
+  },
+  "acceptance_criteria": {
+    "NOT_IMPLEMENTED": 101,
+    "NOT_RUN": 30
+  },
+  "production_release": "BLOCKED",
+  "new_credentials_or_network_required": false
+}
