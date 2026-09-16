@@ -31,6 +31,7 @@ git submodule add -b main https://github.com/ryanflash66/dealersource-gemini.git
 
 - Add a row to the table in `agents/README.md`
 - Add a row to the leaderboard in `results/summary.md`
+- Create `docs/onboarding/gemini-solution.md` from the template in `docs/onboarding/README.md`
 
 ## 4. Commit
 

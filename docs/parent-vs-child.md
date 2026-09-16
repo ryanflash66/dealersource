@@ -13,7 +13,7 @@ Belongs here:
 Never here:
 
 - Application source code, dependencies, lockfiles, build output
-- Agent-specific config (`.cursorrules`, `CLAUDE.md`, `.aider.conf.yml`, ...)
+- Agent-specific config (`CLAUDE.md`, `AGENTS.md`, ...)
 - Raw eval logs (use `results/raw/`, which is git-ignored)
 - Anything that would only be true for one agent
 

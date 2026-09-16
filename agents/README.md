@@ -7,8 +7,6 @@ that holds one agent's complete solution to the dealersource task.
 |---|---|---|
 | `claude-solution/` | https://github.com/ryanflash66/dealersource-claude | Claude Code (Anthropic) |
 | `gpt-solution/` | https://github.com/ryanflash66/dealersource-gpt | GPT / Codex (OpenAI) |
-| `cursor-solution/` | https://github.com/ryanflash66/dealersource-cursor | Cursor Agent |
-| `aider-solution/` | https://github.com/ryanflash66/dealersource-aider | Aider |
 
 Nothing in this directory is tracked by the parent repo except the submodule
 pointers (a commit SHA per path) recorded in `.gitmodules` and the index.

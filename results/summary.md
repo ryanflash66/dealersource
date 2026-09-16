@@ -8,8 +8,6 @@
 |---|---|---|---|---|---|
 | claude-solution | | | | | |
 | gpt-solution | | | | | |
-| cursor-solution | | | | | |
-| aider-solution | | | | | |
 
 ## Conclusions
 

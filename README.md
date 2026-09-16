@@ -12,9 +12,7 @@ a fully independent repository mounted as a Git submodule under `agents/`.
 dealersource/
 ├── agents/                 one submodule per agent (pointers, not code)
 │   ├── claude-solution/    -> github.com/ryanflash66/dealersource-claude
-│   ├── gpt-solution/       -> github.com/ryanflash66/dealersource-gpt
-│   ├── cursor-solution/    -> github.com/ryanflash66/dealersource-cursor
-│   └── aider-solution/     -> github.com/ryanflash66/dealersource-aider
+│   └── gpt-solution/       -> github.com/ryanflash66/dealersource-gpt
 ├── prompts/                task spec + shared system prompt given to every agent
 ├── evals/                  rubric, per-check tasks, thin run.sh driver
 ├── results/                per-agent result files + cross-agent summary
@@ -22,7 +20,7 @@ dealersource/
 └── .gitmodules             submodule registry
 ```
 
-> **First-time setup:** the four child repos are declared here but must exist
+> **First-time setup:** the child repos are declared here but must exist
 > on GitHub before a fresh clone can fetch them. See
 > [`docs/bootstrap-child-repos.md`](docs/bootstrap-child-repos.md).
 
@@ -44,7 +42,7 @@ parent and invites in-place edits. Neither fits. Full rationale:
 |---|---|
 | `prompts/` task spec, system prompt | Application source, tests, CI |
 | `evals/` rubric and check definitions | Dependency manifests and lockfiles |
-| `results/` curated summaries | Agent-specific config (`CLAUDE.md`, `.cursorrules`, ...) |
+| `results/` curated summaries | Agent-specific config (`CLAUDE.md`, `AGENTS.md`, ...) |
 | `docs/` | A `README.md` naming the agent, owner, and how to run/test |
 | `.gitmodules` + pinned SHAs | |
 
@@ -113,13 +111,14 @@ git commit -m "Add gemini-solution submodule"
 git push
 ```
 
-Then add a row to `agents/README.md` and `results/summary.md`.
+Then add a row to `agents/README.md` and `results/summary.md`, and write
+`docs/onboarding/<agent>-solution.md` from the template in [`docs/onboarding/README.md`](docs/onboarding/README.md).
 Full guide: [`docs/adding-an-agent.md`](docs/adding-an-agent.md).
 
 ## Daily workflow
 
 1. **Sync.** `git pull --rebase && git submodule update --init --recursive`
-2. **Run or edit an agent.** `cd agents/<agent>-solution`, `git checkout main`,
+2. **Run or edit an agent.** Follow its `docs/onboarding/<agent>-solution.md`: `cd agents/<agent>-solution`, `git checkout main`,
    let the agent work, commit and push there.
 3. **Pin.** Back at the root: `git add agents/<agent>-solution`, commit with a
    message saying what changed, `git push --recurse-submodules=check`.
@@ -137,5 +136,3 @@ are covered in [`docs/workflow.md`](docs/workflow.md).
 |---|---|---|
 | `agents/claude-solution` | [dealersource-claude](https://github.com/ryanflash66/dealersource-claude) | Claude Code (Anthropic) |
 | `agents/gpt-solution` | [dealersource-gpt](https://github.com/ryanflash66/dealersource-gpt) | GPT / Codex (OpenAI) |
-| `agents/cursor-solution` | [dealersource-cursor](https://github.com/ryanflash66/dealersource-cursor) | Cursor Agent |
-| `agents/aider-solution` | [dealersource-aider](https://github.com/ryanflash66/dealersource-aider) | Aider |
