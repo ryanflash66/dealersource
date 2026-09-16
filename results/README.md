@@ -6,7 +6,7 @@ Curated evaluation results. **Summaries only**; no raw logs, no code.
 |---|---|
 | `summary.md` | Cross-agent comparison table and conclusions. |
 | `TEMPLATE.md` | Copy to `<agent>.md` (e.g. `claude-solution.md`) for each evaluated agent. |
-| `raw/` | Git-ignored scratch output from `evals/run.sh`. |
+| `raw/` | Git-ignored per-agent JSON and the latest leaderboard from `evals/run.mjs`. |
 
 Every result file must state the **child repo commit SHA** it evaluated and the
 **parent repo commit SHA** whose prompts/evals were used, so any number here can

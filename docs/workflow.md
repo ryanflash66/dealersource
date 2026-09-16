@@ -50,8 +50,8 @@ git push
 ## Run evals
 
 ```bash
-./evals/run.sh                    # all agents
-./evals/run.sh gpt-solution       # one
+
+
 ```
 
 Write findings into `results/<agent>.md` (copy `results/TEMPLATE.md`), then

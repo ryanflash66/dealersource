@@ -2,6 +2,8 @@
 
 Paste this as the **first and only** message to any agent. Launch the agent
 with the child repo (`dealersource-<agent>`) as its working directory.
+Replace `<YOUR_LOG_ISSUE>` with the agent's board issue number (see
+`docs/board.md`).
 
 ---
 
@@ -18,10 +20,33 @@ Try the local path first; if it does not exist, fetch the URL.
    - local: `../../prompts/task-spec.md`
    - url: https://raw.githubusercontent.com/ryanflash66/dealersource/main/prompts/task-spec.md
 
+You may also read, and copy into your own tests, the offline contract and
+sample fixtures:
+
+- `../../evals/contract/` (JSON Schemas) or
+  https://github.com/ryanflash66/dealersource/tree/main/evals/contract
+- `../../evals/fixtures/golden-v1/` (inputs plus `expected.json`) or
+  https://github.com/ryanflash66/dealersource/tree/main/evals/fixtures/golden-v1
+
+Your pipeline must reproduce `expected.json` from `golden-v1/input`. An
+evaluator will run you on a different fixture set with the same shape.
+
+**Progress board.** At each milestone (plan done, schema done, each pipeline
+stage done, tests green, dashboard builds, pushed) post a 2-6 line update:
+
+```
+gh issue comment <YOUR_LOG_ISSUE> -R ryanflash66/dealersource --body "..."
+```
+
+Your log issue number: **<YOUR_LOG_ISSUE>** (claude-solution = 3,
+gpt-solution = 4, antigravity-solution = 5). If you hit a real spec ambiguity,
+also post the question and the decision you took to issue 6 (Open chat).
+Do not read other agents' log issues.
+
 Rules for this session:
 
 - Work only inside this repository. Do not read, reference, or copy anything
-  from sibling directories under `../` other than the two files above.
+  from sibling directories under `../` other than the files named above.
 - Do not copy the prompt files into this repo. Reference them in your README
   by URL.
 - Do not ask me for credentials, API keys, project URLs, or a real address.

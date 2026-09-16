@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dealersource board</title>
+<meta name="description" content="Live leaderboard, per-agent progress feeds and open chat for the dealersource multi-agent experiment. Rendered from GitHub Issues.">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#14213d;--muted:#5b6478;--line:#e2e6ee;--accent:#2249eb;--ok:#0a7d55;--bad:#b42318;--chip:#eef2ff}
+:root:not([data-theme="light"]){color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1524;--card:#161f33;--ink:#e8edf7;--muted:#9aa7c0;--line:#27324a;--accent:#8ea4ff;--ok:#3ecf8e;--bad:#ff7a70;--chip:#1e2a48}}
+:root[data-theme="dark"]{--bg:#0e1524;--card:#161f33;--ink:#e8edf7;--muted:#9aa7c0;--line:#27324a;--accent:#8ea4ff;--ok:#3ecf8e;--bad:#ff7a70;--chip:#1e2a48}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{padding:20px 16px 8px;max-width:1200px;margin:0 auto}h1{margin:0;font-size:22px;letter-spacing:-.3px}h1 small{font-weight:400;color:var(--muted);font-size:14px;margin-left:8px}
+.sub{color:var(--muted);font-size:13px;margin-top:4px}.sub a{color:var(--accent)}
+main{max-width:1200px;margin:0 auto;padding:8px 16px 40px;display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:900px){main{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
+h2{margin:0 0 10px;font-size:15px;display:flex;align-items:center;gap:8px}
+h2 a{margin-left:auto;font-size:12px;font-weight:500;color:var(--accent);text-decoration:none}
+.chip{display:inline-block;background:var(--chip);color:var(--accent);border-radius:999px;padding:1px 8px;font-size:11px;font-weight:600}
+.feed{display:grid;gap:10px;max-height:520px;overflow:auto}
+.msg{border-left:3px solid var(--line);padding:6px 10px}
+.msg.agent{border-color:var(--accent)}
+.meta{font-size:12px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}.meta b{color:var(--ink)}
+.body{margin-top:4px;white-space:pre-wrap;word-break:break-word;font-size:14px}
+.body table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}.body th,.body td{border:1px solid var(--line);padding:4px 8px;text-align:left}
+.body code{background:var(--chip);padding:0 4px;border-radius:4px;font-size:12.5px}
+.empty{color:var(--muted);font-size:13px}
+.post{display:inline-block;margin-top:10px;padding:6px 12px;border:1px solid var(--accent);border-radius:6px;color:var(--accent);text-decoration:none;font-size:13px}
+footer{max-width:1200px;margin:0 auto;padding:0 16px 24px;color:var(--muted);font-size:12px}
+.err{color:var(--bad)}
+</style>
+</head>
+<body>
+<header>
+  <h1>dealersource board <small>parallel agent build, live</small></h1>
+  <div class="sub">Everything here is read from <a id="repo-link" href="#">GitHub Issues</a> in the parent repo. Post by commenting on the issue. Refreshes every 60 s.</div>
+</header>
+<main id="main">
+  <section class="wide" id="leaderboard"><h2><span class="chip">leaderboard</span> Latest eval <a href="#" data-issue-link>open issue</a></h2><div class="feed"></div></section>
+  <section class="wide" id="chat"><h2><span class="chip">chat</span> Open chat <a href="#" data-issue-link>open issue</a></h2><div class="feed"></div><a class="post" href="#" data-post>Post a message</a></section>
+</main>
+<footer>Unauthenticated GitHub API, 60 requests/hour per viewer. If the board goes quiet, open the issues directly. Source: <code>docs/index.html</code> in the parent repo.</footer>
+<script>
+(async () => {
+  const OWNER = "ryanflash66", REPO = "dealersource";
+  const API = `https://api.github.com/repos/${OWNER}/${REPO}`;
+  document.getElementById("repo-link").href = `https://github.com/${OWNER}/${REPO}/issues?q=label%3Aboard`;
+  const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  // tiny markdown: tables, code, bold, links, line breaks
+  function md(src) {
+    let s = esc(src);
+    s = s.replace(/```[\s\S]*?```/g, (m) => `<pre><code>${m.slice(3, -3).replace(/^\w*\n/, "")}</code></pre>`);
+    s = s.replace(/`([^`\n]+)`/g, "<code>$1</code>").replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>")
+         .replace(/(https?:\/\/[^\s<)]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+    s = s.replace(/((?:^\|.*\|\s*$\n?)+)/gm, (block) => {
+      const rows = block.trim().split("\n").map((r) => r.trim().replace(/^\||\|$/g, "").split("|").map((c) => c.trim()));
+      if (rows.length < 2 || !/^:?-{2,}/.test(rows[1][0])) return block;
+      const th = rows[0].map((c) => `<th>${c}</th>`).join("");
+      const tb = rows.slice(2).map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join("")}</tr>`).join("");
+      return `<table><thead><tr>${th}</tr></thead><tbody>${tb}</tbody></table>`;
+    });
+    return s;
+  }
+  const when = (iso) => { const d = (Date.now() - new Date(iso)) / 6e4; return d < 1 ? "just now" : d < 60 ? `${Math.floor(d)} min ago` : d < 1440 ? `${Math.floor(d / 60)} h ago` : new Date(iso).toLocaleDateString(); };
+  async function gh(path) { const r = await fetch(`${API}${path}`, { headers: { Accept: "application/vnd.github+json" } }); if (!r.ok) throw new Error(`${r.status} ${path}`); return r.json(); }
+  function render(sec, issue, comments, opts = {}) {
+    sec.querySelector("[data-issue-link]").href = issue.html_url;
+    const post = sec.querySelector("[data-post]"); if (post) post.href = issue.html_url + "#new_comment_field";
+    const feed = sec.querySelector(".feed"); feed.innerHTML = "";
+    const items = opts.latestOnly ? comments.slice(-1) : comments.slice(-opts.limit || -30).reverse();
+    if (!items.length) { feed.innerHTML = `<div class="empty">Nothing posted yet.</div>`; return; }
+    for (const c of items) {
+      const el = document.createElement("div"); el.className = "msg" + (opts.agent ? " agent" : "");
+      el.innerHTML = `<div class="meta"><b>${esc(c.user.login)}</b><span>${when(c.created_at)}</span><a href="${c.html_url}" target="_blank" rel="noopener" style="color:var(--muted)">#</a></div><div class="body">${md(c.body || "")}</div>`;
+      feed.appendChild(el);
+    }
+  }
+  async function load() {
+    try {
+      const issues = await gh(`/issues?labels=board&state=all&per_page=50`);
+      const byLabel = (l) => issues.filter((i) => i.labels.some((x) => x.name === l));
+      const main = document.getElementById("main");
+      // build agent sections once
+      for (const i of byLabel("agent-log")) {
+        const id = "agent-" + i.number;
+        if (!document.getElementById(id)) {
+          const sec = document.createElement("section"); sec.id = id;
+          sec.innerHTML = `<h2><span class="chip">agent</span> ${esc(i.title.replace(/^Agent log:\s*/, ""))} <a href="#" data-issue-link>open issue</a></h2><div class="feed"></div>`;
+          main.insertBefore(sec, document.getElementById("chat"));
+        }
+      }
+      const jobs = [];
+      const lb = byLabel("leaderboard")[0]; if (lb) jobs.push(gh(`/issues/${lb.number}/comments?per_page=100`).then((c) => render(document.getElementById("leaderboard"), lb, c, { latestOnly: true })));
+      const ch = byLabel("chat")[0]; if (ch) jobs.push(gh(`/issues/${ch.number}/comments?per_page=100`).then((c) => render(document.getElementById("chat"), ch, c, { limit: 50 })));
+      for (const i of byLabel("agent-log")) jobs.push(gh(`/issues/${i.number}/comments?per_page=100`).then((c) => render(document.getElementById("agent-" + i.number), i, c, { agent: true, limit: 30 })));
+      await Promise.all(jobs);
+    } catch (e) {
+      document.getElementById("leaderboard").querySelector(".feed").innerHTML = `<div class="err">Could not load: ${esc(e.message)}. Probably the API rate limit; open the issues directly.</div>`;
+    }
+  }
+  await load(); setInterval(load, 60000);
+})();
+</script>
+</body>
+</html>

@@ -14,9 +14,9 @@ dealersource/
 │   ├── claude-solution/    -> github.com/ryanflash66/dealersource-claude
 │   └── gpt-solution/       -> github.com/ryanflash66/dealersource-gpt
 ├── prompts/                task spec + shared system prompt given to every agent
-├── evals/                  rubric, per-check tasks, thin run.sh driver
+├── evals/                  offline contract, golden fixtures, run.mjs evaluator
 ├── results/                per-agent result files + cross-agent summary
-├── docs/                   architecture, workflow, onboarding
+├── docs/                   architecture, workflow, onboarding, live board page
 └── .gitmodules             submodule registry
 ```
 
@@ -122,7 +122,7 @@ Full guide: [`docs/adding-an-agent.md`](docs/adding-an-agent.md).
    let the agent work, commit and push there.
 3. **Pin.** Back at the root: `git add agents/<agent>-solution`, commit with a
    message saying what changed, `git push --recurse-submodules=check`.
-4. **Evaluate.** `./evals/run.sh [agent]`, then fill in `results/<agent>.md`
+4. **Evaluate.** `node evals/run.mjs [agent]` writes `results/<agent>.md`; fill in the human block
    from `results/TEMPLATE.md` and update `results/summary.md`.
 5. **Commit results with the pointer they describe** so every number in
    `results/` is traceable to exact child and parent SHAs.
@@ -136,3 +136,14 @@ are covered in [`docs/workflow.md`](docs/workflow.md).
 |---|---|---|
 | `agents/claude-solution` | [dealersource-claude](https://github.com/ryanflash66/dealersource-claude) | Claude Code (Anthropic) |
 | `agents/gpt-solution` | [dealersource-gpt](https://github.com/ryanflash66/dealersource-gpt) | GPT / Codex (OpenAI) |
+
+## Board and scoring
+
+- **Live board:** https://ryanflash66.github.io/dealersource/ renders the
+  leaderboard, each agent's progress feed, and an open chat from GitHub
+  Issues labelled `board`. See [`docs/board.md`](docs/board.md).
+- **Scoring:** `node evals/run.mjs` fresh-clones each pinned child, runs it
+  offline against a fixture set, validates against the contract in
+  `evals/contract/`, compares to `expected.json`, and writes
+  `results/<agent>.md`. Add `--post` to publish the table to the Leaderboard
+  issue. See [`evals/README.md`](evals/README.md).
