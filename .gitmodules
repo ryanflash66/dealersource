@@ -1,0 +1,16 @@
+[submodule "agents/claude-solution"]
+	path = agents/claude-solution
+	url = https://github.com/ryanflash66/dealersource-claude.git
+	branch = main
+[submodule "agents/gpt-solution"]
+	path = agents/gpt-solution
+	url = https://github.com/ryanflash66/dealersource-gpt.git
+	branch = main
+[submodule "agents/cursor-solution"]
+	path = agents/cursor-solution
+	url = https://github.com/ryanflash66/dealersource-cursor.git
+	branch = main
+[submodule "agents/aider-solution"]
+	path = agents/aider-solution
+	url = https://github.com/ryanflash66/dealersource-aider.git
+	branch = main

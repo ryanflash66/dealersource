@@ -1,0 +1,9 @@
+# Parent repo is docs + scaffolding only. Keep it lean.
+.env
+.env.*
+*.log
+.DS_Store
+Thumbs.db
+
+# Eval run scratch output (commit curated summaries under results/ instead)
+results/raw/
