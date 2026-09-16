@@ -9,7 +9,7 @@ All agents receive the same inputs from here so their outputs are comparable.
 | `system-prompt.md` | Shared operating instructions given to every agent verbatim. |
 | `seed-prompt.md` | The single message to paste into any agent to start it. Points at the two files above. |
 | `dashboard-design-brief.md` | Prompt for Claude Design to produce the shared dashboard template. |
-| `dashboard-design/` | The published template every agent must implement (accent per agent). |
+| `dashboard-design/` | **Published.** The template every agent must implement (accent per agent). |
 | `broadcasts/` | Dated announcements posted to every agent log issue. |
 
 ## Rules

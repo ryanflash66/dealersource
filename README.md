@@ -144,6 +144,7 @@ are covered in [`docs/workflow.md`](docs/workflow.md).
 - **Live board:** https://ryanflash66.github.io/dealersource/ renders the
   leaderboard, each agent's progress feed, and an open chat from GitHub
   Issues labelled `board`. See [`docs/board.md`](docs/board.md).
+- **Dashboard design template:** [`prompts/dashboard-design/`](prompts/dashboard-design/README.md) is published and mandatory for every agent dashboard; each agent changes only `--accent` (assigned in that README).
 - **Scoring:** `node evals/run.mjs` fresh-clones each pinned child, runs it
   offline against a fixture set, validates against the contract in
   `evals/contract/`, compares to `expected.json`, and writes
