@@ -37,8 +37,10 @@ const AGENTS = args.length ? args : readdirSync(join(ROOT, "agents")).filter((d)
 const expected = JSON.parse(readFileSync(join(FIXTURE, "expected.json"), "utf8"));
 const schemas = Object.fromEntries(["report", "messages", "run"].map((n) => [n, JSON.parse(readFileSync(join(ROOT, "evals/contract", `${n}.schema.json`), "utf8"))]));
 
-const OFFLINE_ENV = { ...process.env, DEALERSOURCE_OFFLINE: "1", CI: "1", NO_NETWORK: "1", HTTP_PROXY: "http://127.0.0.1:9", HTTPS_PROXY: "http://127.0.0.1:9", NO_PROXY: "" };
-delete OFFLINE_ENV.SUPABASE_URL; delete OFFLINE_ENV.SUPABASE_KEY;
+// Network is blocked only by proxy env, which is not part of the contract and does not change solution behavior.
+// Never set solution-specific variables here: the contract defines the CLI, not env switches.
+const OFFLINE_ENV = { ...process.env, CI: "1", HTTP_PROXY: "http://127.0.0.1:9", HTTPS_PROXY: "http://127.0.0.1:9", NO_PROXY: "" };
+for (const k of Object.keys(OFFLINE_ENV)) if (/^(SUPABASE|GMAIL|GOOGLE|REDDIT|VERCEL|ANTHROPIC|DEALERSOURCE)_/.test(k)) delete OFFLINE_ENV[k];
 
 function sh(cmd, cwd, env = process.env, timeout = 15 * 60 * 1000) {
   const t0 = Date.now();
