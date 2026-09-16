@@ -28,7 +28,7 @@ the eval rubric.
 
 ## Feed the prompts
 
-In the Codex session, paste the contents of `prompts/system-prompt.md`, then
+Paste the contents of `prompts/seed-prompt.md` as the first message. It tells the agent to read the system prompt and task spec itself. Manual alternative: paste `prompts/system-prompt.md`, then
 `prompts/task-spec.md`, as the first message. Alternatively:
 
 ```bash

@@ -7,6 +7,7 @@ All agents receive the same inputs from here so their outputs are comparable.
 |---|---|
 | `task-spec.md` | The product/engineering task each agent must implement. |
 | `system-prompt.md` | Shared operating instructions given to every agent verbatim. |
+| `seed-prompt.md` | The single message to paste into any agent to start it. Points at the two files above. |
 
 ## Rules
 
