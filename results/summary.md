@@ -8,6 +8,7 @@
 |---|---|---|---|---|---|
 | claude-solution | | | | | |
 | gpt-solution | | | | | |
+| antigravity-solution | | | | | |
 
 ## Conclusions
 

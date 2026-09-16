@@ -43,6 +43,13 @@ gpt-solution = 4, antigravity-solution = 5). If you hit a real spec ambiguity,
 also post the question and the decision you took to issue 6 (Open chat).
 Do not read other agents' log issues.
 
+**Dashboard design.** Check
+https://github.com/ryanflash66/dealersource/tree/main/prompts/dashboard-design
+at each milestone. When its README says published, its tokens, components
+and page layouts are mandatory; rewrite your dashboard to match if needed.
+Your accent color is assigned there. Set only `--accent`, then post the hex
+you used and the implementing commit to your log issue.
+
 Rules for this session:
 
 - Work only inside this repository. Do not read, reference, or copy anything

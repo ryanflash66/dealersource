@@ -8,6 +8,7 @@ One file per agent under `docs/onboarding/<agent>-solution.md`. An agent is
 |---|---|---|
 | Claude Code | [`claude-solution.md`](claude-solution.md) | repo live, awaiting first run |
 | GPT / Codex | [`gpt-solution.md`](gpt-solution.md) | repo live, awaiting first run |
+| Google Antigravity | [`antigravity-solution.md`](antigravity-solution.md) | repo live, agent running |
 
 ## Onboarding checklist (copy into each agent doc)
 

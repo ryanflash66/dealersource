@@ -12,7 +12,8 @@ a fully independent repository mounted as a Git submodule under `agents/`.
 dealersource/
 ├── agents/                 one submodule per agent (pointers, not code)
 │   ├── claude-solution/    -> github.com/ryanflash66/dealersource-claude
-│   └── gpt-solution/       -> github.com/ryanflash66/dealersource-gpt
+│   ├── gpt-solution/       -> github.com/ryanflash66/dealersource-gpt
+│   └── antigravity-solution/ -> github.com/ryanflash66/dealersource-antigravity
 ├── prompts/                task spec + shared system prompt given to every agent
 ├── evals/                  offline contract, golden fixtures, run.mjs evaluator
 ├── results/                per-agent result files + cross-agent summary
@@ -136,6 +137,7 @@ are covered in [`docs/workflow.md`](docs/workflow.md).
 |---|---|---|
 | `agents/claude-solution` | [dealersource-claude](https://github.com/ryanflash66/dealersource-claude) | Claude Code (Anthropic) |
 | `agents/gpt-solution` | [dealersource-gpt](https://github.com/ryanflash66/dealersource-gpt) | GPT / Codex (OpenAI) |
+| `agents/antigravity-solution` | [dealersource-antigravity](https://github.com/ryanflash66/dealersource-antigravity) | Google Antigravity |
 
 ## Board and scoring
 
