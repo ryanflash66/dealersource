@@ -1,151 +1,114 @@
 # Dashboard design brief (for Claude Design)
 
-Paste everything below the line into Claude Design. The export it produces
-goes into `prompts/dashboard-design/` in this repo and becomes the mandatory
-template every agent's dashboard must implement.
+Paste everything below the line into Claude Design. Whatever it produces
+goes into `prompts/dashboard-design/` and becomes the template every agent
+implements.
 
 ---
 
-Design a **production operations dashboard** for "dealersource", a system
-that continuously finds, verifies and ranks leaseable sites for a small
-used-car dealership in Eastern North Carolina. The dashboard is read-only:
-humans look at a verified shortlist and act on it. It is built by several
-independent engineering teams from your one design, so the output must be a
-**complete, implementable template**, not a mood board.
+I need a dashboard designed. Here is what it is for, who uses it, and what it
+has to show. The design decisions are yours.
+
+## What the product is
+
+"dealersource" is an automated system that finds places where a small
+used-car dealership could lease a lot in Eastern North Carolina. Every day it
+gathers listings, checks each site against public records, emails landlords
+and town planning offices to confirm what it can't read from records, and
+ranks the sites that clear every check. The dashboard is the only place a
+human looks at the results.
 
 ## Who uses it
 
-One owner-operator and one project manager. They check it once a day on a
-laptop and occasionally on a phone. They are not analysts. They need to
-answer, in under a minute: *which sites are worth visiting today, what is
-still unverified, and is the automation healthy?*
+Two people: the dealership owner and the person managing the search. They
+check it once a day, usually on a laptop, sometimes on a phone in a parking
+lot. They are not analysts and they will not read documentation. They need
+to answer three questions fast:
 
-## Product rules the design must make visible
+1. Which sites are worth driving to this week?
+2. What is still unconfirmed, and what is the system doing about it?
+3. Is the automation healthy, or has it stopped?
 
-- A site is **viable** only when three **gates** pass with cited evidence:
-  **zoning** (permitted use confirmed), **rent** (written quote within
-  $600 to $1,000 per month), **flood** (not in a FEMA high-risk zone). Gate
-  status is `pass`, `fail`, or `pending`. Pending is not a soft pass; it must
-  look unresolved, never green.
-- Viable sites are **ranked** by a weighted score. Ranking factors, in
-  weight order: traffic count, visibility, drive time from home base, rent,
-  competitor density. Show the breakdown, not just the number.
-- **Shared-lot** sites are allowed but always rank after every standalone
-  site and must carry a visible flag.
-- Every fact has **evidence**: a source link, when it was fetched, when it
-  expires, and the method (official layer, listing, email reply). Expired
-  evidence must look stale.
-- Unknown facts become **cases**: an outreach email to a landlord or a town
-  planning department, with follow-ups. Cases have age, status and next
-  action. "No reply" is not approval.
-- The automation can **pause itself** (email bounces, quota errors). That
-  state must be impossible to miss.
-- Default configuration uses only **free data providers**. The config view
-  shows which provider is selected per layer and whether paid providers are
-  enabled.
+They never edit anything here. It is read-only.
 
-## Data shape (design to this, exactly)
+## The domain rules the design has to make legible
 
-The dashboard reads one `report.json` per run:
+- A site is only **viable** when three **gates** pass: zoning allows a car
+  dealer there, a written rent quote falls within the budget, and the parcel
+  is not in a high-risk flood zone. Each gate is one of **pass**, **fail**, or
+  **pending**. Pending means we are still waiting for an answer. It must never
+  read as a soft pass.
+- Viable sites are **ranked** by a score built from five factors, in order of
+  importance: road traffic, visibility from the road, drive time from home,
+  rent, and how many competing dealers are nearby. Users want to see why a
+  site ranks where it does, not just a number.
+- Some sites are **shared lots** (space on someone else's business). They are
+  acceptable as a last resort and always rank below every standalone site.
+  Users must be able to tell at a glance.
+- Every fact comes with **evidence**: where it came from, when it was
+  fetched, when it expires, and how it was obtained (official record,
+  listing, or an email reply). Expired evidence should look stale.
+- When a fact is unknown the system opens a **case**: an email to a landlord
+  or a planning department, with automatic follow-ups. Cases have an age, a
+  status, and a next action. Silence is not approval.
+- The system can **pause itself** when emails bounce or a quota is hit. When
+  it is paused, nothing new gets verified. This state must be impossible to
+  miss.
+- By default the system runs entirely on free data sources. A configuration
+  view shows which provider is in use for each kind of data and whether any
+  paid provider has been switched on.
 
-```
-report
-  run_id, run_date, offline, providers { paid_enabled, geocoder, parcels, drivetime, imagery, poi, crawler, tiles }
-  sites[]
-    site_id, parcel_id, listing_ids[], address, in_search_area, drive_minutes, shared_lot
-    gates { zoning|rent|flood: { status: pass|fail|pending, evidence_ids[] } }
-    viable, score (0..1), rank (1..n among viable, else null)
-    metrics { aadt, visibility (0..1), drive_minutes, rent_monthly, competitors }
-    open_cases[] { case_type: rent|zoning|space, status, recipient }
-  evidence[] { evidence_id, site_id, fact, value, source_url, fetched_at, expires_at, method }
-  external_calls[]
-messages[]  (sent this run) { site_id, case_type, to, subject, sent_at, template_id }
-run  { run_id, run_date, started_at, finished_at, counts {...}, errors[] }
-```
+## The data it renders
 
-Also available per site: a small street-level photo, an aerial thumbnail,
-and lat/lon for a map.
+Each daily run produces one report. Per site it contains: the address,
+parcel id, which listings were merged into it, whether it is inside the
+search area and how many minutes away it is, whether it is a shared lot, the
+three gate statuses with links to their evidence, whether it is viable, its
+score and rank, the five factor values (traffic count, a visibility figure,
+drive minutes, monthly rent, competitor count), and any open cases (type,
+status, who was contacted). The report also has the full evidence list, the
+list of emails sent in the run, a run summary with counts and errors, and the
+provider configuration. A small street-level photo, an aerial thumbnail, and
+coordinates for a map exist for each site.
 
-## Views (four, plus a shared shell)
+## What the dashboard needs to cover
 
-1. **Shortlist** (home). Ranked viable sites. Each site card: rank, address,
-   rent, drive minutes, three gate chips, score bar with the five-factor
-   breakdown, shared-lot flag when relevant, thumbnail, "view evidence".
-   A map alongside or above (MapLibre; design the container, markers by
-   rank, selected state, and a compact popup). Below the shortlist, a quieter
-   section: "Almost: one gate pending" listing sites with exactly one
-   pending gate and their open case.
-2. **Pipeline**. Every site by stage: discovered, resolved, enriched,
-   verifying, scored, excluded. Counts per stage. A table of open cases:
-   site, case type, recipient (domain only), sent, follow-ups, age, next
-   action. Sortable by age.
-3. **Exceptions**. Full-width banner states: sending paused (with reason and
-   since-when), last run failed, provider errors. Then lists: sources that
-   failed to fetch, sources excluded by terms of service (with the reason),
-   evidence expiring within 7 days, sites dropped since last run.
-4. **Config** (read-only). Business parameters (home base, max drive
-   minutes, rent range, shared-lot policy, flood zones). Provider table: layer,
-   selected provider, free or paid, enabled. A clear "paid providers: off"
-   indicator. Last run summary from `run`.
+- The ranked shortlist of viable sites, with a map, and the sites that are
+  one pending answer away from viable.
+- Where every site sits in the pipeline (discovered, resolved, enriched,
+  verifying, scored, excluded) and the open cases with their ages.
+- Exceptions: paused sending, failed runs, provider errors, sources that
+  could not be fetched or are excluded by their terms of service, evidence
+  about to expire.
+- Configuration, read-only: the business parameters (home base, maximum
+  drive time, rent range, shared-lot policy, flood zones) and the provider
+  table.
+- The empty and error states of each of those, and how it all reads on a
+  phone.
 
-Shared shell: top bar with product name, last run time and status dot, view
-switcher, theme toggle. Footer with parent repo link and run id.
+## Constraints from how it will be built
 
-## Visual direction
+- **Several independent engineering teams will each build this dashboard
+  from your one design**, and the results will be compared side by side. So
+  the output has to be something they can implement faithfully, not a
+  mood board: complete screens, every component in every state, and the
+  exact values (colors, type, spacing) they should use.
+- **Each team gets its own accent color** so their builds are
+  distinguishable. Everything else should be identical across teams. Design
+  so that one accent can change without breaking anything, and show it works
+  with at least these three: `#D97757`, `#10A37F`, `#4285F4`. Whatever colors
+  carry meaning (pass, fail, pending, stale, paused) must not depend on the
+  accent.
+- Light and dark modes both matter; the owner uses the phone at night.
+- It must hold up on a 375px-wide phone and a laptop.
+- Accessibility to WCAG AA. Status must never be conveyed by color alone.
+- Implementers are working from static files: the export needs to be
+  plain HTML and CSS they can open and copy from, with no build step.
+  A map is rendered with MapLibre; everything else is ordinary markup.
 
-- Calm, dense enough for a desktop table, still readable on a phone. Think
-  operations console, not marketing site. No illustrations, no gradients as
-  decoration, no hero sections.
-- **Typography:** one UI sans for text, one mono for ids, coordinates,
-  money, and timestamps. Tabular figures everywhere numbers align.
-- **Color:** neutral surfaces. Semantic colors are fixed and must never be
-  changed by implementers: pass (green), fail (red), pending (amber), stale
-  (grey with strikethrough or hatch), paused (red banner). Exactly **one
-  accent color** for interactive elements and rank markers, exposed as a
-  single token `--accent` (plus derived `--accent-fg`, `--accent-soft`).
-  **Each implementing team will set its own accent color**; design so that
-  any reasonable hue works against the neutral surfaces and the fixed
-  semantic colors. Show three variants of the Shortlist in the export to
-  prove it: accent `#D97757`, `#10A37F`, `#4285F4`.
-- Light and dark themes via tokens. Dark is not inverted light; check
-  contrast on gate chips and the map popup in both.
-- Body has an explicit background. Side gutter 16px on phones. No
-  horizontal page scroll at 375px.
+## What I do not want
 
-## Accessibility
-
-- WCAG AA contrast for all text and for gate chips in both themes.
-- Gate status never conveyed by color alone: icon plus label.
-- Focus states visible. Table headers real headers. Map has a list
-  equivalent (the shortlist itself).
-
-## Deliverables (export exactly these)
-
-```
-prompts/dashboard-design/
-  README.md              how to implement; token list; do/don't
-  tokens.css             all CSS custom properties on :root, dark theme under
-                         @media (prefers-color-scheme: dark) guarded by
-                         :root:not([data-theme="light"]) and again under
-                         :root[data-theme="dark"]; --accent is the ONLY token
-                         implementers change
-  components.html        every component in every state, static, using tokens.css
-  pages/shortlist.html   static page with realistic sample data (8 sites)
-  pages/pipeline.html
-  pages/exceptions.html  showing the paused state
-  pages/config.html
-  pages/shortlist-accent-*.html   the three accent variants
-  assets/                any icons as inline-able SVG
-```
-
-Static HTML and CSS only, no framework, no build step, no external scripts
-except MapLibre GL from cdn.jsdelivr.net/npm/ for the map container demo.
-Fonts from Google Fonts or system stack. Everything must render by opening
-the file.
-
-## Do not
-
-- Do not invent product features beyond the four views.
-- Do not add auth, settings forms, or editing. Read-only.
-- Do not use color alone for status.
-- Do not hard-code an accent; use the token.
+- Any editing, forms, login, or settings controls. Read-only.
+- Marketing-style pages, illustrations, or decorative flourishes. This is a
+  tool people look at every day.
+- Invented features beyond what is listed here.
