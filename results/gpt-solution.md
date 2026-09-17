@@ -4,9 +4,9 @@
 |---|---|
 | Child repo | https://github.com/ryanflash66/dealersource-gpt |
 | Child commit evaluated | `26657e8` |
-| Parent commit (spec + evals) | `dd17f72` |
+| Parent commit (spec + evals) | `d023524` |
 | Fixture | `./evals/fixtures/hidden-v1` @ run-date 2026-09-17 |
-| Evaluated at | 2026-09-17T03:31:54.823Z |
+| Evaluated at | 2026-09-17T03:39:38.467Z |
 | Evaluator | `evals/run.mjs` (automated) |
 
 ## Scores
@@ -33,7 +33,7 @@
 | ✅ | no .env committed |  |
 | ✅ | README references parent prompts by URL |  |
 | ✅ | docs/decisions.md present |  |
-| ✅ | install |  up to date, audited 1 package in 778ms  found 0 vulnerabilities  |
+| ✅ | install |  up to date, audited 1 package in 779ms  found 0 vulnerabilities  |
 | ❌ | npm test passes offline, no .env |  > dealersource-gpt@1.0.0 test > node scripts/test.ts  TAP version 13 node:internal/test_runner/harness:124       throw err;       ^  Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'     at throwIfUnsupportedURLScheme (node:internal/mod |
 | ❌ | pipeline run 1 exits 0 |  > dealersource-gpt@1.0.0 pipeline > node src/cli.ts --offline --fixtures R:\_code_\dealersource\evals\fixtures\hidden-v1\input --out C:\Users\ryanf\AppData\Local\Temp\dealersource-eval\gpt-solution\26657e8\out1 --run-date 2026-09-17  {"error":"Unknown option --fixtures"}  |
 
