@@ -6,7 +6,6 @@ working directory. Replace `<AGENT>` and `<LOG_ISSUE>`:
 | Agent | `<AGENT>` | `<LOG_ISSUE>` | `--primary` |
 |---|---|---|---|
 | Codex / GPT | `gpt-solution` | `4` | `#10A37F` |
-| Hyperagent | `hyperagent-solution` | `7` | `#7C3AED` |
 
 ---
 

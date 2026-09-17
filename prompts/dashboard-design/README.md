@@ -37,7 +37,6 @@ selected card, factor bars). Each agent sets its own:
 |---|---|---|
 | claude-solution | `#D97757` | a darker step of the same hue |
 | gpt-solution | `#10A37F` | a darker step of the same hue |
-| hyperagent-solution | `#7C3AED` | a darker step of the same hue |
 
 Set them on `:root` (and `.dark` if you need a lighter step there). The five
 factor-bar shades in the sample pages are the primary hue at five lightness

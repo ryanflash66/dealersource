@@ -8,8 +8,7 @@ dealersource (parent, orchestration + comparison)
 ├── docs/      how this all fits together               (owned here)
 └── agents/    one submodule per agent                  (pointers only)
     ├── claude-solution  -> ryanflash66/dealersource-claude
-    ├── gpt-solution     -> ryanflash66/dealersource-gpt
-    └── hyperagent-solution  -> ryanflash66/dealersource-hyperagent
+    └── gpt-solution     -> ryanflash66/dealersource-gpt
 ```
 
 ## The experiment
