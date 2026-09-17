@@ -3,10 +3,10 @@
 | | |
 |---|---|
 | Child repo | https://github.com/ryanflash66/dealersource-gpt |
-| Child commit evaluated | `1963c88` |
-| Parent commit (spec + evals) | `1f67b00` |
+| Child commit evaluated | `b4feb33` |
+| Parent commit (spec + evals) | `ff46d14` |
 | Fixture | `./evals/fixtures/.private/hidden-v2` @ run-date 2026-09-18 |
-| Evaluated at | 2026-09-17T19:26:34.795Z |
+| Evaluated at | 2026-09-17T20:05:15.779Z |
 | Evaluator | `evals/run.mjs` (automated) |
 
 ## Scores
@@ -33,9 +33,9 @@
 | ✅ | no .env committed |  |
 | ✅ | README references parent prompts by URL |  |
 | ✅ | docs/decisions.md present |  |
-| ✅ | install |  up to date, audited 1 package in 827ms  found 0 vulnerabilities  |
-| ✅ | npm test passes offline, no .env | > dealersource-gpt@1.0.0 test > node --experimental-strip-types --test --test-concurrency=1 test/**/*.test.ts  ✔ minimal YAML parser reads nested maps, lists, and scalars (1.7445ms) ✔ default configuration matches hard business gates (2.9154ms) ✔ source allowlist fails closed (1.1038ms) ✔ golden-v1 exact CLI contract matches expected results and replays idempotently (790.6499ms) ✔ --config switche |
-| ✅ | pipeline run 1 exits 0 |  > dealersource-gpt@1.0.0 pipeline > node --experimental-strip-types src/cli.ts --offline --fixtures R:\_code_\dealersource\evals\fixtures\.private\hidden-v2\input --out C:\Users\ryanf\AppData\Local\Temp\dealersource-eval\gpt-solution\1963c88\out1 --run-date 2026-09-18  {"status":"ok","run_id":"run-2026-09-18-001","run_date":"2026-09-18","sites":11,"viable_sites":5,"messages_sent":4,"out":"C:\\Use |
+| ✅ | install |  added 3 packages in 25s  |
+| ✅ | npm test passes offline, no .env | eline stage counts are non-zero and consistent with the golden site list (23.6559ms) ✔ every excluded row has a specific outcome and out-of-area gates are not rendered (7.3392ms) ✔ dashboard model includes sent mail, correct follow-up dates, listing details, and open cases (6.5989ms) ✔ drawer evidence uses contract facts and exceptions include prohibited sources (6.8703ms) ✔ staleness, evidence ex |
+| ✅ | pipeline run 1 exits 0 |  > dealersource-gpt@1.0.0 pipeline > node --experimental-strip-types src/cli.ts --offline --fixtures R:\_code_\dealersource\evals\fixtures\.private\hidden-v2\input --out C:\Users\ryanf\AppData\Local\Temp\dealersource-eval\gpt-solution\b4feb33\out1 --run-date 2026-09-18  {"status":"ok","run_id":"run-2026-09-18-001","run_date":"2026-09-18","sites":11,"viable_sites":5,"messages_sent":4,"out":"C:\\Use |
 | ✅ | report.json written |  |
 | ✅ | messages.json written |  |
 | ✅ | run.json written |  |
@@ -45,11 +45,11 @@
 | ✅ | offline flag true |  |
 | ✅ | external_calls empty | [] |
 | ✅ | paid_enabled false by default |  |
-| ✅ | pipeline run 2 exits 0 |  > dealersource-gpt@1.0.0 pipeline > node --experimental-strip-types src/cli.ts --offline --fixtures R:\_code_\dealersource\evals\fixtures\.private\hidden-v2\input --out C:\Users\ryanf\AppData\Local\Temp\dealersource-eval\gpt-solution\1963c88\out1 --run-date 2026-09-18  {"status":"ok","run_id":"run-2026-09-18-002","run_date":"2026-09-18","sites":11,"viable_sites":5,"messages_sent":0,"out":"C:\\Use |
+| ✅ | pipeline run 2 exits 0 |  > dealersource-gpt@1.0.0 pipeline > node --experimental-strip-types src/cli.ts --offline --fixtures R:\_code_\dealersource\evals\fixtures\.private\hidden-v2\input --out C:\Users\ryanf\AppData\Local\Temp\dealersource-eval\gpt-solution\b4feb33\out1 --run-date 2026-09-18  {"status":"ok","run_id":"run-2026-09-18-002","run_date":"2026-09-18","sites":11,"viable_sites":5,"messages_sent":0,"out":"C:\\Use |
 | ✅ | replay sends nothing | sent 0 |
 | ✅ | provider switch geocoder: census -> nominatim via config | reported nominatim |
 | ✅ | providers.yaml default geocoder is census |  |
-| ✅ | dashboard:build offline |  > dealersource-gpt@1.0.0 dashboard:build > node --experimental-strip-types scripts/build-dashboard.ts  Dashboard built at C:\Users\ryanf\AppData\Local\Temp\dealersource-eval\gpt-solution\1963c88\repo\dashboard\dist  |
+| ✅ | dashboard:build offline |  > dealersource-gpt@1.0.0 dashboard:build > node --experimental-strip-types scripts/build-dashboard.ts  Dashboard built at C:\Users\ryanf\AppData\Local\Temp\dealersource-eval\gpt-solution\b4feb33\repo\dashboard\dist  |
 
 ## Output quality (vs `expected.json`)
 
@@ -187,17 +187,17 @@
 | Metric | Value |
 |---|---|
 | Package manager | npm |
-| Install time | 1.0 s |
-| Test time | 2.5 s |
+| Install time | 24.9 s |
+| Test time | 2.9 s |
 | Test summary |  |
 | Pipeline time (run 1) | 0.4 s |
-| Dashboard build time | 0.4 s |
-| Type-check clean | no |
-| Source files / test files | 22 / 9 |
-| Source lines | 2804 |
-| Dependencies / dev | 0 / 0 |
-| Commits | 16 |
-| First to last commit | 23.31 h |
+| Dashboard build time | 0.6 s |
+| Type-check clean | yes |
+| Source files / test files | 24 / 10 |
+| Source lines | 3142 |
+| Dependencies / dev | 0 / 2 |
+| Commits | 18 |
+| First to last commit | 23.91 h |
 
 ## Human-supplied (edit by hand)
 
