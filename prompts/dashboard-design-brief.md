@@ -1,8 +1,7 @@
 # Dashboard design brief (for Claude Design)
 
 Paste everything below the line into Claude Design. Whatever it produces
-goes into `prompts/dashboard-design/` and becomes the template every agent
-implements.
+goes into `prompts/dashboard-design/`.
 
 ---
 
@@ -86,25 +85,23 @@ coordinates for a map exist for each site.
 - The empty and error states of each of those, and how it all reads on a
   phone.
 
-## Constraints from how it will be built
+## What I need back
 
-- **Several independent engineering teams will each build this dashboard
-  from your one design**, and the results will be compared side by side. So
-  the output has to be something they can implement faithfully, not a
-  mood board: complete screens, every component in every state, and the
-  exact values (colors, type, spacing) they should use.
-- **Each team gets its own accent color** so their builds are
-  distinguishable. Everything else should be identical across teams. Design
-  so that one accent can change without breaking anything, and show it works
-  with at least these three: `#D97757`, `#10A37F`, `#4285F4`. Whatever colors
-  carry meaning (pass, fail, pending, stale, paused) must not depend on the
-  accent.
-- Light and dark modes both matter; the owner uses the phone at night.
-- It must hold up on a 375px-wide phone and a laptop.
-- Accessibility to WCAG AA. Status must never be conveyed by color alone.
-- Implementers are working from static files: the export needs to be
-  plain HTML and CSS they can open and copy from, with no build step.
-  A map is rendered with MapLibre; everything else is ordinary markup.
+A **design template** for this dashboard: a reproducible design system plus
+page templates that a developer can implement exactly, without guessing.
+That means the design tokens (color, type, spacing, radius, elevation), every
+component in every state, and each screen laid out with realistic sample
+data, including empty and error states.
+
+- The accent color must be a single swappable variable. Show the template
+  with three different accents (`#D97757`, `#10A37F`, `#4285F4`) so it is
+  clear the design survives the swap. Colors that carry meaning (pass, fail,
+  pending, stale, paused) must not depend on the accent.
+- Light and dark modes. The owner uses the phone at night.
+- Works at 375px wide and on a laptop.
+- WCAG AA. Status is never conveyed by color alone.
+- Export as plain HTML and CSS that opens with no build step. The map area is
+  rendered by MapLibre; everything else is ordinary markup.
 
 ## What I do not want
 
