@@ -9,6 +9,7 @@
 | claude-solution | | | | | |
 | gpt-solution | | | | | |
 | antigravity-solution | | | | | |
+| hyperagent-solution | | | | | hidden-v1 exposed before import; contract/dashboard unverified |
 
 ## Conclusions
 
@@ -19,3 +20,9 @@
 | Date | Parent commit | Change |
 |---|---|---|
 | | | |
+
+## Prompt / eval revisions that affected comparability (continued)
+
+| Date | Parent commit | Change |
+|---|---|---|
+| 2026-09-16 | this commit | hyperagent-solution registered after `evals/fixtures/hidden-v1` was committed. Its hidden-v1 results are **exposed**, not blind. Contract and design-v2 compatibility of the imported tree are **unverified**. |

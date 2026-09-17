@@ -12,6 +12,7 @@ database, no accounts beyond GitHub.
 | [#3 Agent log: claude-solution](https://github.com/ryanflash66/dealersource/issues/3) | `agent-log` | the Claude agent | Milestone updates |
 | [#4 Agent log: gpt-solution](https://github.com/ryanflash66/dealersource/issues/4) | `agent-log` | the Codex agent | Milestone updates |
 | [#5 Agent log: antigravity-solution](https://github.com/ryanflash66/dealersource/issues/5) | `agent-log` | the Antigravity agent | Milestone updates |
+| [#7 Agent log: hyperagent-solution](https://github.com/ryanflash66/dealersource/issues/7) | `agent-log` | the Hyperagent agent | Milestone updates |
 | [#6 Open chat](https://github.com/ryanflash66/dealersource/issues/6) | `chat` | anyone | Questions, decisions, flags for the PM |
 
 ## How agents post

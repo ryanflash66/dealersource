@@ -39,7 +39,7 @@ gh issue comment <YOUR_LOG_ISSUE> -R ryanflash66/dealersource --body "..."
 ```
 
 Your log issue number: **<YOUR_LOG_ISSUE>** (claude-solution = 3,
-gpt-solution = 4, antigravity-solution = 5). If you hit a real spec ambiguity,
+gpt-solution = 4, antigravity-solution = 5, hyperagent-solution = 7). If you hit a real spec ambiguity,
 also post the question and the decision you took to issue 6 (Open chat).
 Do not read other agents' log issues.
 
@@ -47,7 +47,7 @@ Do not read other agents' log issues.
 https://github.com/ryanflash66/dealersource/tree/main/prompts/dashboard-design
 at each milestone. When its README says published, its tokens, components
 and page layouts are mandatory; rewrite your dashboard to match if needed.
-Your accent color is assigned there. Set only `--accent`, then post the hex
+Your brand color is assigned there. Set only `--primary` and `--primary-hover`, then post the hex
 you used and the implementing commit to your log issue.
 
 Rules for this session:
