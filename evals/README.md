@@ -6,7 +6,8 @@ Everything needed to judge every solution **the same way, automatically**.
 |---|---|
 | `contract/` | JSON Schemas for the offline contract (spec section 14). What every solution must emit. |
 | `fixtures/golden-v1/` | Sample fixture inputs plus `expected.json`. Agents test against this. |
-| `fixtures/<hidden>/` | The evaluator's own set with the same shape. Not committed until after all agents finish. |
+| `fixtures/hidden-v1/` | First blind set. Public now, so no longer blind. |
+| `fixtures/.private/` | Current blind sets (git-ignored, never committed). `hidden-v2` is the set the leaderboard uses from 2026-09-17. |
 | `run.mjs` | The evaluator. Zero dependencies, Node 20+. |
 | `rubric.md` | The human-scored dimensions that the evaluator cannot measure. |
 | `tasks/` | Human-run checks, one file each. |

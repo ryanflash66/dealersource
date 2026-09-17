@@ -7,3 +7,6 @@ Thumbs.db
 
 # Eval run scratch output (commit curated summaries under results/ instead)
 results/raw/
+
+# Blind evaluator fixture sets. Never commit; agents can read this repo.
+evals/fixtures/.private/
