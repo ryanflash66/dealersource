@@ -82,7 +82,9 @@ function validate(schema, data, root = schema, path = "$") {
 function evaluate(agent) {
   const childDir = join(ROOT, "agents", agent);
   const url = execSync(`git config -f .gitmodules submodule.agents/${agent}.url`, { cwd: ROOT, encoding: "utf8" }).trim();
-  const sha = execSync("git rev-parse HEAD", { cwd: childDir, encoding: "utf8" }).trim();
+  // Evaluate the SHA the parent has pinned (index first, then HEAD), never the child's checked-out working tree.
+  const pinned = execSync(`git ls-files -s -- agents/${agent}`, { cwd: ROOT, encoding: "utf8" }).match(/^160000 ([0-9a-f]{40})/)?.[1];
+  const sha = pinned || execSync("git rev-parse HEAD", { cwd: childDir, encoding: "utf8" }).trim();
   const parentSha = execSync("git rev-parse --short HEAD", { cwd: ROOT, encoding: "utf8" }).trim();
   const work = join(tmpdir(), "dealersource-eval", agent, sha.slice(0, 7));
   rmSync(work, { recursive: true, force: true }); mkdirSync(work, { recursive: true });
