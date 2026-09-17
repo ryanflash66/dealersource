@@ -93,10 +93,6 @@ That means the design tokens (color, type, spacing, radius, elevation), every
 component in every state, and each screen laid out with realistic sample
 data, including empty and error states.
 
-- The accent color must be a single swappable variable. Show the template
-  with three different accents (`#D97757`, `#10A37F`, `#4285F4`) so it is
-  clear the design survives the swap. Colors that carry meaning (pass, fail,
-  pending, stale, paused) must not depend on the accent.
 - Light and dark modes. The owner uses the phone at night.
 - Works at 375px wide and on a laptop.
 - WCAG AA. Status is never conveyed by color alone.
