@@ -6,10 +6,8 @@ Claude Design works as a conversation: a short brief stating goal, audience,
 content and rough layout, then clarifying questions from Claude, then a first
 version on the canvas, then refinement by chat, inline comments and direct
 edits. It applies your organization's **default design system automatically**
-to every project. The first attempt at this dashboard came out in the
-"Lumigrid Calm Confidence" system because that is the default on this
-account. If you want a look made for this product, either switch the default
-before starting or say so in the first message (the brief below does).
+to every project, so make sure the design system you want is set as the
+default before you start. The brief does not ask for a new one.
 
 Recommended flow, in one thread:
 
@@ -31,9 +29,9 @@ Spring '26, as curated on Mobbin.)*
 I need a design template for a read-only operations dashboard called
 dealersource. The attached screenshot is the example I want it to follow:
 match its overall structure, density, spacing, type treatment, and the way a
-large map dominates the screen with the numbers in a column beside it. Start
-a new design system for this product rather than using the organization
-default. Before you draw anything, ask me whatever you need to know, then
+large map dominates the screen with the numbers in a column beside it. Use
+the existing design system. Before you draw anything, ask me whatever you
+need to know, then
 show me two or three directions for the main screen that stay faithful to
 the reference.
 
@@ -94,9 +92,9 @@ daily.
 
 ## Message 2
 
-Good. Build out the full template from that direction: the design system
-(color, type, spacing, radius, elevation, and every component in every
-state, including empty, loading, error and stale), then all four screens with
+Good. Build out the full template from that direction using the design
+system: every component in every state (including empty, loading, error and
+stale), then all four screens with
 realistic sample data, each in light and dark, and the shortlist at phone
 width. Include the paused state on the exceptions screen and at least one
 site whose evidence has expired.
