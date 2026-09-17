@@ -5,7 +5,7 @@
 [submodule "agents/gpt-solution"]
 	path = agents/gpt-solution
 	url = https://github.com/ryanflash66/dealersource-gpt.git
-	branch = gpt/offline-complete-20260916
+	branch = main
 [submodule "agents/hyperagent-solution"]
 	path = agents/hyperagent-solution
 	url = https://github.com/ryanflash66/dealersource-hyperagent.git
