@@ -4,9 +4,9 @@
 |---|---|
 | Child repo | https://github.com/ryanflash66/dealersource-antigravity |
 | Child commit evaluated | `d976d2a` |
-| Parent commit (spec + evals) | `3a91a2f` |
+| Parent commit (spec + evals) | `dd17f72` |
 | Fixture | `./evals/fixtures/hidden-v1` @ run-date 2026-09-17 |
-| Evaluated at | 2026-09-17T03:00:39.684Z |
+| Evaluated at | 2026-09-17T03:31:33.356Z |
 | Evaluator | `evals/run.mjs` (automated) |
 
 ## Scores
@@ -46,7 +46,7 @@
 | Metric | Value |
 |---|---|
 | Package manager | npm |
-| Install time | 3.3 s |
+| Install time | 3.2 s |
 | Test time |  |
 | Test summary |  |
 | Pipeline time (run 1) |  |
