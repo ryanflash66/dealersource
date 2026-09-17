@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dealersource Map zoomed out to globe</title>
+<meta name="description" content="Static design template page for the dealersource dashboard: 3d Map zoomed out to globe (MapLibre globe projection in the build; sites cluster into one count). Sample data only.">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../dashboard.css">
+</head>
+<body>
+<div class="app" style="width: min(100%, 880px); margin: 24px auto; height: 640px; position: relative;">
+    <div class="sc-host" data-sc-name="DsMap"><div style="position: absolute; inset: 0px; overflow: hidden; background: var(--muted); color: var(--foreground); font-family: var(--font-sans); font-size: 14px;">
+  
+  
+    <div style="position: absolute; inset: 0px; background: var(--background);"></div>
+    <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 520px; height: 520px;">
+      <div class="map-canvas-placeholder" style="width: 520px; height: 520px; display: block;;display:flex;align-items:center;justify-content:center;color:var(--muted-foreground);font-size:12px;background:var(--muted)">MapLibre GL renders here</div>
+    </div>
+    <div style="position: absolute; left: calc(50% + 10px); top: calc(50% - 16px); transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 4px;">
+      <span style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: var(--primary); color: var(--primary-foreground); border: 2.5px solid var(--card); box-shadow: var(--shadow-md); font-family: var(--font-mono); font-size: 13px; font-weight: 600; box-sizing: border-box;">9</span>
+      <span style="font-size: 11px; font-weight: 600; background: color-mix(in oklab, var(--card) 92%, transparent); padding: 1px 6px; border-radius: 4px; white-space: nowrap; box-shadow: var(--shadow-sm);">Eastern NC · 9 sites</span>
+    </div>
+  
+  
+  <div style="position: absolute; right: 20px; top: 18px; display: flex; flex-direction: column; gap: 8px; align-items: flex-end;">
+    <div class="sc-host-x" style="display: contents;"><button type="button" style="display: inline-flex; box-sizing: border-box; align-items: center; justify-content: center; gap: 0.5rem; font-family: var(--font-sans); font-weight: var(--weight-medium); line-height: 1; white-space: nowrap; border-radius: var(--radius-full); cursor: pointer; text-decoration: none; opacity: 1; transform: none; transition: background-color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out); height: 2.25rem; padding: 0px 0.9rem; font-size: 0.8125rem; background: transparent; color: var(--foreground); border: 1px solid var(--input);"><span class="sc-interp">Back to sites</span></button></div>
+    <div style="display: flex; flex-direction: column; border: 1px solid var(--input); border-radius: 999px; background: var(--card); overflow: hidden;">
+      <span style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; color: var(--foreground);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></span>
+      <span style="height: 1px; background: var(--border);"></span>
+      <span style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; color: var(--foreground);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path></svg></span>
+    </div>
+  </div>
+  
+  
+  <div style="position: absolute; left: 20px; top: auto; bottom: 18px; font-size: 11px; color: var(--muted-foreground); background: color-mix(in oklab, var(--card) 80%, transparent); padding: 2px 6px; border-radius: 4px;"><span class="sc-interp">Land outlines: Natural Earth (public domain)</span></div></div></div>
+  </div>
+</body>
+</html>
