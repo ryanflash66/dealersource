@@ -39,7 +39,7 @@ gh issue comment <YOUR_LOG_ISSUE> -R ryanflash66/dealersource --body "..."
 ```
 
 Your log issue number: **<YOUR_LOG_ISSUE>** (claude-solution = 3,
-gpt-solution = 4, antigravity-solution = 5, hyperagent-solution = 7). If you hit a real spec ambiguity,
+gpt-solution = 4, hyperagent-solution = 7). If you hit a real spec ambiguity,
 also post the question and the decision you took to issue 6 (Open chat).
 Do not read other agents' log issues.
 

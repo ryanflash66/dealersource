@@ -6,10 +6,6 @@
 	path = agents/gpt-solution
 	url = https://github.com/ryanflash66/dealersource-gpt.git
 	branch = gpt/offline-complete-20260916
-[submodule "agents/antigravity-solution"]
-	path = agents/antigravity-solution
-	url = https://github.com/ryanflash66/dealersource-antigravity.git
-	branch = main
 [submodule "agents/hyperagent-solution"]
 	path = agents/hyperagent-solution
 	url = https://github.com/ryanflash66/dealersource-hyperagent.git

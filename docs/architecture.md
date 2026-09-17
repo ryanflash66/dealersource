@@ -9,7 +9,6 @@ dealersource (parent, orchestration + comparison)
 └── agents/    one submodule per agent                  (pointers only)
     ├── claude-solution  -> ryanflash66/dealersource-claude
     ├── gpt-solution     -> ryanflash66/dealersource-gpt
-    ├── antigravity-solution -> ryanflash66/dealersource-antigravity
     └── hyperagent-solution  -> ryanflash66/dealersource-hyperagent
 ```
 
