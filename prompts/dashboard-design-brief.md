@@ -13,7 +13,8 @@ before starting or say so in the first message (the brief below does).
 
 Recommended flow, in one thread:
 
-1. Paste **Message 1**. Answer its questions.
+1. Paste **Message 1** with the Shopify Live View screenshot attached.
+   Answer its questions.
 2. Approve one of the directions it offers.
 3. Paste **Message 2** once the shortlist screen looks right.
 4. Paste **Message 3** to get the review and the export.
@@ -24,11 +25,17 @@ Recommended flow, in one thread:
 
 ## Message 1
 
+*(Attach the reference screenshot with this message: Shopify admin, Live View,
+Spring '26, as curated on Mobbin.)*
+
 I need a design template for a read-only operations dashboard called
-dealersource. Please start a new design system for it rather than using the
-organization default; this product has its own audience and should have its
-own look. Before you draw anything, ask me whatever you need to know, then
-show me two or three layout directions for the main screen.
+dealersource. The attached screenshot is the example I want it to follow:
+match its overall structure, density, spacing, type treatment, and the way a
+large map dominates the screen with the numbers in a column beside it. Start
+a new design system for this product rather than using the organization
+default. Before you draw anything, ask me whatever you need to know, then
+show me two or three directions for the main screen that stay faithful to
+the reference.
 
 **Goal.** The dashboard is where two people look, once a day, at what an
 automated system found: places where a small used-car dealership could lease
