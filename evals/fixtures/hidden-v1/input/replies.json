@@ -1,0 +1,34 @@
+[
+  {
+    "listing_id": "HL04",
+    "case_type": "zoning",
+    "from": "planning@greenvillenc.gov",
+    "received_at": "2026-09-17T13:10:00Z",
+    "subject": "Re: Permitted use inquiry - 3800 S Charles Blvd (CG)",
+    "body": "Used motor vehicle sales at 3800 S Charles Blvd is permitted in the CG district per Greenville Code sec. 9-4-78 Table 1. The conditional note in the online table applies only to parcels abutting residential zoning, which this parcel does not. No special use permit is required."
+  },
+  {
+    "listing_id": "HL11",
+    "case_type": "rent",
+    "from": "owner@raleighrd-props.test",
+    "received_at": "2026-09-17T14:45:00Z",
+    "subject": "Re: Lease inquiry - 3200 Raleigh Rd Pkwy W",
+    "body": "Thanks for your interest. Base rent is $1,200 per month plus utilities. Office and fenced lot included."
+  },
+  {
+    "listing_id": "HL11",
+    "case_type": "zoning",
+    "from": "planning@wilsonnc.gov",
+    "received_at": "2026-09-17T16:20:00Z",
+    "subject": "Re: Permitted use inquiry - 3200 Raleigh Rd Pkwy W (GC)",
+    "body": "The parcel is zoned GC. Motor vehicle sales is a permitted use in GC per Wilson UDO Table 5.1."
+  },
+  {
+    "listing_id": "HL09",
+    "case_type": "zoning",
+    "from": "planning@tarboro-nc.gov",
+    "received_at": "2026-09-18T09:05:00Z",
+    "subject": "Re: Permitted use inquiry - 1400 N Main St (GB)",
+    "body": "Vehicle sales is permitted in GB per Tarboro Code Table 8-2."
+  }
+]

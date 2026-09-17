@@ -1,0 +1,14 @@
+{
+  "4100 E Fire Tower Rd, Winterville, NC 28590": { "lat": 35.5620, "lon": -77.3510, "formatted_address": "4100 E Fire Tower Rd, Winterville, NC 28590", "parcel_id": "PITT-1101" },
+  "4100 East Firetower Road, Winterville NC 28590": { "lat": 35.5620, "lon": -77.3510, "formatted_address": "4100 E Fire Tower Rd, Winterville, NC 28590", "parcel_id": "PITT-1101" },
+  "2300 N Queen St, Kinston, NC 28501": { "lat": 35.2880, "lon": -77.5810, "formatted_address": "2300 N Queen St, Kinston, NC 28501", "parcel_id": "LEN-1102" },
+  "3800 S Charles Blvd, Greenville, NC 27858": { "lat": 35.5760, "lon": -77.3690, "formatted_address": "3800 S Charles Blvd, Greenville, NC 27858", "parcel_id": "PITT-1103" },
+  "800 SW Greenville Blvd, Greenville, NC 27834": { "lat": 35.5830, "lon": -77.4010, "formatted_address": "800 SW Greenville Blvd, Greenville, NC 27834", "parcel_id": "PITT-1104" },
+  "300 Middle St, New Bern, NC 28560": { "lat": 35.1080, "lon": -77.0400, "formatted_address": "300 Middle St, New Bern, NC 28560", "parcel_id": "CRA-1105" },
+  "100 Water St, Washington, NC 27889": { "lat": 35.5420, "lon": -77.0560, "formatted_address": "100 Water St, Washington, NC 27889", "parcel_id": "BEAU-1106" },
+  "2100 Lejeune Blvd, Jacksonville, NC 28546": { "lat": 34.7660, "lon": -77.3830, "formatted_address": "2100 Lejeune Blvd, Jacksonville, NC 28546", "parcel_id": "ONS-1107" },
+  "1400 N Main St, Tarboro, NC 27886": { "lat": 35.9080, "lon": -77.5360, "formatted_address": "1400 N Main St, Tarboro, NC 27886", "parcel_id": "EDG-1108" },
+  "2500 Dickinson Ave, Greenville, NC 27834": { "lat": 35.5990, "lon": -77.3900, "formatted_address": "2500 Dickinson Ave, Greenville, NC 27834", "parcel_id": "PITT-1109" },
+  "3200 Raleigh Rd Pkwy W, Wilson, NC 27896": { "lat": 35.7350, "lon": -77.9530, "formatted_address": "3200 Raleigh Rd Pkwy W, Wilson, NC 27896", "parcel_id": "WIL-1110" },
+  "700 SE 2nd St, Snow Hill, NC 28580": { "lat": 35.4490, "lon": -77.6740, "formatted_address": "700 SE 2nd St, Snow Hill, NC 28580", "parcel_id": "GRE-1111" }
+}

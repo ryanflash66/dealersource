@@ -1,0 +1,13 @@
+{
+  "PITT-1101": { "aadt": 30000, "road": "E Fire Tower Rd", "year": 2024, "source_url": "https://aadt.ncdot.test/station/2101" },
+  "LEN-1102": { "aadt": 14000, "road": "N Queen St", "year": 2024, "source_url": "https://aadt.ncdot.test/station/2102" },
+  "PITT-1103": { "aadt": 22000, "road": "S Charles Blvd", "year": 2024, "source_url": "https://aadt.ncdot.test/station/2103" },
+  "PITT-1104": { "aadt": 34000, "road": "SW Greenville Blvd", "year": 2024, "source_url": "https://aadt.ncdot.test/station/2104" },
+  "CRA-1105": { "aadt": 7000, "road": "Middle St", "year": 2023, "source_url": "https://aadt.ncdot.test/station/2105" },
+  "BEAU-1106": { "aadt": 6000, "road": "Water St", "year": 2023, "source_url": "https://aadt.ncdot.test/station/2106" },
+  "ONS-1107": { "aadt": 40000, "road": "Lejeune Blvd", "year": 2024, "source_url": "https://aadt.ncdot.test/station/2107" },
+  "EDG-1108": { "aadt": 12000, "road": "N Main St", "year": 2023, "source_url": "https://aadt.ncdot.test/station/2108" },
+  "PITT-1109": { "aadt": 35000, "road": "Dickinson Ave", "year": 2024, "source_url": "https://aadt.ncdot.test/station/2109" },
+  "WIL-1110": { "aadt": 26000, "road": "Raleigh Rd Pkwy W", "year": 2024, "source_url": "https://aadt.ncdot.test/station/2110" },
+  "GRE-1111": { "aadt": 9000, "road": "SE 2nd St", "year": 2023, "source_url": "https://aadt.ncdot.test/station/2111" }
+}

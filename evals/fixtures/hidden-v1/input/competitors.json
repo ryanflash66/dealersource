@@ -1,0 +1,13 @@
+{
+  "PITT-1101": { "count_within_radius": 0, "radius_m": 1609 },
+  "LEN-1102": { "count_within_radius": 2, "radius_m": 1609 },
+  "PITT-1103": { "count_within_radius": 1, "radius_m": 1609 },
+  "PITT-1104": { "count_within_radius": 3, "radius_m": 1609 },
+  "CRA-1105": { "count_within_radius": 0, "radius_m": 1609 },
+  "BEAU-1106": { "count_within_radius": 0, "radius_m": 1609 },
+  "ONS-1107": { "count_within_radius": 6, "radius_m": 1609 },
+  "EDG-1108": { "count_within_radius": 1, "radius_m": 1609 },
+  "PITT-1109": { "count_within_radius": 0, "radius_m": 1609 },
+  "WIL-1110": { "count_within_radius": 2, "radius_m": 1609 },
+  "GRE-1111": { "count_within_radius": 0, "radius_m": 1609 }
+}

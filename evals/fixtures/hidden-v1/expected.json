@@ -1,0 +1,28 @@
+{
+  "fixture": "hidden-v1",
+  "run_date": "2026-09-17",
+  "business": { "home_base": "Greenville, NC 27858", "max_drive_minutes": 60, "rent_min": 600, "rent_max": 1000 },
+  "sites": {
+    "PITT-1101": { "listing_ids": ["HL01", "HL02"], "in_search_area": true, "shared_lot": false, "gates": { "zoning": "pass", "rent": "pass", "flood": "pass" }, "viable": true },
+    "LEN-1102":  { "listing_ids": ["HL03"], "in_search_area": true, "shared_lot": false, "gates": { "zoning": "pass", "rent": "pass", "flood": "pass" }, "viable": true },
+    "PITT-1103": { "listing_ids": ["HL04"], "in_search_area": true, "shared_lot": false, "gates": { "zoning": "pass", "rent": "pass", "flood": "pass" }, "viable": true },
+    "PITT-1104": { "listing_ids": ["HL05"], "in_search_area": true, "shared_lot": false, "gates": { "zoning": "pass", "rent": "fail", "flood": "pass" }, "viable": false },
+    "CRA-1105":  { "listing_ids": ["HL06"], "in_search_area": true, "shared_lot": false, "gates": { "zoning": "fail", "rent": "pass", "flood": "pass" }, "viable": false },
+    "BEAU-1106": { "listing_ids": ["HL07"], "in_search_area": true, "shared_lot": false, "gates": { "zoning": "pass", "rent": "pass", "flood": "fail" }, "viable": false },
+    "ONS-1107":  { "listing_ids": ["HL08"], "in_search_area": false, "shared_lot": false, "gates": null, "viable": false },
+    "EDG-1108":  { "listing_ids": ["HL09"], "in_search_area": true, "shared_lot": false, "gates": { "zoning": "pending", "rent": "pass", "flood": "pass" }, "viable": false },
+    "PITT-1109": { "listing_ids": ["HL10"], "in_search_area": true, "shared_lot": true, "gates": { "zoning": "pass", "rent": "pass", "flood": "pass" }, "viable": true },
+    "WIL-1110":  { "listing_ids": ["HL11"], "in_search_area": true, "shared_lot": false, "gates": { "zoning": "pass", "rent": "fail", "flood": "pass" }, "viable": false },
+    "GRE-1111":  { "listing_ids": ["HL12"], "in_search_area": true, "shared_lot": false, "gates": { "zoning": "pass", "rent": "pass", "flood": "fail" }, "viable": false }
+  },
+  "viable_rank_order": ["PITT-1101", "PITT-1103", "LEN-1102", "PITT-1109"],
+  "outreach_run1": [
+    { "parcel_id": "PITT-1103", "case_type": "zoning", "to": "planning@greenvillenc.gov" },
+    { "parcel_id": "EDG-1108", "case_type": "zoning", "to": "planning@tarboro-nc.gov" },
+    { "parcel_id": "WIL-1110", "case_type": "rent", "to": "owner@raleighrd-props.test" },
+    { "parcel_id": "WIL-1110", "case_type": "zoning", "to": "planning@wilsonnc.gov" }
+  ],
+  "no_outreach_parcels": ["PITT-1104", "CRA-1105", "BEAU-1106", "ONS-1107", "GRE-1111", "PITT-1101", "LEN-1102"],
+  "outreach_run2_count": 0,
+  "provider_switch": { "key": "geocoder", "from": "census", "to": "nominatim" }
+}
