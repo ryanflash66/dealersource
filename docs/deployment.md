@@ -26,7 +26,7 @@ contacted: Census geocoder, pittcountync.gov, ronharrellandassociates.com, NC On
 | Aggregators | LoopNet, Crexi, Craigslist, Facebook: prohibited by terms (known). CommercialCafe and CityFeet return 403 to a non-browser agent. Rofo allows crawling and its terms are silent, but the page is JavaScript-rendered, so a plain fetch sees nothing; recorded as a candidate for a headless crawler only |
 | Local broker websites | Ron Harrell & Associates (Greenville) is static HTML with about 10 listings and no prices. Added and fetched. OpenStreetMap-based broker discovery (`sources:discover`) found one candidate near home base, a residential team; OSM coverage of broker websites here is poor |
 | Reddit | Blocked on the free script-app credentials (`REDDIT_*` in `.env`) |
-| Result | 6 real listings discovered and geocoded (2100 Dickinson Ave, 1990 Allen Rd, 124 Beacon Dr, 2752 Mill St, 2470 Emerald Pl, 1717 W 5th St). None reached the gates yet because the NC OneMap parcel lookup returned nothing: the adapter queried the point layer instead of the polygon layer and read uppercase field names. Fix in progress in the child |
+| Result | Run at child `2d37908` (parcel adapter fixed): 7 listings seen, **5 sites created with real Pitt County parcel ids** (1990 Allen Rd, 2752 Mill St, 124 Beacon Dr, 2100 Dickinson Ave, 1717 W 5th St), 10 evidence rows, 2 listings unresolved (no geocode match). All five are marked outside the search area because drive time needs `ORS_API_KEY`; zoning, flood and traffic are not attempted for out-of-area sites. Next blocker is that one free key |
 
 Conclusion so far: compliant, free, automated discovery of $600 to $1,000 lots in
 this area is thin. The realistic free levers are Reddit, more local broker sites
@@ -40,7 +40,7 @@ added by hand after reading their terms, and the manual-leads file for drive-bys
 | `DEALERSOURCE_HOME_BASE` | Set to `200 W 5th St, Greenville, NC 27858` (Greenville City Hall, a public downtown anchor; no home address used). The Census geocoder needs a street address, so the bare city/zip placeholder did not geocode | Done |
 | `ANYCRAWL_URL` (optional) | Only for JavaScript-heavy sites. The default crawler is now a plain HTTP fetch that needs no hosting and covers the static town and county pages | Not required. Self-host AnyCrawl later only if measured coverage shows the good listings live on JavaScript-rendered broker sites |
 | `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, `REDDIT_USER_AGENT` | Reddit source | Create a "script" app at reddit.com/prefs/apps (free) |
-| `ORS_API_KEY` | Drive-time isochrones (free tier) | Sign up at openrouteservice.org |
+| `ORS_API_KEY` | **Current blocker.** Drive time decides `in_search_area`; without it no site reaches the gates | Free account at openrouteservice.org, Dashboard, Request a token (free tier: 2,000 requests/day) |
 | `MAPILLARY_ACCESS_TOKEN` | Street-level imagery (free) | Mapillary developer dashboard, client token |
 | `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REFRESH_TOKEN`, `GMAIL_SENDER_ADDRESS` | Outreach. Not needed until the dry runs look right | Google Cloud OAuth client (desktop), then authorize the owner's mailbox once; `business.yaml mail.sender: owner` |
 | `PMTILES_URL` (optional) | Basemap tiles for the dashboard map | Self-hosted Protomaps archive; without it the map shows the static marker pane |
