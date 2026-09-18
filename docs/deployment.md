@@ -32,6 +32,23 @@ Conclusion so far: compliant, free, automated discovery of $600 to $1,000 lots i
 this area is thin. The realistic free levers are Reddit, more local broker sites
 added by hand after reading their terms, and the manual-leads file for drive-bys.
 
+## Verified official GIS endpoints (2026-09-18)
+
+The solution shipped with guessed GIS URLs that did not exist. These are the real
+ones, verified by live query; the child repo is being updated to use them.
+
+| Layer | Endpoint | Notes |
+|---|---|---|
+| NC parcels | `services.nconemap.gov/secure/rest/services/NC1Map_Parcels/FeatureServer/1` | Layer 1 is polygons; layer 0 is centroids. Fields are lowercase (`parno`, `ownname`, `siteadd`, `cntyname`). Envelope query with `outSR=4326` works; select by house-number match, then containment |
+| Greenville zoning | `gisonline.greenvillenc.gov/arcgis/rest/services/OpenData/MapServer/21` | Field `ZONE` (CH, CG, IU, RA20, ...). Layer 20 is the ETJ boundary |
+| Pitt County zoning (unincorporated) | `gis.pittcountync.gov/gis/rest/services/PittOpenData/ZoningPitt/MapServer/0` | Field `ZONE`. No features inside town limits |
+| Winterville, Ayden, Washington zoning | none found | Zoning stays pending and goes to the planning email once verified |
+
+Key lesson: Census geocodes land in the road right-of-way. Zoning at the geocode
+for 2100 Dickinson Ave returns nothing; at the parcel centroid it returns CH,
+which the Greenville use table marks permitted. All polygon lookups now run
+against the parcel, not the geocode.
+
 ## Blocked on credentials (owner or PM supplies; never paste into chat or the repo)
 
 | Variable | Why it is needed | How to get it |
