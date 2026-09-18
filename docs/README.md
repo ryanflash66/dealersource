@@ -9,3 +9,4 @@
 | `onboarding/` | You are setting up a specific agent to run against its child repo. |
 | `adding-an-agent.md` | You want to add another agent. |
 | `bootstrap-child-repos.md` | The child GitHub repos do not exist yet (first-time setup). |
+| `deployment.md` | Where the selected solution is deployed and what credentials are still needed. |
