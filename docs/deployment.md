@@ -1,6 +1,6 @@
 # Deployment state (selected solution: claude-solution)
 
-Last updated 2026-09-17. No secrets in this file. Secrets live only in Vercel
+Last updated 2026-09-18. No secrets in this file. Secrets live only in Vercel
 project settings, the scheduled-agent environment, and a local `.env` that is
 git-ignored in the child repo.
 
@@ -15,12 +15,29 @@ git-ignored in the child repo.
 | Dashboard | **https://dealersource.vercel.app** | Live. Reads Supabase directly; shows the empty state until the first pipeline run writes a report |
 | First online dry run | local, `DEALERSOURCE_PAUSE_SENDING=1`, JSON state | Completed with status ok, 0 messages sent, only external host contacted: `geocoding.geo.census.gov`. Discovery found 1 listing from the 1 source it could fetch; 4 sources refused by terms as designed; 3 sources errored for missing credentials (below) |
 
+## Coverage findings from the first online runs (2026-09-18)
+
+Runs at child `faa0531`, sending paused, state in Supabase, cost $0. External hosts
+contacted: Census geocoder, pittcountync.gov, ronharrellandassociates.com, NC OneMap.
+
+| Source class | Result |
+|---|---|
+| City/county "available properties" pages | The URLs the agent guessed returned 404. The real Pitt County page (`/1172/Sites-Buildings`) is static but lists only Technology Enterprise Center office rooms; both governments hand property search to ZoomProspector, whose robots.txt disallows every crawler except Google and Bing. Refused by policy. Greenville's page is gone; source disabled |
+| Aggregators | LoopNet, Crexi, Craigslist, Facebook: prohibited by terms (known). CommercialCafe and CityFeet return 403 to a non-browser agent. Rofo allows crawling and its terms are silent, but the page is JavaScript-rendered, so a plain fetch sees nothing; recorded as a candidate for a headless crawler only |
+| Local broker websites | Ron Harrell & Associates (Greenville) is static HTML with about 10 listings and no prices. Added and fetched. OpenStreetMap-based broker discovery (`sources:discover`) found one candidate near home base, a residential team; OSM coverage of broker websites here is poor |
+| Reddit | Blocked on the free script-app credentials (`REDDIT_*` in `.env`) |
+| Result | 6 real listings discovered and geocoded (2100 Dickinson Ave, 1990 Allen Rd, 124 Beacon Dr, 2752 Mill St, 2470 Emerald Pl, 1717 W 5th St). None reached the gates yet because the NC OneMap parcel lookup returned nothing: the adapter queried the point layer instead of the polygon layer and read uppercase field names. Fix in progress in the child |
+
+Conclusion so far: compliant, free, automated discovery of $600 to $1,000 lots in
+this area is thin. The realistic free levers are Reddit, more local broker sites
+added by hand after reading their terms, and the manual-leads file for drive-bys.
+
 ## Blocked on credentials (owner or PM supplies; never paste into chat or the repo)
 
 | Variable | Why it is needed | How to get it |
 |---|---|---|
 | `SUPABASE_SERVICE_ROLE_KEY` | Pipeline writes to the database | Supabase dashboard, project `dealersource`, Project Settings, API, "service_role" key |
-| `DEALERSOURCE_HOME_BASE` | Drive times are measured from here. Currently the dev placeholder `Greenville, NC 27858` | The address the owner would commute from every day. Not a dealership; the search is for one |
+| `DEALERSOURCE_HOME_BASE` | Set to `200 W 5th St, Greenville, NC 27858` (Greenville City Hall, a public downtown anchor; no home address used). The Census geocoder needs a street address, so the bare city/zip placeholder did not geocode | Done |
 | `ANYCRAWL_URL` (optional) | Only for JavaScript-heavy sites. The default crawler is now a plain HTTP fetch that needs no hosting and covers the static town and county pages | Not required. Self-host AnyCrawl later only if measured coverage shows the good listings live on JavaScript-rendered broker sites |
 | `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, `REDDIT_USER_AGENT` | Reddit source | Create a "script" app at reddit.com/prefs/apps (free) |
 | `ORS_API_KEY` | Drive-time isochrones (free tier) | Sign up at openrouteservice.org |
