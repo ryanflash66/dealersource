@@ -1,5 +1,7 @@
 # dealersource
 
+> **Outcome (2026-09-17):** `claude-solution` was selected. See [`results/summary.md`](results/summary.md).
+
 A **Git superproject** for running the same coding task through several AI
 agents in parallel and comparing the results.
 
