@@ -26,7 +26,7 @@ contacted: Census geocoder, pittcountync.gov, ronharrellandassociates.com, NC On
 | Aggregators | LoopNet, Crexi, Craigslist, Facebook: prohibited by terms (known). CommercialCafe and CityFeet return 403 to a non-browser agent. Rofo allows crawling and its terms are silent, but the page is JavaScript-rendered, so a plain fetch sees nothing; recorded as a candidate for a headless crawler only |
 | Local broker websites | Ron Harrell & Associates (Greenville) is static HTML with about 10 listings and no prices. Added and fetched. OpenStreetMap-based broker discovery (`sources:discover`) found one candidate near home base, a residential team; OSM coverage of broker websites here is poor |
 | Reddit | Blocked on the free script-app credentials (`REDDIT_*` in `.env`) |
-| Result | Run at child `2d37908` (parcel adapter fixed): 7 listings seen, **5 sites created with real Pitt County parcel ids** (1990 Allen Rd, 2752 Mill St, 124 Beacon Dr, 2100 Dickinson Ave, 1717 W 5th St), 10 evidence rows, 2 listings unresolved (no geocode match). All five are marked outside the search area because drive time needs `ORS_API_KEY`; zoning, flood and traffic are not attempted for out-of-area sites. Next blocker is that one free key |
+| Result | Run at child `2ab15f0`: 5 sites, flood fetched for all 5 from FEMA, zoning resolved from the official Greenville layer for 2 parcels (one permitted, one prohibited by the use table), 2 Winterville sites pending a planning email (no official layer), 1 needing a planning case. Score stage then failed on a `scores.in_search_area` NOT NULL constraint (fixed in the live database; migration being added) and traffic failed on a guessed NCDOT URL (real service found, fix in progress). Drive time still needs `ORS_API_KEY` |
 
 Conclusion so far: compliant, free, automated discovery of $600 to $1,000 lots in
 this area is thin. The realistic free levers are Reddit, more local broker sites
@@ -43,6 +43,9 @@ ones, verified by live query; the child repo is being updated to use them.
 | Greenville zoning | `gisonline.greenvillenc.gov/arcgis/rest/services/OpenData/MapServer/21` | Field `ZONE` (CH, CG, IU, RA20, ...). Layer 20 is the ETJ boundary |
 | Pitt County zoning (unincorporated) | `gis.pittcountync.gov/gis/rest/services/PittOpenData/ZoningPitt/MapServer/0` | Field `ZONE`. No features inside town limits |
 | Winterville, Ayden, Washington zoning | none found | Zoning stays pending and goes to the planning email once verified |
+| NCDOT traffic (AADT) | `services.arcgis.com/NuWFvHYDMVmmxMeM/arcgis/rest/services/NCDOT_AADT_Stations/FeatureServer/0` | ArcGIS Online, owner TrafficSurvey.NCDOT.GOV. Point stations, string columns `AADT_2002`..`AADT_2022`, `ROUTE`, `LOCATION`. The `gis11.services.ncdot.gov` URL the solution guessed does not exist |
+| FEMA flood | `hazards.fema.gov` NFHL | Worked first time; flood fetched for all five sites |
+| Pitt County parcels fallback | `gis.pittcountync.gov/gis/rest/services/PittOpenData/CadastralPitt/MapServer/0` | Fields `NCPIN`, `OwnerName`, `Municipality`, `Acres` |
 
 Key lesson: Census geocodes land in the road right-of-way. Zoning at the geocode
 for 2100 Dickinson Ave returns nothing; at the parcel centroid it returns CH,
