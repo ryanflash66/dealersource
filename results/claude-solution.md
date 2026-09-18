@@ -3,10 +3,10 @@
 | | |
 |---|---|
 | Child repo | https://github.com/ryanflash66/dealersource-claude |
-| Child commit evaluated | `d4210b3` |
-| Parent commit (spec + evals) | `d001ce8` |
+| Child commit evaluated | `2ab15f0` |
+| Parent commit (spec + evals) | `817039f` |
 | Fixture | `./evals/fixtures/.private/hidden-v2` @ run-date 2026-09-18 |
-| Evaluated at | 2026-09-18T03:13:01.819Z |
+| Evaluated at | 2026-09-18T03:33:02.015Z |
 | Evaluator | `evals/run.mjs` (automated) |
 
 ## Scores
@@ -34,8 +34,8 @@
 | ✅ | README references parent prompts by URL |  |
 | ✅ | docs/decisions.md present |  |
 | ✅ | install |  added 120 packages, and audited 121 packages in 4s  19 packages are looking for funding   run `npm fund` for details  2 moderate severity vulnerabilities  To address all issues (including breaking changes), run:   npm audit fix --force  Run `npm audit` for details.  |
-| ✅ | npm test passes offline, no .env | 2m✓[39m tests/integration/golden.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 285[2mms[22m[39m  [32m✓[39m tests/unit/adapters.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 433[2mms[22m[39m  [32m✓[39m tests/unit/outreach-policy.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 594[2mms[22m[39m  [2m Test Files [22m [1m[32m15 passed[39m[22m[90m (15)[39m [2m      Tests |
-| ✅ | pipeline run 1 exits 0 | ":{"sites_created":11,"listings_merged":2}} {"level":"info","msg":"stage start","at":"2026-09-18T03:13:10.095Z","run_id":"run_3fef9d05c5c816a2","stage":"enrich"} {"level":"info","msg":"stage done","at":"2026-09-18T03:13:10.112Z","run_id":"run_3fef9d05c5c816a2","stage":"enrich","counts":{"drivetime_fetched":11,"rent_from_listing":8,"zoning_permitted_by_table":7,"flood_fetched":10,"traffic_fetched": |
+| ✅ | npm test passes offline, no .env | )[22m[33m 520[2mms[22m[39m  [32m✓[39m tests/unit/outreach-policy.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 630[2mms[22m[39m    [33m[2m✓[22m[39m outreach policy (spec section 6)[2m > [22mfirst contact, follow-up window, max follow-ups, then escalation to the dashboard [33m 304[2mms[22m[39m  [2m Test Files [22m [1m[32m16 passed[39m[22m[90m (16)[39m [2m      Tests |
+| ✅ | pipeline run 1 exits 0 | ":{"sites_created":11,"listings_merged":2}} {"level":"info","msg":"stage start","at":"2026-09-18T03:33:10.025Z","run_id":"run_353caa198feb356d","stage":"enrich"} {"level":"info","msg":"stage done","at":"2026-09-18T03:33:10.038Z","run_id":"run_353caa198feb356d","stage":"enrich","counts":{"drivetime_fetched":11,"rent_from_listing":8,"zoning_permitted_by_table":7,"flood_fetched":10,"traffic_fetched": |
 | ✅ | report.json written |  |
 | ✅ | messages.json written |  |
 | ✅ | run.json written |  |
@@ -45,11 +45,11 @@
 | ✅ | offline flag true |  |
 | ✅ | external_calls empty | [] |
 | ✅ | paid_enabled false by default |  |
-| ✅ | pipeline run 2 exits 0 | l":"info","msg":"stage done","at":"2026-09-18T03:13:10.843Z","run_id":"run_726ef8c35bc0fe1c","stage":"verify","counts":{"groups_within_followup_window":2,"inbound_already_ingested":2}} {"level":"info","msg":"stage start","at":"2026-09-18T03:13:10.843Z","run_id":"run_726ef8c35bc0fe1c","stage":"score"} {"level":"info","msg":"stage done","at":"2026-09-18T03:13:10.845Z","run_id":"run_726ef8c35bc0fe1c" |
+| ✅ | pipeline run 2 exits 0 | l":"info","msg":"stage done","at":"2026-09-18T03:33:10.798Z","run_id":"run_476bf540350bc52b","stage":"verify","counts":{"groups_within_followup_window":2,"inbound_already_ingested":2}} {"level":"info","msg":"stage start","at":"2026-09-18T03:33:10.799Z","run_id":"run_476bf540350bc52b","stage":"score"} {"level":"info","msg":"stage done","at":"2026-09-18T03:33:10.801Z","run_id":"run_476bf540350bc52b" |
 | ✅ | replay sends nothing | sent 0 |
 | ✅ | provider switch geocoder: census -> nominatim via config | reported nominatim |
 | ✅ | providers.yaml default geocoder is census |  |
-| ✅ | dashboard:build offline | 2,"zoning_prohibited_by_table":1,"sites_out_of_area":1}} {"level":"info","msg":"stage start","at":"2026-09-18T03:13:13.343Z","run_id":"run_eae9c65142dd8d61","stage":"verify"} {"level":"info","msg":"stage done","at":"2026-09-18T03:13:13.347Z","run_id":"run_eae9c65142dd8d61","stage":"verify","counts":{"cases_opened":3,"messages_sent":3,"cases_resolved_by_reply":2,"inbound_ingested":2}} {"level":"inf |
+| ✅ | dashboard:build offline | 2,"zoning_prohibited_by_table":1,"sites_out_of_area":1}} {"level":"info","msg":"stage start","at":"2026-09-18T03:33:13.297Z","run_id":"run_6666732b1760dc64","stage":"verify"} {"level":"info","msg":"stage done","at":"2026-09-18T03:33:13.302Z","run_id":"run_6666732b1760dc64","stage":"verify","counts":{"cases_opened":3,"messages_sent":3,"cases_resolved_by_reply":2,"inbound_ingested":2}} {"level":"inf |
 
 ## Output quality (vs `expected.json`)
 
@@ -188,16 +188,16 @@
 |---|---|
 | Package manager | npm |
 | Install time | 3.8 s |
-| Test time | 3.0 s |
-| Test summary | 15 passed |
-| Pipeline time (run 1) | 0.9 s |
-| Dashboard build time | 3.4 s |
+| Test time | 3.1 s |
+| Test summary | 16 passed |
+| Pipeline time (run 1) | 0.8 s |
+| Dashboard build time | 3.3 s |
 | Type-check clean | yes |
-| Source files / test files | 65 / 15 |
-| Source lines | 8362 |
+| Source files / test files | 66 / 16 |
+| Source lines | 8675 |
 | Dependencies / dev | 3 / 6 |
-| Commits | 29 |
-| First to last commit | 31.11 h |
+| Commits | 33 |
+| First to last commit | 31.43 h |
 
 ## Human-supplied (edit by hand)
 
