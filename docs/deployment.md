@@ -20,7 +20,7 @@ git-ignored in the child repo.
 | Variable | Why it is needed | How to get it |
 |---|---|---|
 | `SUPABASE_SERVICE_ROLE_KEY` | Pipeline writes to the database | Supabase dashboard, project `dealersource`, Project Settings, API, "service_role" key |
-| `DEALERSOURCE_HOME_BASE` | Real drive times. Currently the dev placeholder `Greenville, NC 27858` | The dealership street address |
+| `DEALERSOURCE_HOME_BASE` | Drive times are measured from here. Currently the dev placeholder `Greenville, NC 27858` | The address the owner would commute from every day. Not a dealership; the search is for one |
 | `ANYCRAWL_URL` | Discovery of broker and town "available properties" pages. Without it 2 of the 3 crawl sources cannot run | Self-host AnyCrawl (Docker image) somewhere reachable by the scheduled agent, or use AnyCrawl cloud with `paid_enabled: true` and `ANYCRAWL_API_KEY`. Docker is installed on this machine but the daemon was not running |
 | `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, `REDDIT_USER_AGENT` | Reddit source | Create a "script" app at reddit.com/prefs/apps (free) |
 | `ORS_API_KEY` | Drive-time isochrones (free tier) | Sign up at openrouteservice.org |
@@ -34,7 +34,7 @@ mailer refuses unverified planning addresses.
 
 ## Next steps, in order
 
-1. Supply `SUPABASE_SERVICE_ROLE_KEY` and `DEALERSOURCE_HOME_BASE`; rerun the
+1. Supply `SUPABASE_SERVICE_ROLE_KEY` and the commute-origin `DEALERSOURCE_HOME_BASE`; rerun the
    dry run so the report lands in Supabase and the live dashboard shows it.
 2. Stand up AnyCrawl (or enable the paid cloud adapter) and add Reddit, ORS and
    Mapillary keys; rerun. This is the run that answers the coverage question:
