@@ -67,6 +67,7 @@ dashboard reached functional parity.
 | 2026-09-17 | `d023524` | antigravity-solution removed |
 | 2026-09-17 | `985ec60` | hyperagent-solution removed |
 | 2026-09-17 | `4067537` | Final scores; decision recorded |
+| 2026-09-17 | this commit | `report.providers.crawler` enum gains `fetch` (plain HTTP crawler, zero hosting). Existing scores unaffected. |
 
 ## Next: production path for the selected solution
 
@@ -80,4 +81,3 @@ dashboard reached functional parity.
 4. Authorize the owner's Gmail, send to a small set of contacts, watch bounce
    and reply handling.
 5. Enable the daily Claude Code routine.
-| 2026-09-17 | this commit | `report.providers.crawler` enum gains `fetch` (plain HTTP crawler, zero hosting). Existing scores unaffected. |
