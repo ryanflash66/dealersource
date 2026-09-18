@@ -69,7 +69,7 @@ code change. Default is free. Paid adapters exist in code but are disabled.
 | Imagery | Recent street-level and aerial views | Mapillary API; NC OneMap orthoimagery | Google Street View Static |
 | Competitors / POI | Nearby vehicle dealers | Overpass API (OSM) with polite rate limits or self-hosted Overpass | Google Places |
 | Map tiles (dashboard) | Basemap | Protomaps PMTiles + MapLibre GL, self-hosted | Mapbox / Google |
-| Crawling | Fetch listing and broker pages | Self-hosted AnyCrawl | AnyCrawl cloud |
+| Crawling | Fetch listing and broker pages | Plain HTTP fetch for static pages (default, no hosting); self-hosted AnyCrawl for JavaScript-heavy sites | AnyCrawl cloud |
 | Social signals | Leads and local context | Reddit official API (free tier, OAuth app) | none |
 | Email | Outreach and inbound parsing | Gmail API via OAuth | none |
 | LLM | Extraction, drafting, classification | Claude via the scheduled agent | Claude API |
@@ -266,7 +266,7 @@ parcels: nc_onemap      # nc_onemap | county | regrid
 drivetime: ors          # ors | valhalla | google
 imagery: mapillary      # mapillary | streetview
 poi: overpass           # overpass | places
-crawler: anycrawl       # anycrawl | anycrawl_cloud
+crawler: fetch          # fetch | anycrawl | anycrawl_cloud
 tiles: protomaps        # protomaps | mapbox
 ```
 

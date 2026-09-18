@@ -80,3 +80,4 @@ dashboard reached functional parity.
 4. Authorize the owner's Gmail, send to a small set of contacts, watch bounce
    and reply handling.
 5. Enable the daily Claude Code routine.
+| 2026-09-17 | this commit | `report.providers.crawler` enum gains `fetch` (plain HTTP crawler, zero hosting). Existing scores unaffected. |

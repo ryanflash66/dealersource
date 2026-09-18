@@ -21,7 +21,7 @@ git-ignored in the child repo.
 |---|---|---|
 | `SUPABASE_SERVICE_ROLE_KEY` | Pipeline writes to the database | Supabase dashboard, project `dealersource`, Project Settings, API, "service_role" key |
 | `DEALERSOURCE_HOME_BASE` | Drive times are measured from here. Currently the dev placeholder `Greenville, NC 27858` | The address the owner would commute from every day. Not a dealership; the search is for one |
-| `ANYCRAWL_URL` | Discovery of broker and town "available properties" pages. Without it 2 of the 3 crawl sources cannot run | Self-host AnyCrawl (Docker image) somewhere reachable by the scheduled agent, or use AnyCrawl cloud with `paid_enabled: true` and `ANYCRAWL_API_KEY`. Docker is installed on this machine but the daemon was not running |
+| `ANYCRAWL_URL` (optional) | Only for JavaScript-heavy sites. The default crawler is now a plain HTTP fetch that needs no hosting and covers the static town and county pages | Not required. Self-host AnyCrawl later only if measured coverage shows the good listings live on JavaScript-rendered broker sites |
 | `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, `REDDIT_USER_AGENT` | Reddit source | Create a "script" app at reddit.com/prefs/apps (free) |
 | `ORS_API_KEY` | Drive-time isochrones (free tier) | Sign up at openrouteservice.org |
 | `MAPILLARY_ACCESS_TOKEN` | Street-level imagery (free) | Mapillary developer dashboard, client token |
@@ -36,8 +36,8 @@ mailer refuses unverified planning addresses.
 
 1. Supply `SUPABASE_SERVICE_ROLE_KEY` and the commute-origin `DEALERSOURCE_HOME_BASE`; rerun the
    dry run so the report lands in Supabase and the live dashboard shows it.
-2. Stand up AnyCrawl (or enable the paid cloud adapter) and add Reddit, ORS and
-   Mapillary keys; rerun. This is the run that answers the coverage question:
+2. Add the free Reddit, ORS and
+   Mapillary keys; rerun with the fetch crawler. This is the run that answers the coverage question:
    how many $600 to $1,000 listings exist in the area.
 3. Review the digest and shortlist. Adjust `config/sources.yaml` (enable grey
    sources after reading their terms).
