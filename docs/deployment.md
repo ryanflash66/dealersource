@@ -26,7 +26,7 @@ contacted: Census geocoder, pittcountync.gov, ronharrellandassociates.com, NC On
 | Aggregators | LoopNet, Crexi, Craigslist, Facebook: prohibited by terms (known). CommercialCafe and CityFeet return 403 to a non-browser agent. Rofo allows crawling and its terms are silent, but the page is JavaScript-rendered, so a plain fetch sees nothing; recorded as a candidate for a headless crawler only |
 | Local broker websites | Ron Harrell & Associates (Greenville) is static HTML with about 10 listings and no prices. Added and fetched. OpenStreetMap-based broker discovery (`sources:discover`) found one candidate near home base, a residential team; OSM coverage of broker websites here is poor |
 | Reddit | Blocked on the free script-app credentials (`REDDIT_*` in `.env`) |
-| Result | **First clean online run, child `2c717b0`: exit 0, no errors, 32 evidence rows, $0.** 5 sites. Flood: all 5 pass (FEMA zone X). Traffic: all 5 from the official NCDOT 2024 release (NC 11 35,000; Allen Rd 14,500; Dickinson Ave 8,700; Moye Blvd 5,900; Mill St 4,600). Competitors: all 5 from Overpass. Zoning from the official Greenville layer at the parcel polygon: **2100 Dickinson Ave is CH, permitted by the use table (first real zoning pass)**; 1717 W 5th St is MO, prohibited (first real fail); 1990 Allen Rd is RA20, needs a planning answer; both Winterville sites have no layer and open planning cases. Rent: pending on all 5, no listing states a price and the broker page has no per-listing email. Ranking: none, drive time needs `ORS_API_KEY` |
+| Result | **Full enrichment online, child `2c717b0`, 2026-09-18: exit 0, 42 evidence rows, $0.** All 5 sites inside the search area with real drive times from OpenRouteService (4 to 13 min from downtown Greenville), street imagery from Mapillary for 3 of 5, scores computed (0.31 to 0.59). Gates: flood pass on all 5; zoning pass for 2100 Dickinson Ave (CH), fail for 1717 W 5th St (MO), pending for 3 awaiting planning answers; rent pending on all 5 because no listing states a price and outreach is paused. Nothing viable yet, by design: viability needs a written rent and a zoning answer, both of which need email |
 
 Conclusion so far: compliant, free, automated discovery of $600 to $1,000 lots in
 this area is thin. The realistic free levers are Reddit, more local broker sites
@@ -60,14 +60,26 @@ against the parcel, not the geocode.
 | `DEALERSOURCE_HOME_BASE` | Set to `200 W 5th St, Greenville, NC 27858` (Greenville City Hall, a public downtown anchor; no home address used). The Census geocoder needs a street address, so the bare city/zip placeholder did not geocode | Done |
 | `ANYCRAWL_URL` (optional) | Only for JavaScript-heavy sites. The default crawler is now a plain HTTP fetch that needs no hosting and covers the static town and county pages | Not required. Self-host AnyCrawl later only if measured coverage shows the good listings live on JavaScript-rendered broker sites |
 | `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, `REDDIT_USER_AGENT` | Reddit source | Create a "script" app at reddit.com/prefs/apps (free) |
-| `ORS_API_KEY` | **Current blocker.** Drive time decides `in_search_area`; without it no site reaches the gates | Free account at openrouteservice.org, Dashboard, Request a token (free tier: 2,000 requests/day) |
-| `MAPILLARY_ACCESS_TOKEN` | Street-level imagery (free) | Mapillary developer dashboard, client token |
+| `ORS_API_KEY` | Drive time and `in_search_area` | Done |
+| `MAPILLARY_ACCESS_TOKEN` | Street-level imagery | Done |
 | `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REFRESH_TOKEN`, `GMAIL_SENDER_ADDRESS` | Outreach. Not needed until the dry runs look right | Google Cloud OAuth client (desktop), then authorize the owner's mailbox once; `business.yaml mail.sender: owner` |
 | `PMTILES_URL` (optional) | Basemap tiles for the dashboard map | Self-hosted Protomaps archive; without it the map shows the static marker pane |
 
 Also required before real outreach: set `verified: true` on each jurisdiction
 in `business.yaml` after re-checking its planning email `source_url`. The
 mailer refuses unverified planning addresses.
+
+## What blocks a viable site now (all human, all free)
+
+1. `contact_email` on the `ron-harrell-commercial` source in
+   `agents/claude-solution/config/sources.yaml` (published on the broker's contact page).
+   Unblocks rent inquiries for 4 sites.
+2. `verified: true` on Greenville and Winterville in `business.yaml` after
+   re-checking their planning addresses. Unblocks zoning inquiries for 3 sites.
+3. Gmail OAuth for the owner's mailbox, then remove `DEALERSOURCE_PAUSE_SENDING`.
+   The first real email goes out on the next run.
+4. Reddit script app credentials. Turns on the source most likely to surface
+   cheap or shared lots.
 
 ## Next steps, in order
 
