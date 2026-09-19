@@ -69,6 +69,19 @@ Also required before real outreach: set `verified: true` on each jurisdiction
 in `business.yaml` after re-checking its planning email `source_url`. The
 mailer refuses unverified planning addresses.
 
+## Scheduler (2026-09-18): Windows Task Scheduler on this PC
+
+Task `dealersource daily`, 05:30 local every day, runs as the logged-on user
+(interactive only), wakes the machine, starts when available if a run was
+missed, one-hour limit. Action: `powershell -NoProfile -ExecutionPolicy Bypass
+-File agents/claude-solution/scripts/run-daily.ps1`. The script pulls `main`,
+runs `npm ci` only if the commit changed, loads the git-ignored `.env`, runs
+`npm run pipeline -- --out out/<date> --run-date <date>`, and appends to
+`out/logs/<date>.log`. Sending stays paused until `DEALERSOURCE_PAUSE_SENDING`
+is removed from `.env`. Requirements: this PC on or asleep (not shut down) and
+the user logged on. Move to the Claude Code cloud routine once outreach has
+been watched for a few days.
+
 ## What blocks a viable site now (all human, all free)
 
 1. `contact_email` on the `ron-harrell-commercial` source in
