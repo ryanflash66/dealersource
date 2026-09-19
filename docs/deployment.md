@@ -76,7 +76,7 @@ Task `dealersource daily`, 05:30 local every day, runs as the logged-on user
 missed, one-hour limit. Action: `powershell -NoProfile -ExecutionPolicy Bypass
 -File agents/claude-solution/scripts/run-daily.ps1`. The script pulls `main`,
 runs `npm ci` only if the commit changed, loads the git-ignored `.env`, runs
-`npm run pipeline -- --out out/<date> --run-date <date>`, and appends to
+`tsx src/cli.ts run --out out/<date> --run-date <date>` (calling tsx directly, because `npm.cmd` launched from PowerShell drops every argument after `--`), and appends to
 `out/logs/<date>.log`. Sending stays paused until `DEALERSOURCE_PAUSE_SENDING`
 is removed from `.env`. Requirements: this PC on or asleep (not shut down) and
 the user logged on. Move to the Claude Code cloud routine once outreach has
