@@ -65,9 +65,32 @@ against the parcel, not the geocode.
 | `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REFRESH_TOKEN`, `GMAIL_SENDER_ADDRESS` | Outreach. Not needed until the dry runs look right | Google Cloud OAuth client (desktop), then authorize the owner's mailbox once; `business.yaml mail.sender: owner` |
 | `PMTILES_URL` (optional) | Basemap tiles for the dashboard map | Self-hosted Protomaps archive; without it the map shows the static marker pane |
 
-Also required before real outreach: set `verified: true` on each jurisdiction
-in `business.yaml` after re-checking its planning email `source_url`. The
-mailer refuses unverified planning addresses.
+## Planning contacts (verified 2026-09-22)
+
+The solution shipped with placeholder addresses (`planning@<town>`) that do
+not exist. Each was replaced with the address the government itself publishes
+and `verified: true` set in `business.yaml` (child `812bf88`). Checked on the
+pages recorded as `source_url`:
+
+| Jurisdiction | Recipient | Why this person |
+|---|---|---|
+| Greenville | Dion Hodge, Planner / Zoning Enforcement Officer | The Planning page names him for zoning certification and compliance letters |
+| Winterville | Stephen Penn, Planning and Economic Development Director | The only planning address the town publishes |
+| Ayden | Town Planner inbox | Shared inbox on the Planning & Zoning page |
+| Washington | Jeff Huss, Zoning / Code Enforcement Officer | Development Services staff directory |
+| Pitt County | Jonas Hill, Planning & Development Director | Department page offers only a web form; the directory publishes this address |
+
+The broker source `ron-harrell-commercial` now carries the `contact_email`
+published in the broker's site footer.
+
+Pipeline change in the same commit: a planning address cached on a site is
+re-synced from `business.yaml` every run (an address published by the zoning
+layer still wins, so offline fixtures keep the contract's recipients), and an
+open, unsent case whose contact changed is repointed rather than duplicated.
+All 11 open cases now point at the verified addresses. The two placeholder
+contact rows (`planning@greenvillenc.gov`, `planning@wintervillenc.com`) are
+unreferenced and harmless; delete them from the `contacts` table when
+convenient.
 
 ## Scheduler (2026-09-18): Windows Task Scheduler on this PC
 
@@ -84,13 +107,16 @@ been watched for a few days.
 
 ## What blocks a viable site now (all human, all free)
 
-1. `contact_email` on the `ron-harrell-commercial` source in
-   `agents/claude-solution/config/sources.yaml` (published on the broker's contact page).
-   Unblocks rent inquiries for 4 sites.
-2. `verified: true` on Greenville and Winterville in `business.yaml` after
-   re-checking their planning addresses. Unblocks zoning inquiries for 3 sites.
-3. Gmail OAuth for the owner's mailbox, then remove `DEALERSOURCE_PAUSE_SENDING`.
-   The first real email goes out on the next run.
+1. ~~Broker `contact_email`~~ done 2026-09-22.
+2. ~~Verified planning addresses~~ done 2026-09-22.
+3. Gmail OAuth for the owner's mailbox (`GMAIL_*` in `.env`). **Note:**
+   `DEALERSOURCE_PAUSE_SENDING` was removed from `.env` on 2026-09-22, so the
+   pipeline is live and only held back by the missing Gmail credentials. The
+   2026-09-22 evening run attempted 7 sends (4 rent to the broker, 3 zoning to
+   Greenville and Winterville planners); all failed at the Gmail token step and
+   nothing was recorded as sent. The moment `GMAIL_*` is filled, the next
+   05:30 run sends all queued mail. Put the pause line back first if the
+   templates should be reviewed before that.
 4. Reddit script app credentials. Turns on the source most likely to surface
    cheap or shared lots.
 
