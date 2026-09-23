@@ -1,6 +1,6 @@
 # Deployment state (selected solution: claude-solution)
 
-Last updated 2026-09-18. No secrets in this file. Secrets live only in Vercel
+Last updated 2026-09-22. No secrets in this file. Secrets live only in Vercel
 project settings, the scheduled-agent environment, and a local `.env` that is
 git-ignored in the child repo.
 
@@ -31,6 +31,26 @@ contacted: Census geocoder, pittcountync.gov, ronharrellandassociates.com, NC On
 Conclusion so far: compliant, free, automated discovery of $600 to $1,000 lots in
 this area is thin. The realistic free levers are Reddit, more local broker sites
 added by hand after reading their terms, and the manual-leads file for drive-bys.
+
+### Two structural gaps and their unlock paths (recorded 2026-09-22; build neither now)
+
+Positioning: dealer management systems (CDK, Reynolds, Dealertrack, Frazer,
+DealerCenter) run a dealership after the lease is signed and are not
+comparable. This system's category is site selection, verification and
+outreach, and its free official-data gates (zoning layers, FEMA flood, NCDOT
+traffic, verified planning contacts) are what CoStar, Crexi, Placer and
+SiteZeus do not give a small dealer for free. The stack stays.
+
+1. **Listing discovery is thin by structure, not by bug.** CoStar (LoopNet) and
+   Crexi hold most commercial inventory and forbid crawling. Cheapest future
+   unlock: a LoopNet or Crexi saved-search email alert delivered to the owner's
+   Gmail, parsed by the pipeline's existing inbound poller. No scraping, no
+   terms problem, $0. Needs: a free account on the listing site, a saved search
+   for the area and price band, and an inbound parser for that alert format.
+2. **Outreach is hand-rolled.** At a handful of contacts a week that is right:
+   templates, follow-up windows, bounce pause, stop handling and reply parsing
+   already exist. If volume ever reaches hundreds of contacts, swap the mailer
+   for Mautic (self-hosted, open source) instead of extending ours.
 
 ## Verified official GIS endpoints (2026-09-18)
 
@@ -87,10 +107,94 @@ Pipeline change in the same commit: a planning address cached on a site is
 re-synced from `business.yaml` every run (an address published by the zoning
 layer still wins, so offline fixtures keep the contract's recipients), and an
 open, unsent case whose contact changed is repointed rather than duplicated.
-All 11 open cases now point at the verified addresses. The two placeholder
+All 11 open cases now point at the verified addresses.
+
+**Audit, 2026-09-22 (child `bc7fd56`): all six addresses pass.** Each was re-fetched
+and found verbatim on the official page, or on a page linked directly from it as
+the planning or zoning contact. The exact page URL and fetch date are now a comment
+on each entry in `business.yaml` and on the broker entry in `config/sources.yaml`.
+
+| Entry | Result | Where the address appears |
+|---|---|---|
+| Greenville | pass | Hodge's directory entry, linked from the Planning page's zoning-letter line. No departmental planning inbox exists (only business development and building permits) |
+| Winterville | pass | On the planning page itself |
+| Ayden | pass | On the planning page; already a departmental inbox |
+| Washington | pass | On the Development Services staff directory under Planning & Zoning |
+| Pitt County | pass, URL updated | The old directory URL now 302-redirects to the same department page on the same site; `source_url` updated to the final URL. The only departmental contact is a web form |
+| Ron Harrell & Associates | pass | Footer of the listings page and the home page | The two placeholder
 contact rows (`planning@greenvillenc.gov`, `planning@wintervillenc.com`) are
 unreferenced and harmless; delete them from the `contacts` table when
 convenient.
+
+## Change of location for the existing license
+
+The owner already holds an NC dealer license, so a new lot is a change of
+location, not a new license. Signing a lease does **not** mean sales can start
+there: the new lot must pass a state inspection first. Verified 2026-09-22 on
+primary sources; quotes are verbatim.
+
+Who: dealer licensing is now run by the **NC State Highway Patrol,
+Investigative Services Unit, Dealer Section**, not the DMV License & Theft
+Bureau. The old ncdot.gov dealer pages and LT forms return 404; current forms
+are Rev. 02/26 on ncshp.gov.
+
+| Step | Requirement | Source |
+|---|---|---|
+| Notify | A dealer who moves "shall immediately notify" the enforcement section of the change of location. No day count is given | 19A NCAC 03D .0217(l)(2) |
+| Inspection before selling | The dealer "shall not engage in the business of buying, selling, trading or manufacturing motor vehicles until the new location has been inspected and approved by an agent of the Division" | 19A NCAC 03D .0217(l)(2) |
+| Request the inspection | Through the ISU Portal: select "Other", then say you are modifying an existing dealership | ncshp.gov/investigative-services-unit |
+| Form | ISU-400, "Application for New Dealer License or Changes to Existing License", Address Change box | ISU-400 (Rev. 02/26) |
+| Fee | The statute says the Division "shall endorse the change of location on the license, without charge". The rule adds "additional fees, if any" | G.S. 20-290(a); .0217(l)(2) |
+| Zoning proof | The salesroom must comply with local zoning, with "written proof of same provided to the Division". The checklist lists a "Zoning approval letter". For Greenville that is the $50 zoning compliance letter from the Planning Division | .0217(h); ISU-415 |
+| Site first | "Site must be approved before submitting applications to the Dealer Section" | ISU-415 |
+
+What the new lot must have, from G.S. 20-286(6) and rule .0216:
+
+- **Office.** At least 96 sq ft of floor space in a permanent enclosed building. A tent, a temporary stand or a building on wheels does not count. The rule also requires it to be separate from any residence, with its own entrance.
+- **Sign.** Block letters at least three inches tall on a contrasting background, naming the business, on or right next to the office.
+- **Display area.** No minimum number of cars. On a shared lot, the dealer's vehicles must be displayed "separate and apart from vehicles of any other dealer".
+- **License.** Posted at the place of business, with the current salesperson list (G.S. 20-290).
+- **Hours and phone.** No posted-hours rule and no retail phone rule. The dealer must be reachable "at reasonable times".
+
+Order of operations for the owner: signed lease, then the zoning letter, then
+an ISU-400 address change and a portal inspection request. Start sales only
+after the inspection approves the lot.
+
+Sources (fetched 2026-09-22):
+- G.S. 20-286: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_20/GS_20-286.html
+- G.S. 20-290: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_20/GS_20-290.html
+- 19A NCAC 03D rules: http://reports.oah.state.nc.us/ncac/title%2019a%20-%20transportation/chapter%2003%20-%20division%20of%20motor%20vehicles/subchapter%20d/subchapter%20d%20rules.pdf
+- ISU-415, minimum dealer license requirements: https://ncshp.gov/sites/default/files/2026-02/ISU-415%20Minimum%20Dealer%20License%20Requirements.pdf
+- ISU-400, application or changes: https://www.ncshp.gov/sites/default/files/2026-02/ISU-400%20Application%20For%20New%20Dealer%20License%20or%20Changes%20To%20Existing%20License.pdf
+- ISU portal instructions: https://www.ncshp.gov/investigative-services-unit
+
+Two places the rule and the statute disagree. The rule wants the building
+"separate and apart from any ... other business", while G.S. 20-286(6) allows
+sharing it with other business uses. The rule keeps records "at least four
+years", while the ISU-400 form says five. When they conflict, follow the
+stricter one and ask the Dealer Section at the inspection.
+
+## Supabase security advisor (2026-09-22)
+
+Advisor ERROR: `public.spatial_ref_sys` has RLS disabled. This is PostGIS's
+coordinate-system table, and it is a real exposure: `anon` and
+`authenticated` hold SELECT, INSERT, UPDATE, DELETE and TRUNCATE on it through
+PostgREST. Anyone with the public anon key, which the dashboard ships, could
+delete or rewrite coordinate systems and break every geometry operation. No
+business data is in the table. The grants were made by `supabase_admin`, so
+REVOKE from the project's `postgres` role is a no-op, and RLS cannot be enabled
+on a table we don't own.
+
+Fix: migration `20260923000000_postgis_to_extensions.sql` in the child. It
+moves PostGIS into the `extensions` schema, which PostgREST does not expose,
+and recomputes the only dependents (`sites.geom`, `parcels.geom`, derived by
+trigger from lat/lon and stored GeoJSON). It also clears the `extension_in_public`
+warning and the `st_estimatedextent` anon-execute warnings. **Status: not yet
+applied live**, because the automated permission check blocked the production
+change. To apply it, approve the change in chat or paste the file into the
+Supabase SQL editor. The four "RLS enabled, no policy" INFO notices are
+intended: `contacts`, `listings`, `messages` and `raw_documents` hold emails
+and raw pages and are readable only with the service role.
 
 ## Scheduler (2026-09-18): Windows Task Scheduler on this PC
 
@@ -109,14 +213,16 @@ been watched for a few days.
 
 1. ~~Broker `contact_email`~~ done 2026-09-22.
 2. ~~Verified planning addresses~~ done 2026-09-22.
-3. Gmail OAuth for the owner's mailbox (`GMAIL_*` in `.env`). **Note:**
-   `DEALERSOURCE_PAUSE_SENDING` was removed from `.env` on 2026-09-22, so the
-   pipeline is live and only held back by the missing Gmail credentials. The
-   2026-09-22 evening run attempted 7 sends (4 rent to the broker, 3 zoning to
-   Greenville and Winterville planners); all failed at the Gmail token step and
-   nothing was recorded as sent. The moment `GMAIL_*` is filled, the next
-   05:30 run sends all queued mail. Put the pause line back first if the
-   templates should be reviewed before that.
+3. Gmail OAuth for the owner's mailbox (`GMAIL_*` in `.env`). `DEALERSOURCE_PAUSE_SENDING=1`
+   is back in `.env` (restored 2026-09-22 after an evening run without it tried
+   7 sends; all were refused for missing Gmail credentials, nothing left the
+   machine). It stays until the PM says otherwise. Every online run now does a
+   read-only mail preflight (access token plus mailbox check, logged as
+   `mail preflight ok`), and while paused it writes the exact would-send mail to
+   `agents/claude-solution/out/<date>/outbox-preview.md`. On 2026-09-22 that was
+   7 messages: 4 to the broker, 2 to Winterville planning, 1 to Greenville
+   zoning. Set `mail.sender_name` in `business.yaml` before unpausing; the
+   signature currently reads "Dealer Principal".
 4. Reddit script app credentials. Turns on the source most likely to surface
    cheap or shared lots.
 
