@@ -42,11 +42,14 @@ traffic, verified planning contacts) are what CoStar, Crexi, Placer and
 SiteZeus do not give a small dealer for free. The stack stays.
 
 1. **Listing discovery is thin by structure, not by bug.** CoStar (LoopNet) and
-   Crexi hold most commercial inventory and forbid crawling. Cheapest future
-   unlock: a LoopNet or Crexi saved-search email alert delivered to the owner's
-   Gmail, parsed by the pipeline's existing inbound poller. No scraping, no
-   terms problem, $0. Needs: a free account on the listing site, a saved search
-   for the area and price band, and an inbound parser for that alert format.
+   Crexi hold most commercial inventory and forbid crawling. Unlock **built
+   2026-09-22 (child `51fa1e4`, decision 28)**: sources `loopnet-alerts` and
+   `crexi-alerts` (kind `email_alert`) read saved-search alert emails from the
+   owner's Gmail over IMAP and turn each listing card into a listing. Nothing
+   is requested from either site; $0. Migration `source_kind_email_alert`
+   applied live the same night. Read-only IMAP check against the real mailbox
+   passed (0 alerts: no saved searches yet). **Waiting on the owner**, see
+   "What blocks a viable site now" item 5.
 2. **Outreach is hand-rolled.** At a handful of contacts a week that is right:
    templates, follow-up windows, bounce pause, stop handling and reply parsing
    already exist. If volume ever reaches hundreds of contacts, swap the mailer
@@ -241,6 +244,17 @@ been watched for a few days.
 4. Reddit: switched off by the PM on 2026-09-22. To turn it on, create a script app,
    set `REDDIT_CLIENT_ID`/`REDDIT_CLIENT_SECRET`, and set `enabled: true` on
    `reddit-eastern-nc`. It is the source most likely to surface cheap or shared lots.
+5. LoopNet and Crexi saved searches (owner, about 10 minutes, free). With the Gmail
+   address in `GMAIL_SENDER_ADDRESS`: create a free account on loopnet.com and on
+   crexi.com, search for lease around Greenville, NC (retail, land, flex/industrial),
+   cap the price near $1,000/mo, save the search and turn on daily email alerts. In
+   Gmail, add a filter for `from:(loopnet.com OR crexi.com)` with "Never send it to
+   Spam" (All Mail is read, Spam is not). The next 05:30 run picks the alerts up.
+   After the first real alert, check `discover.alert_emails` and
+   `discover.alert_cards_without_address` in `run.json`: the sender domains and link
+   patterns in `config/sources.yaml` are best guesses until then. Alerts rarely name
+   the broker's email, so these listings show "no leasing contact" until one is added
+   as a manual lead for the same address.
 
 ## Next steps, in order
 
