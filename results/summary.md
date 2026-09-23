@@ -69,6 +69,7 @@ dashboard reached functional parity.
 | 2026-09-17 | `4067537` | Final scores; decision recorded |
 | 2026-09-17 | this commit | `report.providers.crawler` enum gains `fetch` (plain HTTP crawler, zero hosting). Existing scores unaffected. |
 | 2026-09-18 | this commit | `sites[].in_search_area` may be `null` when drive time is unavailable online. Fixture sets always carry `drivetime.json`, so evaluator scores are unaffected. |
+| 2026-09-22 | this commit | `report.providers.crawler` enum gains `playwright` (local headless Chromium, $0; used only for sources marked `render: js`, default stays `fetch`). Offline runs never launch a browser, so existing scores are unaffected. |
 
 ## Next: production path for the selected solution
 
