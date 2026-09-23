@@ -10,7 +10,7 @@ git-ignored in the child repo.
 |---|---|---|
 | Supabase project | `dealersource`, ref `swpfyxcttsieexduxxrt`, us-east-1, org "ryanflash66's projects" | Free tier, $0/month at creation. API URL `https://swpfyxcttsieexduxxrt.supabase.co` |
 | Schema | migrations `init`, `rls`, `harden_functions` applied | 12 tables, 2 views, PostGIS, RLS on every table. Anon can read reports, sources, sites, parcels, evidence, cases, scores, runs. Nothing on listings, raw_documents, messages, contacts (they hold emails and raw pages). Trigger functions pinned to a fixed `search_path` |
-| Advisor status | one ERROR: `spatial_ref_sys` has no RLS | **Not a false positive** (corrected 2026-09-22): anon can write to it through the API. Fix is written but not yet applied; see "Supabase security advisor" below |
+| Advisor status | clean (2026-09-22) | Only the four intended "RLS enabled, no policy" INFO notices remain. The `spatial_ref_sys` ERROR was real (anon could write to it); fixed by moving PostGIS to `extensions`, see "Supabase security advisor" below |
 | Vercel project | `dealersource` on team `ryanflash66s-projects` (hobby) | Linked from the child repo. Env: `SUPABASE_URL`, `SUPABASE_ANON_KEY` (production). Build: `npm run dashboard:build`, output `dashboard/public` |
 | Dashboard | **https://dealersource.vercel.app** | Live. Reads Supabase directly; shows the empty state until the first pipeline run writes a report |
 | First online dry run | local, `DEALERSOURCE_PAUSE_SENDING=1`, JSON state | Completed with status ok, 0 messages sent, only external host contacted: `geocoding.geo.census.gov`. Discovery found 1 listing from the 1 source it could fetch; 4 sources refused by terms as designed; 3 sources errored for missing credentials (below) |
@@ -189,10 +189,10 @@ Fix: migration `20260923000000_postgis_to_extensions.sql` in the child. It
 moves PostGIS into the `extensions` schema, which PostgREST does not expose,
 and recomputes the only dependents (`sites.geom`, `parcels.geom`, derived by
 trigger from lat/lon and stored GeoJSON). It also clears the `extension_in_public`
-warning and the `st_estimatedextent` anon-execute warnings. **Status: not yet
-applied live**, because the automated permission check blocked the production
-change. To apply it, approve the change in chat or paste the file into the
-Supabase SQL editor. The four "RLS enabled, no policy" INFO notices are
+warning and the `st_estimatedextent` anon-execute warnings. **Status: applied
+live 2026-09-22** with the PM's approval. Verified: PostGIS in `extensions`, no
+`public.spatial_ref_sys`, 5/5 sites and 5/5 parcels with geometry recomputed,
+both GiST indexes rebuilt, advisor shows no ERROR or WARN. The four "RLS enabled, no policy" INFO notices are
 intended: `contacts`, `listings`, `messages` and `raw_documents` hold emails
 and raw pages and are readable only with the service role.
 
