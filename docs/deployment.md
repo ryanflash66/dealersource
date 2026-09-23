@@ -9,8 +9,8 @@ git-ignored in the child repo.
 | Piece | Where | Notes |
 |---|---|---|
 | Supabase project | `dealersource`, ref `swpfyxcttsieexduxxrt`, us-east-1, org "ryanflash66's projects" | Free tier, $0/month at creation. API URL `https://swpfyxcttsieexduxxrt.supabase.co` |
-| Schema | migrations `init`, `rls`, `harden_functions` applied | 12 tables, 2 views, PostGIS, RLS on every table. Anon can read reports, sources, sites, parcels, evidence, cases, scores, runs. Nothing on listings, raw_documents, messages, contacts (they hold emails and raw pages). Trigger functions pinned to a fixed `search_path`; PostGIS `st_estimatedextent` not callable by anon |
-| Advisor status | one ERROR left: `spatial_ref_sys` has no RLS | PostGIS system table owned by Supabase; known false positive, cannot be altered from the project role |
+| Schema | migrations `init`, `rls`, `harden_functions` applied | 12 tables, 2 views, PostGIS, RLS on every table. Anon can read reports, sources, sites, parcels, evidence, cases, scores, runs. Nothing on listings, raw_documents, messages, contacts (they hold emails and raw pages). Trigger functions pinned to a fixed `search_path` |
+| Advisor status | one ERROR: `spatial_ref_sys` has no RLS | **Not a false positive** (corrected 2026-09-22): anon can write to it through the API. Fix is written but not yet applied; see "Supabase security advisor" below |
 | Vercel project | `dealersource` on team `ryanflash66s-projects` (hobby) | Linked from the child repo. Env: `SUPABASE_URL`, `SUPABASE_ANON_KEY` (production). Build: `npm run dashboard:build`, output `dashboard/public` |
 | Dashboard | **https://dealersource.vercel.app** | Live. Reads Supabase directly; shows the empty state until the first pipeline run writes a report |
 | First online dry run | local, `DEALERSOURCE_PAUSE_SENDING=1`, JSON state | Completed with status ok, 0 messages sent, only external host contacted: `geocoding.geo.census.gov`. Discovery found 1 listing from the 1 source it could fetch; 4 sources refused by terms as designed; 3 sources errored for missing credentials (below) |
