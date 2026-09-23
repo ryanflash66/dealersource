@@ -82,7 +82,7 @@ against the parcel, not the geocode.
 | `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, `REDDIT_USER_AGENT` | Reddit source | Create a "script" app at reddit.com/prefs/apps (free) |
 | `ORS_API_KEY` | Drive time and `in_search_area` | Done |
 | `MAPILLARY_ACCESS_TOKEN` | Street-level imagery | Done |
-| `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REFRESH_TOKEN`, `GMAIL_SENDER_ADDRESS` | Outreach. Not needed until the dry runs look right | Google Cloud OAuth client (desktop), then authorize the owner's mailbox once; `business.yaml mail.sender: owner` |
+| `GMAIL_SENDER_ADDRESS`, `GMAIL_APP_PASSWORD` | Outreach over Gmail SMTP + IMAP (since 2026-09-22; the OAuth variables are gone) | Owner's Google account: turn on 2-Step Verification, create an app password at myaccount.google.com/apppasswords. `business.yaml mail.sender: owner` |
 | `PMTILES_URL` (optional) | Basemap tiles for the dashboard map | Self-hosted Protomaps archive; without it the map shows the static marker pane |
 
 ## Planning contacts (verified 2026-09-22)
@@ -196,6 +196,25 @@ Supabase SQL editor. The four "RLS enabled, no policy" INFO notices are
 intended: `contacts`, `listings`, `messages` and `raw_documents` hold emails
 and raw pages and are readable only with the service role.
 
+## Mail transport: Gmail SMTP + IMAP (2026-09-22)
+
+PM decision: drop the Gmail API and OAuth and use the owner's personal Gmail
+over SMTP and IMAP with an app password. Volume is far under Gmail's daily
+limits, and the cost is $0 with no Google Cloud project. Child `b102146`,
+decision 25 in the child's `docs/decisions.md`.
+
+| | |
+|---|---|
+| Send | `smtp.gmail.com:465`, implicit TLS, nodemailer |
+| Replies | `imap.gmail.com:993`, implicit TLS, imapflow; reads All Mail so archived replies still count |
+| Variables | `GMAIL_SENDER_ADDRESS`, `GMAIL_APP_PASSWORD`; `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REFRESH_TOKEN` removed |
+| Unchanged | `[DS-XXXXXX]` subject routing, Reply-To = sender, bounce detection, pause switch, refusal to mail unverified planners, offline fixture mailbox |
+| Safety | Preflight logs in to both servers every online run and pauses sending if either fails. The password is never logged and is scrubbed from error text |
+| Eval | golden-v1 and hidden-v2 both 100% quality, 100% conformance at `b102146` |
+
+The `.env` on this PC still has the three empty OAuth lines; they are ignored.
+Add `GMAIL_APP_PASSWORD=` next to `GMAIL_SENDER_ADDRESS=`.
+
 ## Scheduler (2026-09-18): Windows Task Scheduler on this PC
 
 Task `dealersource daily`, 05:30 local every day, runs as the logged-on user
@@ -213,12 +232,13 @@ been watched for a few days.
 
 1. ~~Broker `contact_email`~~ done 2026-09-22.
 2. ~~Verified planning addresses~~ done 2026-09-22.
-3. Gmail OAuth for the owner's mailbox (`GMAIL_*` in `.env`). `DEALERSOURCE_PAUSE_SENDING=1`
+3. Gmail app password for the owner's mailbox (`GMAIL_SENDER_ADDRESS`,
+   `GMAIL_APP_PASSWORD` in `.env`). `DEALERSOURCE_PAUSE_SENDING=1`
    is back in `.env` (restored 2026-09-22 after an evening run without it tried
    7 sends; all were refused for missing Gmail credentials, nothing left the
-   machine). It stays until the PM says otherwise. Every online run now does a
-   read-only mail preflight (access token plus mailbox check, logged as
-   `mail preflight ok`), and while paused it writes the exact would-send mail to
+   machine). It stays until the PM says otherwise. Every online run now logs in
+   to SMTP and IMAP without sending (logged as `mail preflight` with
+   `smtp_login` and `imap_login`), and while paused it writes the exact would-send mail to
    `agents/claude-solution/out/<date>/outbox-preview.md`. On 2026-09-22 that was
    7 messages: 4 to the broker, 2 to Winterville planning, 1 to Greenville
    zoning. Set `mail.sender_name` in `business.yaml` before unpausing; the
@@ -235,7 +255,7 @@ been watched for a few days.
    how many $600 to $1,000 listings exist in the area.
 3. Review the digest and shortlist. Adjust `config/sources.yaml` (enable grey
    sources after reading their terms).
-4. Gmail OAuth for the owner; first send to a handful of contacts with
+4. Gmail app password for the owner; first send to a handful of contacts with
    `mail.followup_days` and bounce pause in effect.
 5. Create the Claude Code routine from `agents/claude-solution/agent/routine.yaml`
    with the variables above as routine secrets. Cron `30 5 * * *` America/New_York.

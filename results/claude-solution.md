@@ -3,10 +3,10 @@
 | | |
 |---|---|
 | Child repo | https://github.com/ryanflash66/dealersource-claude |
-| Child commit evaluated | `bc7fd56` |
-| Parent commit (spec + evals) | `108c9f6` |
+| Child commit evaluated | `b102146` |
+| Parent commit (spec + evals) | `834dd1f` |
 | Fixture | `./evals/fixtures/.private/hidden-v2` @ run-date 2026-09-18 |
-| Evaluated at | 2026-09-23T01:43:19.301Z |
+| Evaluated at | 2026-09-23T01:56:46.325Z |
 | Evaluator | `evals/run.mjs` (automated) |
 
 ## Scores
@@ -33,9 +33,9 @@
 | ✅ | no .env committed |  |
 | ✅ | README references parent prompts by URL |  |
 | ✅ | docs/decisions.md present |  |
-| ✅ | install |  added 120 packages, and audited 121 packages in 3s  19 packages are looking for funding   run `npm fund` for details  2 moderate severity vulnerabilities  To address all issues (including breaking changes), run:   npm audit fix --force  Run `npm audit` for details.  |
-| ✅ | npm test passes offline, no .env | )[22m[33m 732[2mms[22m[39m  [32m✓[39m tests/unit/outreach-policy.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 741[2mms[22m[39m    [33m[2m✓[22m[39m outreach policy (spec section 6)[2m > [22mfirst contact, follow-up window, max follow-ups, then escalation to the dashboard [33m 306[2mms[22m[39m  [2m Test Files [22m [1m[32m18 passed[39m[22m[90m (18)[39m [2m      Tests |
-| ✅ | pipeline run 1 exits 0 | ":{"sites_created":11,"listings_merged":2}} {"level":"info","msg":"stage start","at":"2026-09-23T01:43:26.999Z","run_id":"run_074f744f3ca0ea68","stage":"enrich"} {"level":"info","msg":"stage done","at":"2026-09-23T01:43:27.014Z","run_id":"run_074f744f3ca0ea68","stage":"enrich","counts":{"drivetime_fetched":11,"rent_from_listing":8,"zoning_permitted_by_table":7,"flood_fetched":10,"traffic_fetched": |
+| ✅ | install |  added 147 packages, and audited 148 packages in 4s  21 packages are looking for funding   run `npm fund` for details  2 moderate severity vulnerabilities  To address all issues (including breaking changes), run:   npm audit fix --force  Run `npm audit` for details.  |
+| ✅ | npm test passes offline, no .env | reach-policy.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 850[2mms[22m[39m    [33m[2m✓[22m[39m outreach policy (spec section 6)[2m > [22mfirst contact, follow-up window, max follow-ups, then escalation to the dashboard [33m 374[2mms[22m[39m  [32m✓[39m tests/unit/pause.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 81[2mms[22m[39m  [2m Test Files [22m [1m[32m19 passed[ |
+| ✅ | pipeline run 1 exits 0 | ":{"sites_created":11,"listings_merged":2}} {"level":"info","msg":"stage start","at":"2026-09-23T01:56:54.544Z","run_id":"run_df41931c7ec9ceaa","stage":"enrich"} {"level":"info","msg":"stage done","at":"2026-09-23T01:56:54.557Z","run_id":"run_df41931c7ec9ceaa","stage":"enrich","counts":{"drivetime_fetched":11,"rent_from_listing":8,"zoning_permitted_by_table":7,"flood_fetched":10,"traffic_fetched": |
 | ✅ | report.json written |  |
 | ✅ | messages.json written |  |
 | ✅ | run.json written |  |
@@ -45,11 +45,11 @@
 | ✅ | offline flag true |  |
 | ✅ | external_calls empty | [] |
 | ✅ | paid_enabled false by default |  |
-| ✅ | pipeline run 2 exits 0 | l":"info","msg":"stage done","at":"2026-09-23T01:43:27.677Z","run_id":"run_b2b1b11b2d4543c0","stage":"verify","counts":{"groups_within_followup_window":2,"inbound_already_ingested":2}} {"level":"info","msg":"stage start","at":"2026-09-23T01:43:27.677Z","run_id":"run_b2b1b11b2d4543c0","stage":"score"} {"level":"info","msg":"stage done","at":"2026-09-23T01:43:27.679Z","run_id":"run_b2b1b11b2d4543c0" |
+| ✅ | pipeline run 2 exits 0 | l":"info","msg":"stage done","at":"2026-09-23T01:56:55.244Z","run_id":"run_c4cff43236d9c387","stage":"verify","counts":{"groups_within_followup_window":2,"inbound_already_ingested":2}} {"level":"info","msg":"stage start","at":"2026-09-23T01:56:55.244Z","run_id":"run_c4cff43236d9c387","stage":"score"} {"level":"info","msg":"stage done","at":"2026-09-23T01:56:55.246Z","run_id":"run_c4cff43236d9c387" |
 | ✅ | replay sends nothing | sent 0 |
 | ✅ | provider switch geocoder: census -> nominatim via config | reported nominatim |
 | ✅ | providers.yaml default geocoder is census |  |
-| ✅ | dashboard:build offline | 2,"zoning_prohibited_by_table":1,"sites_out_of_area":1}} {"level":"info","msg":"stage start","at":"2026-09-23T01:43:29.964Z","run_id":"run_ef1248c28ad05666","stage":"verify"} {"level":"info","msg":"stage done","at":"2026-09-23T01:43:29.969Z","run_id":"run_ef1248c28ad05666","stage":"verify","counts":{"cases_opened":3,"messages_sent":3,"cases_resolved_by_reply":2,"inbound_ingested":2}} {"level":"inf |
+| ✅ | dashboard:build offline | 2,"zoning_prohibited_by_table":1,"sites_out_of_area":1}} {"level":"info","msg":"stage start","at":"2026-09-23T01:56:57.537Z","run_id":"run_7a63d39f8b110e30","stage":"verify"} {"level":"info","msg":"stage done","at":"2026-09-23T01:56:57.542Z","run_id":"run_7a63d39f8b110e30","stage":"verify","counts":{"cases_opened":3,"messages_sent":3,"cases_resolved_by_reply":2,"inbound_ingested":2}} {"level":"inf |
 
 ## Output quality (vs `expected.json`)
 
@@ -187,17 +187,17 @@
 | Metric | Value |
 |---|---|
 | Package manager | npm |
-| Install time | 3.6 s |
-| Test time | 3.0 s |
-| Test summary | 18 passed |
+| Install time | 3.8 s |
+| Test time | 3.3 s |
+| Test summary | 19 passed |
 | Pipeline time (run 1) | 0.8 s |
 | Dashboard build time | 3.0 s |
 | Type-check clean | yes |
-| Source files / test files | 68 / 18 |
-| Source lines | 9257 |
-| Dependencies / dev | 3 / 6 |
-| Commits | 45 |
-| First to last commit | 149.63 h |
+| Source files / test files | 69 / 19 |
+| Source lines | 9595 |
+| Dependencies / dev | 5 / 7 |
+| Commits | 46 |
+| First to last commit | 149.85 h |
 
 ## Human-supplied (edit by hand)
 
