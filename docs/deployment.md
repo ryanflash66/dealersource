@@ -25,7 +25,7 @@ contacted: Census geocoder, pittcountync.gov, ronharrellandassociates.com, NC On
 | City/county "available properties" pages | The URLs the agent guessed returned 404. The real Pitt County page (`/1172/Sites-Buildings`) is static but lists only Technology Enterprise Center office rooms; both governments hand property search to ZoomProspector, whose robots.txt disallows every crawler except Google and Bing. Refused by policy. Greenville's page is gone; source disabled |
 | Aggregators | LoopNet, Crexi, Craigslist, Facebook: prohibited by terms (known). CommercialCafe and CityFeet return 403 to a non-browser agent. Rofo allows crawling and its terms are silent, but the page is JavaScript-rendered, so a plain fetch sees nothing; recorded as a candidate for a headless crawler only |
 | Local broker websites | Ron Harrell & Associates (Greenville) is static HTML with about 10 listings and no prices. Added and fetched. OpenStreetMap-based broker discovery (`sources:discover`) found one candidate near home base, a residential team; OSM coverage of broker websites here is poor |
-| Reddit | Blocked on the free script-app credentials (`REDDIT_*` in `.env`) |
+| Reddit | Switched off by the PM on 2026-09-22 (`enabled: false` in `config/sources.yaml`); no Reddit API app yet |
 | Result | **Full enrichment online, child `2c717b0`, 2026-09-18: exit 0, 42 evidence rows, $0.** All 5 sites inside the search area with real drive times from OpenRouteService (4 to 13 min from downtown Greenville), street imagery from Mapillary for 3 of 5, scores computed (0.31 to 0.59). Gates: flood pass on all 5; zoning pass for 2100 Dickinson Ave (CH), fail for 1717 W 5th St (MO), pending for 3 awaiting planning answers; rent pending on all 5 because no listing states a price and outreach is paused. Nothing viable yet, by design: viability needs a written rent and a zoning answer, both of which need email |
 
 Conclusion so far: compliant, free, automated discovery of $600 to $1,000 lots in
@@ -243,8 +243,9 @@ been watched for a few days.
    7 messages: 4 to the broker, 2 to Winterville planning, 1 to Greenville
    zoning. Set `mail.sender_name` in `business.yaml` before unpausing; the
    signature currently reads "Dealer Principal".
-4. Reddit script app credentials. Turns on the source most likely to surface
-   cheap or shared lots.
+4. Reddit: switched off by the PM on 2026-09-22. To turn it on, create a script app,
+   set `REDDIT_CLIENT_ID`/`REDDIT_CLIENT_SECRET`, and set `enabled: true` on
+   `reddit-eastern-nc`. It is the source most likely to surface cheap or shared lots.
 
 ## Next steps, in order
 
