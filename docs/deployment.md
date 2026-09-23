@@ -232,17 +232,12 @@ been watched for a few days.
 
 1. ~~Broker `contact_email`~~ done 2026-09-22.
 2. ~~Verified planning addresses~~ done 2026-09-22.
-3. Gmail app password for the owner's mailbox (`GMAIL_SENDER_ADDRESS`,
-   `GMAIL_APP_PASSWORD` in `.env`). `DEALERSOURCE_PAUSE_SENDING=1`
-   is back in `.env` (restored 2026-09-22 after an evening run without it tried
-   7 sends; all were refused for missing Gmail credentials, nothing left the
-   machine). It stays until the PM says otherwise. Every online run now logs in
-   to SMTP and IMAP without sending (logged as `mail preflight` with
-   `smtp_login` and `imap_login`), and while paused it writes the exact would-send mail to
-   `agents/claude-solution/out/<date>/outbox-preview.md`. On 2026-09-22 that was
-   7 messages: 4 to the broker, 2 to Winterville planning, 1 to Greenville
-   zoning. Set `mail.sender_name` in `business.yaml` before unpausing; the
-   signature currently reads "Dealer Principal".
+3. ~~Gmail app password, signature, unpause~~ done 2026-09-22. SMTP and IMAP logins verified;
+   emails sign as Ryan Balungeli, Serenity Auto Gallery (the templates say the sender works
+   with the licensed dealership). The PM lifted the pause the same evening: the next 05:30
+   run sends the queued mail (7 messages on 2026-09-22: 4 to the broker, 2 to Winterville
+   planning, 1 to Greenville zoning). To stop sending again, add
+   `DEALERSOURCE_PAUSE_SENDING=1` to `.env` or set `mail.paused: true`.
 4. Reddit: switched off by the PM on 2026-09-22. To turn it on, create a script app,
    set `REDDIT_CLIENT_ID`/`REDDIT_CLIENT_SECRET`, and set `enabled: true` on
    `reddit-eastern-nc`. It is the source most likely to surface cheap or shared lots.
