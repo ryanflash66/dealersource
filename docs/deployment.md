@@ -48,8 +48,14 @@ SiteZeus do not give a small dealer for free. The stack stays.
    owner's Gmail over IMAP and turn each listing card into a listing. Nothing
    is requested from either site; $0. Migration `source_kind_email_alert`
    applied live the same night. Read-only IMAP check against the real mailbox
-   passed (0 alerts: no saved searches yet). **Waiting on the owner**, see
-   "What blocks a viable site now" item 5.
+   passed (0 alerts: no saved searches yet). Owner set up the saved searches
+   2026-09-23. First real mail the same day: Crexi saved-search alerts come from
+   `notifications@search.crexi.com`, Crexi "featured listings" mail from
+   `emails@pro.crexi.com` (both kept: the featured mail carried 10 Greenville
+   lease listings). Crexi links are compressed tracking tokens, now decoded
+   locally (child `f54ff58`); re-parsing those two emails gave 11 listings with
+   correct addresses and listing URLs. LoopNet has sent only its welcome mail so
+   far (`welcome@loopnet.com`); check its first alert.
 2. **Outreach is hand-rolled.** At a handful of contacts a week that is right:
    templates, follow-up windows, bounce pause, stop handling and reply parsing
    already exist. If volume ever reaches hundreds of contacts, swap the mailer
