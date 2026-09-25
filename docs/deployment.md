@@ -62,7 +62,11 @@ SiteZeus do not give a small dealer for free. The stack stays.
    "View Listing" button (`www.loopnet.com/listing/<id>`). Fixed in child
    `e55436a`: it now parses to a clean address and listing URL, with no rent and
    no contact. Crexi's saved search reaches Raleigh, Durham, Dunn, Goldsboro and
-   Morehead City, so the owner should narrow its area.
+   Morehead City, so the owner should narrow its area. Unresolved Greenville
+   alert listings: child `93aa8df` falls back to the one NC OneMap parcel whose
+   site address matches, which covers 1370 Sugg Pkwy (not in Census) and
+   3201 N Memorial Dr (point on no parcel). "0 Johns Hopkins Dr" (3 parcels
+   numbered 0) and "801 Mumford Rd" (no such parcel) stay unresolved on purpose.
 2. **Outreach is hand-rolled.** At a handful of contacts a week that is right:
    templates, follow-up windows, bounce pause, stop handling and reply parsing
    already exist. If volume ever reaches hundreds of contacts, swap the mailer
