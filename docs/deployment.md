@@ -55,7 +55,14 @@ SiteZeus do not give a small dealer for free. The stack stays.
    lease listings). Crexi links are compressed tracking tokens, now decoded
    locally (child `f54ff58`); re-parsing those two emails gave 11 listings with
    correct addresses and listing URLs. LoopNet has sent only its welcome mail so
-   far (`welcome@loopnet.com`); check its first alert.
+   far (`welcome@loopnet.com`); check its first alert. First LoopNet alert
+   2026-09-24 from `noreply@loopnet.com` (alert_from unchanged). It gave 0 cards:
+   the card line is bar-separated ("Name | 301 S Evans St | Greenville, NC"),
+   and every link is an encrypted SendGrid redirect, except the Outlook-only
+   "View Listing" button (`www.loopnet.com/listing/<id>`). Fixed in child
+   `e55436a`: it now parses to a clean address and listing URL, with no rent and
+   no contact. Crexi's saved search reaches Raleigh, Durham, Dunn, Goldsboro and
+   Morehead City, so the owner should narrow its area.
 2. **Outreach is hand-rolled.** At a handful of contacts a week that is right:
    templates, follow-up windows, bounce pause, stop handling and reply parsing
    already exist. If volume ever reaches hundreds of contacts, swap the mailer

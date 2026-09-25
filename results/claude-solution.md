@@ -3,10 +3,10 @@
 | | |
 |---|---|
 | Child repo | https://github.com/ryanflash66/dealersource-claude |
-| Child commit evaluated | `f54ff58` |
-| Parent commit (spec + evals) | `9799130` |
+| Child commit evaluated | `e55436a` |
+| Parent commit (spec + evals) | `85e9549` |
 | Fixture | `./evals/fixtures/golden-v1` @ run-date 2026-09-16 |
-| Evaluated at | 2026-09-23T23:59:01.129Z |
+| Evaluated at | 2026-09-25T00:47:14.998Z |
 | Evaluator | `evals/run.mjs` (automated) |
 
 ## Scores
@@ -33,9 +33,9 @@
 | ✅ | no .env committed |  |
 | ✅ | README references parent prompts by URL |  |
 | ✅ | docs/decisions.md present |  |
-| ✅ | install |  added 149 packages, and audited 150 packages in 4s  21 packages are looking for funding   run `npm fund` for details  2 moderate severity vulnerabilities  To address all issues (including breaking changes), run:   npm audit fix --force  Run `npm audit` for details.  |
-| ✅ | npm test passes offline, no .env | ests[22m[2m)[22m[32m 102[2mms[22m[39m  [32m✓[39m tests/unit/config.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 307[2mms[22m[39m  [32m✓[39m tests/unit/pause.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 104[2mms[22m[39m  [32m✓[39m tests/unit/unknown-distance.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 229[2mms[22m[39m  [2m Test Files [22m [1m[32m22 passed[3 |
-| ✅ | pipeline run 1 exits 0 | es_created":8,"listings_merged":2}} {"level":"info","msg":"stage start","at":"2026-09-23T23:59:09.763Z","run_id":"run_ae7195dd41fa14f6","stage":"enrich"} {"level":"info","msg":"stage done","at":"2026-09-23T23:59:09.776Z","run_id":"run_ae7195dd41fa14f6","stage":"enrich","counts":{"drivetime_fetched":8,"rent_from_listing":6,"zoning_permitted_by_table":4,"flood_fetched":7,"traffic_fetched":7,"competi |
+| ✅ | install |  added 176 packages, and audited 177 packages in 4s  23 packages are looking for funding   run `npm fund` for details  2 moderate severity vulnerabilities  To address all issues (including breaking changes), run:   npm audit fix --force  Run `npm audit` for details.  |
+| ✅ | npm test passes offline, no .env | sts[22m[2m)[22m[33m 343[2mms[22m[39m  [32m✓[39m tests/unit/sources.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 114[2mms[22m[39m  [32m✓[39m tests/unit/pause.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 120[2mms[22m[39m  [32m✓[39m tests/unit/unknown-distance.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 254[2mms[22m[39m  [2m Test Files [22m [1m[32m24 passed[3 |
+| ✅ | pipeline run 1 exits 0 | es_created":8,"listings_merged":2}} {"level":"info","msg":"stage start","at":"2026-09-25T00:47:24.703Z","run_id":"run_a53fed907ed549c0","stage":"enrich"} {"level":"info","msg":"stage done","at":"2026-09-25T00:47:24.716Z","run_id":"run_a53fed907ed549c0","stage":"enrich","counts":{"drivetime_fetched":8,"rent_from_listing":6,"zoning_permitted_by_table":4,"flood_fetched":7,"traffic_fetched":7,"competi |
 | ✅ | report.json written |  |
 | ✅ | messages.json written |  |
 | ✅ | run.json written |  |
@@ -45,11 +45,11 @@
 | ✅ | offline flag true |  |
 | ✅ | external_calls empty | [] |
 | ✅ | paid_enabled false by default |  |
-| ✅ | pipeline run 2 exits 0 | vel":"info","msg":"stage done","at":"2026-09-23T23:59:10.481Z","run_id":"run_6f4b28fdf60da50f","stage":"verify","counts":{"groups_within_followup_window":1,"inbound_already_ingested":2}} {"level":"info","msg":"stage start","at":"2026-09-23T23:59:10.481Z","run_id":"run_6f4b28fdf60da50f","stage":"score"} {"level":"info","msg":"stage done","at":"2026-09-23T23:59:10.482Z","run_id":"run_6f4b28fdf60da50 |
+| ✅ | pipeline run 2 exits 0 | vel":"info","msg":"stage done","at":"2026-09-25T00:47:25.433Z","run_id":"run_d01ebdcf7d78b980","stage":"verify","counts":{"groups_within_followup_window":1,"inbound_already_ingested":2}} {"level":"info","msg":"stage start","at":"2026-09-25T00:47:25.433Z","run_id":"run_d01ebdcf7d78b980","stage":"score"} {"level":"info","msg":"stage done","at":"2026-09-25T00:47:25.435Z","run_id":"run_d01ebdcf7d78b98 |
 | ✅ | replay sends nothing | sent 0 |
 | ✅ | provider switch geocoder: census -> nominatim via config | reported nominatim |
 | ✅ | providers.yaml default geocoder is census |  |
-| ✅ | dashboard:build offline | ited_by_table":1,"sites_out_of_area":1}} {"level":"info","msg":"stage start","at":"2026-09-23T23:59:12.912Z","run_id":"run_02e79776e77fc6c5","stage":"verify"} {"level":"info","msg":"stage done","at":"2026-09-23T23:59:12.917Z","run_id":"run_02e79776e77fc6c5","stage":"verify","counts":{"cases_opened":3,"messages_sent":3,"emails_sent":3,"cases_resolved_by_reply":2,"inbound_ingested":2}} {"level":"inf |
+| ✅ | dashboard:build offline | ited_by_table":1,"sites_out_of_area":1}} {"level":"info","msg":"stage start","at":"2026-09-25T00:47:27.718Z","run_id":"run_d1bcae4a9f38f26c","stage":"verify"} {"level":"info","msg":"stage done","at":"2026-09-25T00:47:27.723Z","run_id":"run_d1bcae4a9f38f26c","stage":"verify","counts":{"cases_opened":3,"messages_sent":3,"emails_sent":3,"cases_resolved_by_reply":2,"inbound_ingested":2}} {"level":"inf |
 
 ## Output quality (vs `expected.json`)
 
@@ -151,17 +151,17 @@
 | Metric | Value |
 |---|---|
 | Package manager | npm |
-| Install time | 4.0 s |
-| Test time | 3.4 s |
-| Test summary | 22 passed |
+| Install time | 4.5 s |
+| Test time | 3.5 s |
+| Test summary | 24 passed |
 | Pipeline time (run 1) | 0.8 s |
-| Dashboard build time | 3.2 s |
+| Dashboard build time | 3.1 s |
 | Type-check clean | yes |
-| Source files / test files | 75 / 22 |
-| Source lines | 11203 |
-| Dependencies / dev | 6 / 7 |
-| Commits | 54 |
-| First to last commit | 171.89 h |
+| Source files / test files | 81 / 24 |
+| Source lines | 12260 |
+| Dependencies / dev | 6 / 10 |
+| Commits | 59 |
+| First to last commit | 196.69 h |
 
 ## Human-supplied (edit by hand)
 
