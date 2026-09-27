@@ -119,6 +119,12 @@ pages recorded as `source_url`:
 | Ayden | Town Planner inbox | Shared inbox on the Planning & Zoning page |
 | Washington | Jeff Huss, Zoning / Code Enforcement Officer | Development Services staff directory |
 | Pitt County | Jonas Hill, Planning & Development Director | Department page offers only a web form; the directory publishes this address |
+| Tarboro (added 2026-09-27) | Catherine Grimm, Director of Planning and Economic Development | Planning & Building Inspections staff directory; no department inbox |
+| Rocky Mount (added 2026-09-27) | Development Services inbox (`devserv@`) | Planning & Zoning page; departmental |
+
+Not added on 2026-09-27, because neither publishes a planning or zoning address (not guessed):
+Goldsboro, phone (919) 580-4313, and the Village of Simpson, Town Hall 252-757-1430. Their
+zoning questions stay on the dashboard for a phone call.
 
 The broker source `ron-harrell-commercial` now carries the `contact_email`
 published in the broker's site footer.
