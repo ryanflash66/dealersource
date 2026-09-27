@@ -1,6 +1,6 @@
 # Deployment state (selected solution: claude-solution)
 
-Last updated 2026-09-22. No secrets in this file. Secrets live only in Vercel
+Last updated 2026-09-27. No secrets in this file. Secrets live only in Vercel
 project settings, the scheduled-agent environment, and a local `.env` that is
 git-ignored in the child repo.
 
@@ -9,10 +9,10 @@ git-ignored in the child repo.
 | Piece | Where | Notes |
 |---|---|---|
 | Supabase project | `dealersource`, ref `swpfyxcttsieexduxxrt`, us-east-1, org "ryanflash66's projects" | Free tier, $0/month at creation. API URL `https://swpfyxcttsieexduxxrt.supabase.co` |
-| Schema | migrations `init`, `rls`, `harden_functions` applied | 12 tables, 2 views, PostGIS, RLS on every table. Anon can read reports, sources, sites, parcels, evidence, cases, scores, runs. Nothing on listings, raw_documents, messages, contacts (they hold emails and raw pages). Trigger functions pinned to a fixed `search_path` |
+| Schema | migrations applied live (Supabase names): `init`, `rls`, `harden_functions`, `source_contact_enrich_warnings`, `scores_in_search_area_nullable`, `postgis_to_extensions`, `source_kind_email_alert`. Live versions are apply timestamps, not the child file names (`20260918000000`, `20260918000100`, `20260923000000`, `20260923000100`); `harden_functions` has no child file | 12 tables, 2 views, PostGIS, RLS on every table. Anon can read reports, sources, sites, parcels, evidence, cases, scores, runs. Nothing on listings, raw_documents, messages, contacts (they hold emails and raw pages). Trigger functions pinned to a fixed `search_path` |
 | Advisor status | clean (2026-09-22) | Only the four intended "RLS enabled, no policy" INFO notices remain. The `spatial_ref_sys` ERROR was real (anon could write to it); fixed by moving PostGIS to `extensions`, see "Supabase security advisor" below |
 | Vercel project | `dealersource` on team `ryanflash66s-projects` (hobby) | Linked from the child repo. Env: `SUPABASE_URL`, `SUPABASE_ANON_KEY` (production). Build: `npm run dashboard:build`, output `dashboard/public` |
-| Dashboard | **https://dealersource.vercel.app** | Live. Reads Supabase directly; shows the empty state until the first pipeline run writes a report |
+| Dashboard | **https://dealersource.vercel.app** | Live. Reads Supabase directly; a report lands every day (21 `reports` rows by 2026-09-27, the first on 2026-09-17) |
 | First online dry run | local, `DEALERSOURCE_PAUSE_SENDING=1`, JSON state | Completed with status ok, 0 messages sent, only external host contacted: `geocoding.geo.census.gov`. Discovery found 1 listing from the 1 source it could fetch; 4 sources refused by terms as designed; 3 sources errored for missing credentials (below) |
 
 ## Coverage findings from the first online runs (2026-09-18)
@@ -83,7 +83,7 @@ ones, verified by live query; the child repo is being updated to use them.
 | Greenville zoning | `gisonline.greenvillenc.gov/arcgis/rest/services/OpenData/MapServer/21` | Field `ZONE` (CH, CG, IU, RA20, ...). Layer 20 is the ETJ boundary |
 | Pitt County zoning (unincorporated) | `gis.pittcountync.gov/gis/rest/services/PittOpenData/ZoningPitt/MapServer/0` | Field `ZONE`. No features inside town limits |
 | Winterville, Ayden, Washington zoning | none found | Zoning stays pending and goes to the planning email once verified |
-| NCDOT traffic (AADT) | `services.arcgis.com/NuWFvHYDMVmmxMeM/arcgis/rest/services/NCDOT_AADT_Stations/FeatureServer/0` | ArcGIS Online, owner TrafficSurvey.NCDOT.GOV. Point stations, string columns `AADT_2002`..`AADT_2022`, `ROUTE`, `LOCATION`. The `gis11.services.ncdot.gov` URL the solution guessed does not exist |
+| NCDOT traffic (AADT) | `services.arcgis.com/NuWFvHYDMVmmxMeM/arcgis/rest/services/NCDOT__2024_AADT_Stations_published_September_2025/FeatureServer/0` (primary, `AADT_2002`..`AADT_2024`, road text in `Location`); fallback `.../NCDOT_AADT_Stations/FeatureServer/0` (through `AADT_2022`, `ROUTE`, `LOCATION`) | ArcGIS Online, owner TrafficSurvey.NCDOT.GOV. Point stations, string columns with blanks for years without a count. The `gis11.services.ncdot.gov` URL the solution guessed does not exist |
 | FEMA flood | `hazards.fema.gov` NFHL | Worked first time; flood fetched for all five sites |
 | Pitt County parcels fallback | `gis.pittcountync.gov/gis/rest/services/PittOpenData/CadastralPitt/MapServer/0` | Fields `NCPIN`, `OwnerName`, `Municipality`, `Acres` |
 
@@ -96,13 +96,13 @@ against the parcel, not the geocode.
 
 | Variable | Why it is needed | How to get it |
 |---|---|---|
-| `SUPABASE_SERVICE_ROLE_KEY` | Pipeline writes to the database | Supabase dashboard, project `dealersource`, Project Settings, API, "service_role" key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Pipeline writes to the database | Done |
 | `DEALERSOURCE_HOME_BASE` | Set to `200 W 5th St, Greenville, NC 27858` (Greenville City Hall, a public downtown anchor; no home address used). The Census geocoder needs a street address, so the bare city/zip placeholder did not geocode | Done |
-| `ANYCRAWL_URL` (optional) | Only for JavaScript-heavy sites. The default crawler is now a plain HTTP fetch that needs no hosting and covers the static town and county pages | Not required. Self-host AnyCrawl later only if measured coverage shows the good listings live on JavaScript-rendered broker sites |
-| `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, `REDDIT_USER_AGENT` | Reddit source | Create a "script" app at reddit.com/prefs/apps (free) |
+| `ANYCRAWL_URL` (optional) | Not needed | The plain `fetch` crawler covers static pages and local Playwright (child `991fdc9`) renders sources marked `render: js`; nothing to host |
+| `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, `REDDIT_USER_AGENT` | Reddit source (switched off by the PM 2026-09-22) | Only if Reddit is turned back on: a "script" app at reddit.com/prefs/apps (free) |
 | `ORS_API_KEY` | Drive time and `in_search_area` | Done |
 | `MAPILLARY_ACCESS_TOKEN` | Street-level imagery | Done |
-| `GMAIL_SENDER_ADDRESS`, `GMAIL_APP_PASSWORD` | Outreach over Gmail SMTP + IMAP (since 2026-09-22; the OAuth variables are gone) | Owner's Google account: turn on 2-Step Verification, create an app password at myaccount.google.com/apppasswords. `business.yaml mail.sender: owner` |
+| `GMAIL_SENDER_ADDRESS`, `GMAIL_APP_PASSWORD` | Outreach over Gmail SMTP + IMAP (since 2026-09-22; the OAuth variables are gone) | Done; both logins verified by the preflight on every run |
 | `PMTILES_URL` (optional) | Basemap tiles for the dashboard map | Self-hosted Protomaps archive; without it the map shows the static marker pane |
 
 ## Planning contacts (verified 2026-09-22)
@@ -147,10 +147,14 @@ on each entry in `business.yaml` and on the broker entry in `config/sources.yaml
 | Ayden | pass | On the planning page; already a departmental inbox |
 | Washington | pass | On the Development Services staff directory under Planning & Zoning |
 | Pitt County | pass, URL updated | The old directory URL now 302-redirects to the same department page on the same site; `source_url` updated to the final URL. The only departmental contact is a web form |
-| Ron Harrell & Associates | pass | Footer of the listings page and the home page | The two placeholder
-contact rows (`planning@greenvillenc.gov`, `planning@wintervillenc.com`) are
-unreferenced and harmless; delete them from the `contacts` table when
-convenient.
+| Ron Harrell & Associates | pass | Footer of the listings page and the home page |
+
+The broker's address was correct on its site but turned out to be undeliverable
+(see "What blocks a viable site now").
+
+Still open: the two placeholder contact rows (`planning@greenvillenc.gov`,
+`planning@wintervillenc.com`) are unreferenced and harmless but still in the
+`contacts` table as of 2026-09-27; delete them when convenient.
 
 ## Change of location for the existing license
 
@@ -248,9 +252,9 @@ Task `dealersource daily`, 05:30 local every day, runs as the logged-on user
 missed, one-hour limit. Action: `powershell -NoProfile -ExecutionPolicy Bypass
 -File agents/claude-solution/scripts/run-daily.ps1`. The script pulls `main`,
 runs `npm ci` only if the commit changed, loads the git-ignored `.env`, runs
-`tsx src/cli.ts run --out out/<date> --run-date <date>` (calling tsx directly, because `npm.cmd` launched from PowerShell drops every argument after `--`), and appends to
-`out/logs/<date>.log`. Sending stays paused until `DEALERSOURCE_PAUSE_SENDING`
-is removed from `.env`. Requirements: this PC on or asleep (not shut down) and
+`tsx src/cli.ts run --out out/<date> --run-date <date>` (calling tsx directly, because `npm` launched from PowerShell, the `npm.ps1` shim, swallows the `--` so the flags never reach the CLI; `npm.cmd` passes them), and appends to
+`out/logs/<date>.log`. Sending has been live since the 2026-09-23 05:30 run;
+`DEALERSOURCE_PAUSE_SENDING=1` in `.env` or `mail.paused: true` pauses it again. Requirements: this PC on or asleep (not shut down) and
 the user logged on. Move to the Claude Code cloud routine once outreach has
 been watched for a few days.
 
@@ -267,7 +271,9 @@ been watched for a few days.
 4. Reddit: switched off by the PM on 2026-09-22. To turn it on, create a script app,
    set `REDDIT_CLIENT_ID`/`REDDIT_CLIENT_SECRET`, and set `enabled: true` on
    `reddit-eastern-nc`. It is the source most likely to surface cheap or shared lots.
-5. LoopNet and Crexi saved searches (owner, about 10 minutes, free). With the Gmail
+5. ~~LoopNet and Crexi saved searches~~ set up 2026-09-23; the alerts produced most of
+   the 28 sites on record by 2026-09-27. Original instructions, kept for reference:
+   LoopNet and Crexi saved searches (owner, about 10 minutes, free). With the Gmail
    address in `GMAIL_SENDER_ADDRESS`: create a free account on loopnet.com and on
    crexi.com, search for lease around Greenville, NC (retail, land, flex/industrial),
    cap the price near $1,000/mo, save the search and turn on daily email alerts. In
@@ -279,16 +285,30 @@ been watched for a few days.
    the broker's email, so these listings show "no leasing contact" until one is added
    as a manual lead for the same address.
 
+### Outreach results so far (2026-09-27)
+
+First live emails on 2026-09-23. In the `messages` table: 4 outbound delivered (all to
+planning departments), 5 bounced (all to the one broker address), 7 refused from the
+2026-09-22 run before Gmail was configured. The broker's mail domain points at a Microsoft 365
+host that does not resolve, so nothing sent to it can arrive: its properties need a phone
+call (number on the broker's site). Its contact is marked bounced, correctly. Before child
+`e4e2e01`, Gmail "delay" notices were counted as bounces, which marked that contact bounced
+one day before the real failure; delay notices are now ignored. One planning reply so far
+(Greenville, 2026-09-25: 301 S Evans St is in the downtown CD district, car sales not
+allowed), read and applied automatically. Planning contacts for Tarboro and Rocky Mount
+were added 2026-09-27; Goldsboro and Simpson publish none (phone only).
+
 ## Next steps, in order
 
-1. Supply `SUPABASE_SERVICE_ROLE_KEY` and the commute-origin `DEALERSOURCE_HOME_BASE`; rerun the
-   dry run so the report lands in Supabase and the live dashboard shows it.
-2. Add the free Reddit, ORS and
-   Mapillary keys; rerun with the fetch crawler. This is the run that answers the coverage question:
-   how many $600 to $1,000 listings exist in the area.
+1. ~~Supply `SUPABASE_SERVICE_ROLE_KEY` and the commute-origin `DEALERSOURCE_HOME_BASE`; rerun the
+   dry run so the report lands in Supabase and the live dashboard shows it.~~ Done.
+2. ~~Add the free Reddit, ORS and
+   Mapillary keys; rerun with the fetch crawler.~~ Done except Reddit, which the PM switched off.
 3. Review the digest and shortlist. Adjust `config/sources.yaml` (enable grey
    sources after reading their terms).
-4. Gmail app password for the owner; first send to a handful of contacts with
-   `mail.followup_days` and bounce pause in effect.
+4. ~~Gmail app password for the owner; first send to a handful of contacts with
+   `mail.followup_days` and bounce pause in effect.~~ Done; first sends 2026-09-23 (results above).
 5. Create the Claude Code routine from `agents/claude-solution/agent/routine.yaml`
    with the variables above as routine secrets. Cron `30 5 * * *` America/New_York.
+   Deferred: the Windows Task Scheduler runner stays until outreach has been watched for
+   a while.
